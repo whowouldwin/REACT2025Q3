@@ -1,60 +1,72 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/*SearchBar*/
 .search-bar {
   padding: 1rem;
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .search-bar input {
   padding: 0.3rem;
   font-size: 1rem;
+  cursor: pointer;
 }
 
 .search-bar button {
   padding: 0.3rem 0.6rem;
   font-size: 1rem;
   cursor: pointer;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 300px;
+  overflow: hidden;
+  text-align: left;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+.card-content h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.card-content p {
+  margin: 0;
+  color: #cccccc;
+}
+
+.results {
+  padding: 1rem;
+}
+
+.error-message {
+  color: red;
+  padding: 1rem;
 }
