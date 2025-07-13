@@ -6,6 +6,8 @@ import { setSearchText, getSearchText } from './utils/localStorage.ts';
 import { ResultsList } from './components/ResultsList.tsx';
 import { FetchError } from './error/FetchError.ts';
 
+type Props = Record<string, never>;
+
 interface State {
   characters: Character[];
   loading: boolean;
@@ -13,16 +15,18 @@ interface State {
   searchTerm: string;
   page: number;
   totalPages: number;
+  lastCount: number;
 }
 
-export class App extends React.Component {
+export class App extends React.Component<Props, State> {
   state: State = {
     characters: [],
-    loading: false,
+    loading: true,
     error: null,
     searchTerm: getSearchText(),
     page: 0,
     totalPages: 0,
+    lastCount: 20,
   };
 
   componentDidMount() {
@@ -30,9 +34,13 @@ export class App extends React.Component {
   }
 
   loadCharacters = async (text: string, page: number = 1) => {
-    try {
-      this.setState({ loading: true, error: null });
+    this.setState((prev) => ({
+      loading: true,
+      error: null,
+      lastCount: prev.characters.length,
+    }));
 
+    try {
       const result = await fetchAll(text, page);
 
       this.setState({
@@ -42,7 +50,7 @@ export class App extends React.Component {
         page,
         totalPages: result.info.pages,
       });
-    } catch (error: unknown) {
+    } catch (error) {
       let message = 'Unexpected error occurred';
       if (error instanceof FetchError) {
         message = error.message;
@@ -72,24 +80,26 @@ export class App extends React.Component {
     }
   };
   render() {
+    const { characters, loading, error, page, totalPages } = this.state;
+
     return (
       <div>
         <h1>Rick & Morty</h1>
         <SearchBar onSearch={this.handleSearch} />
+
         <ResultsList
-          data={this.state.characters}
-          loading={this.state.loading}
-          error={this.state.error}
+          data={characters}
+          loading={loading}
+          error={error}
+          skeletonCount={this.state.lastCount}
         />
+
         <div className="pagination-controls">
-          <button onClick={this.handlePrev} disabled={this.state.page <= 1}>
+          <button onClick={this.handlePrev} disabled={page <= 1}>
             Prev
           </button>
-          <span>Page {this.state.page}</span>
-          <button
-            onClick={this.handleNext}
-            disabled={this.state.page >= this.state.totalPages}
-          >
+          <span>Page {page}</span>
+          <button onClick={this.handleNext} disabled={page >= totalPages}>
             Next
           </button>
         </div>
