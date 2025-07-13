@@ -181,3 +181,17 @@
   border-radius: 4px;
   animation: pulse 1.5s ease-in-out infinite;
 }
+
+.error-fallback {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ff6961;
+  border: 2px dashed #ff6961;
+  margin: 1rem;
+}
+
+.throw-btn {
+  margin-top: 1rem;
+  padding: 0.4rem 0.8rem;
+}

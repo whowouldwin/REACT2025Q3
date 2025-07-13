@@ -3,8 +3,11 @@ import { SearchBar } from './components/SearchBar.tsx';
 import React from 'react';
 import { type Character, fetchAll } from './api/rickAndMorty.ts';
 import { setSearchText, getSearchText } from './utils/localStorage.ts';
-import { ResultsList } from './components/ResultsList.tsx';
 import { FetchError } from './error/FetchError.ts';
+import { ErrorBoundary } from './error/ErrorBoundary.tsx';
+import { FallbackUI } from './components/FallbackUI.tsx';
+import { CrashButton } from './components/CrashButton.tsx';
+import { SearchResults } from './components/SearchResults.tsx';
 
 type Props = Record<string, never>;
 
@@ -16,6 +19,7 @@ interface State {
   page: number;
   totalPages: number;
   lastCount: number;
+  crash: boolean;
 }
 
 export class App extends React.Component<Props, State> {
@@ -27,6 +31,7 @@ export class App extends React.Component<Props, State> {
     page: 0,
     totalPages: 0,
     lastCount: 20,
+    crash: false,
   };
 
   componentDidMount() {
@@ -64,7 +69,6 @@ export class App extends React.Component<Props, State> {
 
   handleSearch = (text: string) => {
     setSearchText(text);
-    console.log(text);
     this.loadCharacters(text, 1);
   };
 
@@ -79,6 +83,9 @@ export class App extends React.Component<Props, State> {
       this.loadCharacters(this.state.searchTerm, this.state.page + 1);
     }
   };
+
+  triggerCrash = () => this.setState({ crash: true });
+
   render() {
     const { characters, loading, error, page, totalPages } = this.state;
 
@@ -90,22 +97,20 @@ export class App extends React.Component<Props, State> {
         </div>
 
         <div className="content">
-          <ResultsList
-            data={characters}
-            loading={loading}
-            error={error}
-            skeletonCount={this.state.lastCount}
-          />
-
-          <div className="pagination-controls">
-            <button onClick={this.handlePrev} disabled={page <= 1}>
-              Prev
-            </button>
-            <span>Page {page}</span>
-            <button onClick={this.handleNext} disabled={page >= totalPages}>
-              Next
-            </button>
-          </div>
+          <ErrorBoundary fallback={<FallbackUI />}>
+            <SearchResults
+              data={characters}
+              loading={loading}
+              error={error}
+              skeletonCount={this.state.lastCount}
+              page={page}
+              totalPages={totalPages}
+              onPrev={this.handlePrev}
+              onNext={this.handleNext}
+              crash={this.state.crash}
+            />
+          </ErrorBoundary>
+          <CrashButton onCrash={this.triggerCrash} />
         </div>
       </div>
     );
