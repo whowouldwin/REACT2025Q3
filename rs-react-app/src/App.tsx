@@ -11,6 +11,8 @@ interface State {
   loading: boolean;
   error: string | null;
   searchTerm: string;
+  page: number;
+  totalPages: number;
 }
 
 export class App extends React.Component {
@@ -19,22 +21,26 @@ export class App extends React.Component {
     loading: false,
     error: null,
     searchTerm: getSearchText(),
+    page: 0,
+    totalPages: 0,
   };
 
   componentDidMount() {
     void this.loadCharacters(this.state.searchTerm);
   }
 
-  loadCharacters = async (text: string) => {
+  loadCharacters = async (text: string, page: number = 1) => {
     try {
       this.setState({ loading: true, error: null });
 
-      const result = await fetchAll(text, 1);
+      const result = await fetchAll(text, page);
 
       this.setState({
         characters: result.results,
         loading: false,
         searchTerm: text,
+        page,
+        totalPages: result.info.pages,
       });
     } catch (error: unknown) {
       let message = 'Unexpected error occurred';
@@ -51,7 +57,19 @@ export class App extends React.Component {
   handleSearch = (text: string) => {
     setSearchText(text);
     console.log(text);
-    this.loadCharacters(text);
+    this.loadCharacters(text, 1);
+  };
+
+  handlePrev = () => {
+    if (this.state.page > 1) {
+      this.loadCharacters(this.state.searchTerm, this.state.page - 1);
+    }
+  };
+
+  handleNext = () => {
+    if (this.state.page < this.state.totalPages) {
+      this.loadCharacters(this.state.searchTerm, this.state.page + 1);
+    }
   };
   render() {
     return (
@@ -63,6 +81,18 @@ export class App extends React.Component {
           loading={this.state.loading}
           error={this.state.error}
         />
+        <div className="pagination-controls">
+          <button onClick={this.handlePrev} disabled={this.state.page <= 1}>
+            Prev
+          </button>
+          <span>Page {this.state.page}</span>
+          <button
+            onClick={this.handleNext}
+            disabled={this.state.page >= this.state.totalPages}
+          >
+            Next
+          </button>
+        </div>
       </div>
     );
   }
