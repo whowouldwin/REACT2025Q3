@@ -1,35 +1,19 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.css';
+import { SearchBar } from './components/SearchBar.tsx';
+import React from 'react';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
+export class App extends React.Component {
+  handleSearch = (text: string) => {
+    console.log(text);
+  };
+  render() {
+    return (
       <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Rick & Morty</h1>
+        <SearchBar onSearch={this.handleSearch} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+    );
+  }
 }
 
 export default App;
