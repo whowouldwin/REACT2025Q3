@@ -58,7 +58,7 @@ export class App extends React.Component<Props, State> {
         message = `Generic error: ${error.message}`;
       }
 
-      this.setState({ error: message, loading: false, totalPages: 0 });
+      this.setState({ error: message, loading: false, totalPages: 0, page: 0 });
     }
   };
 
@@ -84,24 +84,28 @@ export class App extends React.Component<Props, State> {
 
     return (
       <div>
-        <h1>Rick & Morty</h1>
-        <SearchBar onSearch={this.handleSearch} />
+        <div className="fixed-header">
+          <h1>Rick & Morty</h1>
+          <SearchBar onSearch={this.handleSearch} />
+        </div>
 
-        <ResultsList
-          data={characters}
-          loading={loading}
-          error={error}
-          skeletonCount={this.state.lastCount}
-        />
+        <div className="content">
+          <ResultsList
+            data={characters}
+            loading={loading}
+            error={error}
+            skeletonCount={this.state.lastCount}
+          />
 
-        <div className="pagination-controls">
-          <button onClick={this.handlePrev} disabled={page <= 1}>
-            Prev
-          </button>
-          <span>Page {page}</span>
-          <button onClick={this.handleNext} disabled={page >= totalPages}>
-            Next
-          </button>
+          <div className="pagination-controls">
+            <button onClick={this.handlePrev} disabled={page <= 1}>
+              Prev
+            </button>
+            <span>Page {page}</span>
+            <button onClick={this.handleNext} disabled={page >= totalPages}>
+              Next
+            </button>
+          </div>
         </div>
       </div>
     );
