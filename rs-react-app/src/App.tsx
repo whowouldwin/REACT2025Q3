@@ -58,7 +58,7 @@ export class App extends React.Component<Props, State> {
         message = `Generic error: ${error.message}`;
       }
 
-      this.setState({ error: message, loading: false });
+      this.setState({ error: message, loading: false, totalPages: 0 });
     }
   };
 
