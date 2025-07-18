@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSearchText, setSearchText } from '../utils/localStorage.ts';
+import { getSearchText, setSearchText } from '../utils/localStorage';
 
 interface Props {
   onSearch: (text: string) => void;
