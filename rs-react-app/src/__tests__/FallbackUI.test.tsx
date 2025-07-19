@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { FallbackUI } from './FallbackUI.tsx';
+import { FallbackUI } from '../components/FallbackUI.tsx';
 
 describe('FallbackUI', () => {
   it('renders the fallback message correctly', () => {

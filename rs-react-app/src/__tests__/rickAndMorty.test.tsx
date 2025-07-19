@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
-import { fetchAll, type ApiResponse, type Character } from './rickAndMorty.ts';
+import { fetchAll, type ApiResponse, type Character } from '../api/rickAndMorty.ts';
 import { FetchError } from '../error/FetchError.ts';
 
 const mockCharacters: Character[] = [

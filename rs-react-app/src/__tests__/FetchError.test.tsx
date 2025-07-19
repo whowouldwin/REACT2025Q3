@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FetchError } from './FetchError.ts';
+import { FetchError } from '../error/FetchError.ts';
 
 describe('FetchError', () => {
   it('should create an error with correct name and message', () => {

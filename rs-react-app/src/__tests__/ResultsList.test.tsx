@@ -1,7 +1,7 @@
 import type { Character } from '../api/rickAndMorty.ts';
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { ResultsList } from './ResultsList.tsx';
+import { ResultsList } from '../components/ResultsList.tsx';
 
 const makeCharacter = (id: number): Character => ({
   id,

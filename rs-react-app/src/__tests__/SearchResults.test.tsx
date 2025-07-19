@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { SearchResults } from './SearchResults.tsx';
+import { SearchResults } from '../components/SearchResults.tsx';
 import type { Character } from '../api/rickAndMorty.ts';
 
 describe('search results', () => {

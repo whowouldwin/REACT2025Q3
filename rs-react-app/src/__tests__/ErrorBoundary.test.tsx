@@ -1,5 +1,5 @@
 import { beforeEach, describe, vi, it, expect } from 'vitest';
-import { ErrorBoundary } from './ErrorBoundary.tsx';
+import { ErrorBoundary } from '../error/ErrorBoundary.tsx';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 

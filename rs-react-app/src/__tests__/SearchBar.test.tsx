@@ -1,9 +1,9 @@
 vi.mock('../utils/localStorage');
 
 import { fireEvent, render, screen } from '@testing-library/react';
-import { SearchBar } from './SearchBar';
+import { SearchBar } from '../components/SearchBar.tsx';
 import { describe, expect, vi, it } from 'vitest';
-import * as localStorageUtils from '../utils/localStorage';
+import * as localStorageUtils from '../utils/localStorage.ts';
 import userEvent from '@testing-library/user-event';
 
 describe('SearchBar rendering', () => {
