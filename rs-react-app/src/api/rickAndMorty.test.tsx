@@ -30,7 +30,6 @@ const mockApiResponse: ApiResponse = {
   results: mockCharacters,
 };
 
-
 const server = setupServer(
   http.get('https://rickandmortyapi.com/api/character/', ({ request }) => {
     const url = new URL(request.url);
@@ -48,7 +47,6 @@ const server = setupServer(
     return HttpResponse.json(mockApiResponse);
   })
 );
-
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
