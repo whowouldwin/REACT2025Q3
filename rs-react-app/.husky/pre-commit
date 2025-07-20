@@ -1,2 +1,4 @@
-cd rs-react-app && npm run lint
+cd rs-react-app
+npm run lint
+npm test -- --run
 
