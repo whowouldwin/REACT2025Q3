@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://whowouldwin.github.io/whowouldwin-REACT2025Q3",
+  "homepage": "https://whowouldwin.github.io/REACT2025Q3",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -12,7 +12,7 @@
     "format:fix": "prettier --write .",
     "prepare": "cd .. && husky rs-react-app/.husky",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist -r https://github.com/whowouldwin/REACT2025Q3.git",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
   },

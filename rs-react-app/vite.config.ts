@@ -29,5 +29,5 @@ export default defineConfig({
       },
     },
   },
-  base: '/whowouldwin-REACT2025Q3/',
+  base: '/REACT2025Q3/',
 });
