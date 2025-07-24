@@ -1,4 +1,5 @@
 import React from 'react';
+
 import type { Character } from '../api/rickAndMorty.ts';
 
 export class Card extends React.Component<Character> {

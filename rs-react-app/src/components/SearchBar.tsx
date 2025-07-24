@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { getSearchText, setSearchText } from '../utils/localStorage';
 
 interface Props {

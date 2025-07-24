@@ -1,6 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+
 import { Card } from '../components/Card.tsx';
+
 import type { Character } from '../api/rickAndMorty.ts';
 
 describe('Card', () => {

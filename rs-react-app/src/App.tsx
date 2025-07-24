@@ -1,13 +1,14 @@
 import './App.css';
-import { SearchBar } from './components/SearchBar.tsx';
 import React from 'react';
+
 import { type Character, fetchAll } from './api/rickAndMorty.ts';
-import { setSearchText, getSearchText } from './utils/localStorage.ts';
-import { FetchError } from './error/FetchError.ts';
-import { ErrorBoundary } from './error/ErrorBoundary.tsx';
-import { FallbackUI } from './components/FallbackUI.tsx';
 import { CrashButton } from './components/CrashButton.tsx';
+import { FallbackUI } from './components/FallbackUI.tsx';
+import { SearchBar } from './components/SearchBar.tsx';
 import { SearchResults } from './components/SearchResults.tsx';
+import { ErrorBoundary } from './error/ErrorBoundary.tsx';
+import { FetchError } from './error/FetchError.ts';
+import { setSearchText, getSearchText } from './utils/localStorage.ts';
 
 type Props = Record<string, never>;
 

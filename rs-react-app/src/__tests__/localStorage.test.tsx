@@ -1,7 +1,8 @@
-import { beforeEach, expect, it } from 'vitest';
-import { SearchBar } from '../components/SearchBar.tsx';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { beforeEach, expect, it } from 'vitest';
+
+import { SearchBar } from '../components/SearchBar.tsx';
 
 beforeEach(() => {
   localStorage.clear();

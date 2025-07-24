@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { ResultsList } from './ResultsList.tsx';
+
 import type { Character } from '../api/rickAndMorty.ts';
 
 interface Props {

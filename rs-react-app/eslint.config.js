@@ -6,9 +6,10 @@ import react from 'eslint-plugin-react';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
 import reactCompiler from 'eslint-plugin-react-compiler';
+import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'node_modules'] },
   {
     extends: [
       js.configs.recommended,
@@ -25,6 +26,7 @@ export default tseslint.config(
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'react-compiler': reactCompiler,
+      import: importPlugin,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -36,10 +38,35 @@ export default tseslint.config(
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       '@typescript-eslint/no-explicit-any': 'error',
+      'import/order': [
+        'warn',
+        {
+          groups: [
+            'builtin',
+            'external',
+            'internal',
+            ['parent', 'sibling', 'index'],
+            'type',
+          ],
+          pathGroups: [
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+          ],
+          alphabetize: { order: 'asc', caseInsensitive: true },
+          'newlines-between': 'always',
+        },
+      ],
+
     },
     settings: {
       react: {
         version: 'detect',
+      },
+      'import/resolver': {
+        typescript: {},
       },
     },
   }

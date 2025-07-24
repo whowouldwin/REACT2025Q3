@@ -1,7 +1,9 @@
 import React from 'react';
-import type { Character } from '../api/rickAndMorty.ts';
+
 import { Card } from './Card.tsx';
 import { SkeletonCard } from './SkeletonCard.tsx';
+
+import type { Character } from '../api/rickAndMorty.ts';
 
 interface Props {
   data: Character[];

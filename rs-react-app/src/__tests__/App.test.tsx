@@ -1,9 +1,11 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+
 import * as rickAndMortyApi from '../api/rickAndMorty.ts';
-import * as localStorageUtils from '../utils/localStorage.ts';
 import { App } from '../App.tsx';
 import { FetchError } from '../error/FetchError.ts';
+import * as localStorageUtils from '../utils/localStorage.ts';
+
 import type { Character, ApiResponse } from '../api/rickAndMorty.ts';
 
 vi.mock('../utils/localStorage');
