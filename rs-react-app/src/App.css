@@ -1,15 +1,3 @@
-@keyframes pulse {
-  0% {
-    background-color: hsl(0 0% 100% / 0.1);
-  }
-  50% {
-    background-color: hsl(0 0% 100% / 0.2);
-  }
-  100% {
-    background-color: hsl(0 0% 100% / 0.1);
-  }
-}
-
 .btn {
   padding: 0.5rem 1rem;
   font-weight: 500;
