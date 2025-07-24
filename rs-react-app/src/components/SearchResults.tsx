@@ -42,11 +42,7 @@ export class SearchResults extends React.Component<Props> {
           <button
             onClick={onPrev}
             disabled={page <= 1}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              page <= 1
-                ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none'
-            }`}
+            className="btn btn-primary"
           >
             Prev
           </button>
@@ -56,11 +52,7 @@ export class SearchResults extends React.Component<Props> {
           <button
             onClick={onNext}
             disabled={page >= totalPages}
-            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-              page >= totalPages
-                ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 focus:outline-none'
-            }`}
+            className="btn btn-primary"
           >
             Next
           </button>

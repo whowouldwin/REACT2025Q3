@@ -38,10 +38,7 @@ export class SearchBar extends React.Component<Props, State> {
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
         />
-        <button
-          onClick={this.handleSearch}
-          className="px-3 py-1 text-base rounded-lg border border-transparent hover:border-blue-400 bg-gray-900 dark:bg-gray-800 cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
+        <button onClick={this.handleSearch} className="btn btn-dark">
           Search
         </button>
       </div>
