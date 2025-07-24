@@ -90,13 +90,17 @@ export class App extends React.Component<Props, State> {
     const { characters, loading, error, page, totalPages } = this.state;
 
     return (
-      <div>
-        <div className="fixed-header">
-          <h1>Rick & Morty</h1>
-          <SearchBar onSearch={this.handleSearch} />
+      <div className="min-h-screen bg-gray-900 text-white">
+        <div className="fixed top-0 left-0 w-full bg-gray-800 z-50 shadow-lg border-b border-gray-700">
+          <div className="container mx-auto py-4 px-4">
+            <h1 className="text-3xl font-bold text-center text-blue-400 mb-4">
+              Rick & Morty
+            </h1>
+            <SearchBar onSearch={this.handleSearch} />
+          </div>
         </div>
 
-        <div className="content">
+        <div className="container mx-auto pt-40 pb-10 px-4">
           <ErrorBoundary fallback={<FallbackUI />}>
             <SearchResults
               data={characters}
@@ -110,7 +114,9 @@ export class App extends React.Component<Props, State> {
               crash={this.state.crash}
             />
           </ErrorBoundary>
-          <CrashButton onCrash={this.triggerCrash} />
+          <div className="mt-8 flex justify-center">
+            <CrashButton onCrash={this.triggerCrash} />
+          </div>
         </div>
       </div>
     );

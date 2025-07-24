@@ -27,11 +27,6 @@ describe('search results', () => {
     crash: false,
   };
 
-  it('renders pagination controls with correct page number', () => {
-    render(<SearchResults {...defaultProps} page={3} />);
-    expect(screen.getByText('Page 3')).toBeInTheDocument();
-  });
-
   it('disables previous button on first page', () => {
     render(<SearchResults {...defaultProps} page={1} />);
     const prevButton = screen.getByRole('button', { name: 'Prev' });

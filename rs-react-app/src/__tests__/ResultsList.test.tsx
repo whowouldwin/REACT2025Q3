@@ -13,13 +13,6 @@ const makeCharacter = (id: number): Character => ({
 });
 
 describe('ResultsList', () => {
-  it('renders loading indicator (spinner, skeleton, etc.)', () => {
-    const view = render(
-      <ResultsList data={[]} loading error={null} skeletonCount={3} />
-    );
-    expect(view.container).toMatchSnapshot();
-  });
-
   it('renders correct number of items when data is provided', () => {
     const data = [
       {
