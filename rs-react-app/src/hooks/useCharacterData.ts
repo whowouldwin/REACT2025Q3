@@ -19,7 +19,9 @@ export const useCharacterData = () => {
   const loadCharacters = async (text: string, pageNum: number = 1) => {
     setLoading(true);
     setError(null);
-    setLastCount(characters.length);
+    if (characters.length > 0) {
+      setLastCount(characters.length);
+    }
 
     try {
       const result = await fetchAll(text, pageNum);
