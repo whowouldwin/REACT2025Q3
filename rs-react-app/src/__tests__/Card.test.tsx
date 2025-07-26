@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest';
 
 import { Card } from '../components/Card.tsx';
 
-import type { Character } from '../api/rickAndMorty.ts';
+import type { Character } from '../types/rickAndMorty.ts';
 
 describe('Card', () => {
   const mockCharacter: Character = {

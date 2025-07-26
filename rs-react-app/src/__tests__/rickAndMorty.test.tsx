@@ -2,12 +2,10 @@ import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 
-import {
-  fetchAll,
-  type ApiResponse,
-  type Character,
-} from '../api/rickAndMorty.ts';
+import { fetchAll } from '../api/rickAndMorty.ts';
 import { FetchError } from '../error/FetchError.ts';
+
+import type { ApiResponse, Character } from '../types/rickAndMorty.ts';
 
 const mockCharacters: Character[] = [
   {

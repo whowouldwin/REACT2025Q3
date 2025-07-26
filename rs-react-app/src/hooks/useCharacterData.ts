@@ -1,0 +1,83 @@
+import { useState, useEffect } from 'react';
+
+import { fetchAll } from '../api/rickAndMorty';
+import { FetchError } from '../error/FetchError';
+import { getSearchText, setSearchText } from '../utils/localStorage';
+
+import type { Character } from '../types/rickAndMorty';
+
+export const useCharacterData = () => {
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState(getSearchText());
+  const [page, setPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [lastCount, setLastCount] = useState(20);
+  const [crash, setCrash] = useState(false);
+
+  const loadCharacters = async (text: string, pageNum: number = 1) => {
+    setLoading(true);
+    setError(null);
+    setLastCount(characters.length);
+
+    try {
+      const result = await fetchAll(text, pageNum);
+
+      setCharacters(result.results);
+      setLoading(false);
+      setSearchTerm(text);
+      setPage(pageNum);
+      setTotalPages(result.info.pages);
+    } catch (error) {
+      let message = 'Unexpected error occurred';
+      if (error instanceof FetchError) {
+        message = error.message;
+      } else if (error instanceof Error) {
+        message = `Generic error: ${error.message}`;
+      }
+
+      setError(message);
+      setLoading(false);
+      setTotalPages(0);
+      setPage(0);
+    }
+  };
+
+  const handleSearch = (text: string) => {
+    setSearchText(text);
+    loadCharacters(text, 1);
+  };
+
+  const handlePrev = () => {
+    if (page > 1) {
+      loadCharacters(searchTerm, page - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (page < totalPages) {
+      loadCharacters(searchTerm, page + 1);
+    }
+  };
+
+  const triggerCrash = () => setCrash(true);
+  useEffect(() => {
+    loadCharacters(searchTerm);
+  }, []);
+
+  return {
+    characters,
+    loading,
+    error,
+    searchTerm,
+    page,
+    totalPages,
+    lastCount,
+    crash,
+    handleSearch,
+    handlePrev,
+    handleNext,
+    triggerCrash,
+  };
+};

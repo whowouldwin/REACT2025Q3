@@ -1,48 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { getSearchText, setSearchText } from '../utils/localStorage';
 
-interface Props {
+interface SearchBarProps {
   onSearch: (text: string) => void;
 }
 
-interface State {
-  input: string;
-}
+export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [input, setInput] = useState(getSearchText());
 
-export class SearchBar extends React.Component<Props, State> {
-  state: State = {
-    input: getSearchText(),
-  };
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ input: event.target.value });
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
   };
 
-  handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      this.handleSearch();
+      handleSearch();
     }
   };
-  handleSearch = () => {
-    const trimmedText = this.state.input.trim();
+
+  const handleSearch = () => {
+    const trimmedText = input.trim();
     setSearchText(trimmedText);
-    this.props.onSearch(trimmedText);
+    onSearch(trimmedText);
   };
-  render() {
-    return (
-      <div className="p-4 flex gap-2 justify-center">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="px-3 py-2 text-base rounded-md border border-gray-400 shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
-          value={this.state.input}
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-        />
-        <button onClick={this.handleSearch} className="btn btn-dark">
-          Search
-        </button>
-      </div>
-    );
-  }
-}
+
+  return (
+    <div className="p-4 flex gap-2 justify-center">
+      <input
+        type="text"
+        placeholder="Search..."
+        className="px-3 py-2 text-base rounded-md border border-gray-400 shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+        value={input}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
+      <button onClick={handleSearch} className="btn btn-dark">
+        Search
+      </button>
+    </div>
+  );
+};

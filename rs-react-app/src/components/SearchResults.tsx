@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ResultsList } from './ResultsList.tsx';
 
-import type { Character } from '../api/rickAndMorty.ts';
+import type { Character } from '../types/rickAndMorty.ts';
 
-interface Props {
+interface SearchResultsProps {
   data: Character[];
   loading: boolean;
   error: string | null;
@@ -16,50 +16,48 @@ interface Props {
   crash: boolean;
 }
 
-export class SearchResults extends React.Component<Props> {
-  render() {
-    if (this.props.crash) {
-      throw new Error('Render crash!');
-    }
-    const {
-      data,
-      loading,
-      error,
-      skeletonCount,
-      page,
-      totalPages,
-      onPrev,
-      onNext,
-    } = this.props;
-
-    return (
-      <>
-        <ResultsList
-          data={data}
-          loading={loading}
-          error={error}
-          skeletonCount={skeletonCount}
-        />
-        <div className="flex justify-center items-center gap-4 mt-8">
-          <button
-            onClick={onPrev}
-            disabled={page <= 1}
-            className="btn btn-primary"
-          >
-            Prev
-          </button>
-          <span className="px-4 py-2 bg-gray-800 rounded-lg font-medium text-white">
-            Page {page} of {totalPages || 1}
-          </span>
-          <button
-            onClick={onNext}
-            disabled={page >= totalPages}
-            className="btn btn-primary"
-          >
-            Next
-          </button>
-        </div>
-      </>
-    );
+export const SearchResults: React.FC<SearchResultsProps> = ({
+  data,
+  loading,
+  error,
+  skeletonCount,
+  page,
+  totalPages,
+  onPrev,
+  onNext,
+  crash,
+}) => {
+  if (crash) {
+    throw new Error('Render crash!');
   }
-}
+
+  return (
+    <>
+      <ResultsList
+        data={data}
+        loading={loading}
+        error={error}
+        skeletonCount={skeletonCount}
+      />
+      <div className="flex justify-center items-center gap-4 mt-8">
+        <button
+          onClick={onPrev}
+          disabled={page <= 1}
+          className="btn btn-primary"
+        >
+          Prev
+        </button>
+        <span className="px-4 py-2 bg-gray-800 rounded-lg font-medium text-white">
+          Page {page} of {totalPages || 1}
+        </span>
+        <button
+          onClick={onNext}
+          disabled={page >= totalPages}
+          className="btn btn-primary"
+        >
+          Next
+        </button>
+      </div>
+    </>
+  );
+};
