@@ -27,8 +27,7 @@ export const ResultsList: React.FC<ResultsListProps> = ({
       </div>
     );
   };
-
-  if (loading) return renderSkeletonCards();
+  if (loading && data.length === 0) return renderSkeletonCards();
   if (error)
     return (
       <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center mx-auto max-w-2xl">
