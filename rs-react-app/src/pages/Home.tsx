@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { CrashButton } from '../components/CrashButton';
+import { DetailsView } from '../components/DetailsView';
 import { FallbackUI } from '../components/FallbackUI';
 import { SearchResults } from '../components/SearchResults';
 import { ErrorBoundary } from '../error/ErrorBoundary';
@@ -19,27 +20,37 @@ export const Home: React.FC<HomeProps> = ({ characterData }) => {
 
   useEffect(() => {
     if (page > 0 && page !== currentPage) {
-      setSearchParams({ page: page.toString() });
+      setSearchParams((prev) => {
+        prev.set('page', page.toString());
+        return prev;
+      });
     }
   }, [page, currentPage, setSearchParams]);
 
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
-      <ErrorBoundary fallback={<FallbackUI />}>
-        <SearchResults
-          data={characterData.characters}
-          loading={characterData.loading}
-          error={characterData.error}
-          skeletonCount={characterData.lastCount}
-          page={characterData.page}
-          totalPages={characterData.totalPages}
-          onPrev={characterData.handlePrev}
-          onNext={characterData.handleNext}
-          crash={characterData.crash}
-        />
-      </ErrorBoundary>
-      <div className="mt-8 flex justify-center">
-        <CrashButton onCrash={characterData.triggerCrash} />
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex-1">
+          <ErrorBoundary fallback={<FallbackUI />}>
+            <SearchResults
+              data={characterData.characters}
+              loading={characterData.loading}
+              error={characterData.error}
+              skeletonCount={characterData.lastCount}
+              page={characterData.page}
+              totalPages={characterData.totalPages}
+              onPrev={characterData.handlePrev}
+              onNext={characterData.handleNext}
+              crash={characterData.crash}
+            />
+          </ErrorBoundary>
+
+          <div className="mt-8 flex justify-center">
+            <CrashButton onCrash={characterData.triggerCrash} />
+          </div>
+        </div>
+
+        <DetailsView />
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
 import { ResultsList } from '../components/ResultsList.tsx';
 
-import type { Character } from '../api/rickAndMorty.ts';
-
+import type { Character } from '../types/rickAndMorty.ts';
 const makeCharacter = (id: number): Character => ({
   id,
   name: `Name ${id}`,
@@ -23,7 +23,7 @@ describe('ResultsList', () => {
         status: 'Alive',
         species: 2,
         gender: 'Male',
-        image: 'https://ex.com/${id}.png',
+        image: 'https://ex.com/1.png',
       },
       {
         id: 2,
@@ -31,19 +31,36 @@ describe('ResultsList', () => {
         status: 'Alive',
         species: 3,
         gender: 'Male',
-        image: 'https://ex.com/${id}.png',
+        image: 'https://ex.com/2.png',
       },
     ];
+
     render(
-      <ResultsList data={data} loading={false} error={null} skeletonCount={0} />
+      <MemoryRouter>
+        <ResultsList
+          data={data}
+          loading={false}
+          error={null}
+          skeletonCount={0}
+        />
+      </MemoryRouter>
     );
-    expect(screen.getAllByRole('img')).toHaveLength(2);
+
+    expect(screen.getByText(/Rick/i)).toBeInTheDocument();
+    expect(screen.getByText(/Morty/i)).toBeInTheDocument();
   });
 
   it('render cards', () => {
     const data = [makeCharacter(1), makeCharacter(2)];
     render(
-      <ResultsList data={data} loading={false} error={null} skeletonCount={0} />
+      <MemoryRouter>
+        <ResultsList
+          data={data}
+          loading={false}
+          error={null}
+          skeletonCount={0}
+        />
+      </MemoryRouter>
     );
 
     data.forEach((item) => {
@@ -55,12 +72,14 @@ describe('ResultsList', () => {
   it('displays error message when API call fails', () => {
     const message = 'HTTP status codes (4xx, 5xx)';
     render(
-      <ResultsList
-        data={[]}
-        loading={false}
-        error={message}
-        skeletonCount={3}
-      />
+      <MemoryRouter>
+        <ResultsList
+          data={[]}
+          loading={false}
+          error={message}
+          skeletonCount={3}
+        />
+      </MemoryRouter>
     );
     expect(screen.getByText(message)).toBeInTheDocument();
   });

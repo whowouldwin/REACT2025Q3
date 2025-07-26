@@ -1,9 +1,10 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 
 import { SearchResults } from '../components/SearchResults.tsx';
 
-import type { Character } from '../api/rickAndMorty.ts';
+import type { Character } from '../types/rickAndMorty.ts';
 
 describe('search results', () => {
   const mockData: Character[] = [
@@ -30,32 +31,52 @@ describe('search results', () => {
   };
 
   it('disables previous button on first page', () => {
-    render(<SearchResults {...defaultProps} page={1} />);
+    render(
+      <MemoryRouter>
+        <SearchResults {...defaultProps} page={1} />
+      </MemoryRouter>
+    );
     const prevButton = screen.getByRole('button', { name: 'Prev' });
     expect(prevButton).toBeDisabled();
   });
 
   it('enables previous button when not on first page', () => {
-    render(<SearchResults {...defaultProps} page={2} />);
+    render(
+      <MemoryRouter>
+        <SearchResults {...defaultProps} page={2} />
+      </MemoryRouter>
+    );
     const prevButton = screen.getByRole('button', { name: 'Prev' });
     expect(prevButton).not.toBeDisabled();
   });
 
   it('disables next button on last page', () => {
-    render(<SearchResults {...defaultProps} page={5} totalPages={5} />);
+    render(
+      <MemoryRouter>
+        <SearchResults {...defaultProps} page={5} totalPages={5} />
+      </MemoryRouter>
+    );
     const nextButton = screen.getByRole('button', { name: 'Next' });
     expect(nextButton).toBeDisabled();
   });
 
   it('enables next button when not on last page', () => {
-    render(<SearchResults {...defaultProps} page={4} totalPages={5} />);
+    render(
+      <MemoryRouter>
+        <SearchResults {...defaultProps} page={4} totalPages={5} />
+      </MemoryRouter>
+    );
     const nextButton = screen.getByRole('button', { name: 'Next' });
     expect(nextButton).not.toBeDisabled();
   });
 
   it('throws error when crash prop is true', () => {
     const renderWithCrushed = () =>
-      render(<SearchResults {...defaultProps} crash={true} />);
+      render(
+        <MemoryRouter>
+          <SearchResults {...defaultProps} crash={true} />
+        </MemoryRouter>
+      );
     expect(renderWithCrushed).toThrow('Render crash!');
   });
 });

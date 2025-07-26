@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { Card } from './Card.tsx';
 import { SkeletonCard } from './SkeletonCard.tsx';
@@ -18,15 +19,15 @@ export const ResultsList: React.FC<ResultsListProps> = ({
   error,
   skeletonCount,
 }) => {
-  const renderSkeletonCards = () => {
-    return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
-        {Array.from({ length: skeletonCount }).map((_, i) => (
-          <SkeletonCard key={`skeleton-${i}`} />
-        ))}
-      </div>
-    );
-  };
+  const [, setSearchParams] = useSearchParams();
+  const renderSkeletonCards = () => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
+      {Array.from({ length: skeletonCount }).map((_, i) => (
+        <SkeletonCard key={`skeleton-${i}`} />
+      ))}
+    </div>
+  );
+
   if (loading && data.length === 0) return renderSkeletonCards();
   if (error)
     return (
@@ -39,7 +40,18 @@ export const ResultsList: React.FC<ResultsListProps> = ({
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
       {data.map((item) => (
-        <Card key={item.id} {...item} />
+        <div
+          key={item.id}
+          onClick={() => {
+            setSearchParams((prev) => {
+              prev.set('details', item.id.toString());
+              return prev;
+            });
+          }}
+          className="cursor-pointer w-full"
+        >
+          <Card {...item} />
+        </div>
       ))}
     </div>
   );
