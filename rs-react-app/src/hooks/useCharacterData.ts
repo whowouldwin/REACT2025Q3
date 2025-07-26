@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { fetchAll } from '../api/rickAndMorty';
 import { FetchError } from '../error/FetchError';
@@ -25,40 +25,42 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState(getSearchText());
+  const [searchTerm, setSearchTerm] = useState(() => getSearchText());
   const [page, setPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(0);
   const [lastCount, setLastCount] = useState(20);
   const [crash, setCrash] = useState(false);
 
-  const loadCharacters = async (text: string, pageNum: number) => {
-    setLoading(true);
-    setError(null);
-    if (characters.length > 0) {
-      setLastCount(characters.length);
-    }
-
-    try {
-      const result = await fetchAll(text, pageNum);
-      setCharacters(result.results);
-      setSearchTerm(text);
-      setPage(pageNum);
-      setTotalPages(result.info.pages);
-      setLoading(false);
-    } catch (error) {
-      let message = 'Unexpected error occurred';
-      if (error instanceof FetchError) {
-        message = error.message;
-      } else if (error instanceof Error) {
-        message = `Generic error: ${error.message}`;
+  const loadCharacters = useCallback(
+    async (text: string, pageNum: number) => {
+      setLoading(true);
+      setError(null);
+      if (characters.length > 0) {
+        setLastCount(characters.length);
       }
 
-      setError(message);
-      setTotalPages(0);
-      setPage(0);
-      setLoading(false);
-    }
-  };
+      try {
+        const result = await fetchAll(text, pageNum);
+        setCharacters(result.results);
+        setSearchTerm(text);
+        setPage(pageNum);
+        setTotalPages(result.info.pages);
+      } catch (error) {
+        let message = 'Unexpected error occurred';
+        if (error instanceof FetchError) {
+          message = error.message;
+        } else if (error instanceof Error) {
+          message = `Generic error: ${error.message}`;
+        }
+
+        setError(message);
+        setTotalPages(0);
+        setPage(0);
+        setLoading(false);
+      }
+    },
+    [characters.length]
+  );
 
   const handleSearch = (text: string) => {
     setSearchText(text);
@@ -80,7 +82,7 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
   const triggerCrash = () => setCrash(true);
   useEffect(() => {
     loadCharacters(searchTerm, initialPage);
-  }, [initialPage]);
+  }, [initialPage, searchTerm, loadCharacters]);
 
   return {
     characters,
