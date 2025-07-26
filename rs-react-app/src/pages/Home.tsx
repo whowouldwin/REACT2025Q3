@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { CrashButton } from '../components/CrashButton';
 import { DetailsView } from '../components/DetailsView';
 import { FallbackUI } from '../components/FallbackUI';
 import { SearchResults } from '../components/SearchResults';
@@ -44,10 +43,6 @@ export const Home: React.FC<HomeProps> = ({ characterData }) => {
               crash={characterData.crash}
             />
           </ErrorBoundary>
-
-          <div className="mt-8 flex justify-center">
-            <CrashButton onCrash={characterData.triggerCrash} />
-          </div>
         </div>
 
         <DetailsView />
