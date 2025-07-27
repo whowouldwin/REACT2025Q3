@@ -1,30 +1,32 @@
 import { renderHook, act } from '@testing-library/react';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 
-import { __mocks__ } from '../hooks/__mocks__/useLocalStorage.ts';
-import { useLocalStorage } from '../hooks/useLocalStorage.ts';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-vi.mock('../hooks/useLocalStorage');
+describe('useLocalStorage (real)', () => {
+  const key = 'searchText';
 
-describe('useLocalStorage (mocked)', () => {
   beforeEach(() => {
-    __mocks__.resetMocks();
-    __mocks__.resetStore();
+    localStorage.clear();
   });
 
-  it('returns the value from the mock store', () => {
-    const { result } = renderHook(() =>
-      useLocalStorage('searchText', 'default')
-    );
+  it('returns default value if localStorage is empty', () => {
+    const { result } = renderHook(() => useLocalStorage(key, 'default'));
 
     const [value] = result.current;
-    expect(value).toBe('previous');
+    expect(value).toBe('default');
   });
 
-  it('calls setValue when updating the value', () => {
-    const { result } = renderHook(() =>
-      useLocalStorage('searchText', 'default')
-    );
+  it('returns value from localStorage if present', () => {
+    localStorage.setItem(key, JSON.stringify('existing'));
+    const { result } = renderHook(() => useLocalStorage(key, 'default'));
+
+    const [value] = result.current;
+    expect(value).toBe('existing');
+  });
+
+  it('updates localStorage when setValue is called', () => {
+    const { result } = renderHook(() => useLocalStorage(key, 'initial'));
 
     const [, setValue] = result.current;
 
@@ -32,13 +34,15 @@ describe('useLocalStorage (mocked)', () => {
       setValue('new value');
     });
 
-    expect(__mocks__.setValue).toHaveBeenCalledWith('new value');
+    const [newVal] = result.current;
+    expect(newVal).toBe('new value');
+    expect(localStorage.getItem(key)).toBe(JSON.stringify('new value'));
   });
 
-  it('calls removeValue when removing the value', () => {
-    const { result } = renderHook(() =>
-      useLocalStorage('searchText', 'default')
-    );
+  it('removes value from localStorage and resets to default', () => {
+    localStorage.setItem(key, JSON.stringify('to be removed'));
+
+    const { result } = renderHook(() => useLocalStorage(key, 'fallback'));
 
     const [, , removeValue] = result.current;
 
@@ -46,6 +50,16 @@ describe('useLocalStorage (mocked)', () => {
       removeValue();
     });
 
-    expect(__mocks__.removeValue).toHaveBeenCalled();
+    const [afterRemove] = result.current;
+    expect(afterRemove).toBe('fallback');
+    expect(localStorage.getItem(key)).toBeNull();
+  });
+
+  it('handles invalid JSON gracefully', () => {
+    localStorage.setItem(key, '{invalid json');
+    const { result } = renderHook(() => useLocalStorage(key, 'safe fallback'));
+
+    const [val] = result.current;
+    expect(val).toBe('safe fallback');
   });
 });
