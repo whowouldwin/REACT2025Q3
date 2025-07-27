@@ -30,5 +30,5 @@ export default defineConfig({
       },
     },
   },
-  base: '/',
+  base: '/REACT2025Q3/',
 });
