@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 
-import { fetchAll } from '../api/rickAndMorty.ts';
+import { fetchAll, getCharacterById } from '../api/rickAndMorty.ts';
 import { FetchError } from '../error/FetchError.ts';
 
 import type { ApiResponse, Character } from '../types/rickAndMorty.ts';
@@ -33,6 +33,15 @@ const mockApiResponse: ApiResponse = {
   results: mockCharacters,
 };
 
+const mockSingleCharacter = {
+  id: 1,
+  name: 'Rick Sanchez',
+  status: 'Alive',
+  species: 'Human',
+  image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+  gender: 'Male',
+};
+
 const server = setupServer(
   http.get('https://rickandmortyapi.com/api/character/', ({ request }) => {
     const url = new URL(request.url);
@@ -48,6 +57,15 @@ const server = setupServer(
     }
 
     return HttpResponse.json(mockApiResponse);
+  }),
+
+  http.get('https://rickandmortyapi.com/api/character/:id', ({ params }) => {
+    const { id } = params;
+
+    if (id === '1') {
+      return HttpResponse.json(mockSingleCharacter);
+    }
+    return HttpResponse.json(mockSingleCharacter);
   })
 );
 
@@ -66,5 +84,12 @@ describe('fetchAll', () => {
     await expect(fetchAll('MissingCharacter')).rejects.toThrow(
       'Could not fetch character'
     );
+  });
+});
+
+describe('getCharacterById', () => {
+  it('fetches a character by ID successfully', async () => {
+    const character = await getCharacterById(1);
+    expect(character).toEqual(mockSingleCharacter);
   });
 });
