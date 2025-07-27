@@ -30,8 +30,4 @@ export default defineConfig({
       },
     },
   },
-  base: '/REACT2025Q3/',
-  build: {
-    outDir: 'dist/REACT2025Q3',
-  },
 });
