@@ -31,7 +31,7 @@ export const Home: React.FC<HomeProps> = ({ characterData }) => {
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
       <div className="flex flex-col lg:flex-row gap-8 relative">
-        <div className={`flex-1 ${detailsId ? 'lg:w-3/5' : 'w-full'}`}>
+        <div className={`flex-1 ${detailsId ? 'lg:w-2/3' : 'w-full'}`}>
           <ErrorBoundary fallback={<FallbackUI />}>
             <SearchResults
               data={characterData.characters}
@@ -43,12 +43,13 @@ export const Home: React.FC<HomeProps> = ({ characterData }) => {
               onPrev={characterData.handlePrev}
               onNext={characterData.handleNext}
               crash={characterData.crash}
+              detailsOpen={!!detailsId}
             />
           </ErrorBoundary>
         </div>
 
         {detailsId && (
-          <div className="lg:w-2/5 fixed lg:relative top-0 right-0 bottom-0 lg:top-auto lg:right-auto lg:bottom-auto z-10 w-full lg:w-auto">
+          <div className="lg:w-1/3 fixed lg:relative top-0 right-0 bottom-0 lg:top-auto lg:right-auto lg:bottom-auto z-10 w-full lg:w-auto">
             <DetailsView />
           </div>
         )}

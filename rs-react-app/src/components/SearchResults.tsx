@@ -14,6 +14,7 @@ interface SearchResultsProps {
   onPrev: () => void;
   onNext: () => void;
   crash: boolean;
+  detailsOpen?: boolean;
 }
 
 export const SearchResults: React.FC<SearchResultsProps> = ({
@@ -26,6 +27,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
   onPrev,
   onNext,
   crash,
+  detailsOpen = false,
 }) => {
   if (crash) {
     throw new Error('Render crash!');
@@ -38,6 +40,7 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
         loading={loading}
         error={error}
         skeletonCount={skeletonCount}
+        detailsOpen={detailsOpen}
       />
       {!error && data.length > 0 && (
         <div className="flex justify-center items-center gap-4 mt-8">

@@ -11,6 +11,7 @@ interface ResultsListProps {
   loading: boolean;
   error: string | null;
   skeletonCount: number;
+  detailsOpen?: boolean;
 }
 
 export const ResultsList: React.FC<ResultsListProps> = ({
@@ -18,11 +19,18 @@ export const ResultsList: React.FC<ResultsListProps> = ({
   loading,
   error,
   skeletonCount,
+  detailsOpen = false,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedId = searchParams.get('details');
   const renderSkeletonCards = () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${
+        detailsOpen
+          ? 'lg:grid-cols-3 xl:grid-cols-4'
+          : 'lg:grid-cols-4 xl:grid-cols-5'
+      } gap-6 justify-items-center`}
+    >
       {Array.from({ length: skeletonCount }).map((_, i) => (
         <SkeletonCard key={`skeleton-${i}`} />
       ))}
@@ -39,7 +47,13 @@ export const ResultsList: React.FC<ResultsListProps> = ({
     );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ${
+        detailsOpen
+          ? 'lg:grid-cols-3 xl:grid-cols-4'
+          : 'lg:grid-cols-4 xl:grid-cols-5'
+      } gap-6 justify-items-center`}
+    >
       {data.map((item) => {
         const isSelected = selectedId === item.id.toString();
         return (
