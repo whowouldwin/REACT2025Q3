@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { getSearchText, setSearchText } from '../utils/localStorage';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface SearchBarProps {
   onSearch: (text: string) => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [input, setInput] = useState(getSearchText());
+  const [storedInput, setStoredInput] = useLocalStorage<string>(
+    'searchText',
+    ''
+  );
+  const [localInput, setLocalInput] = useState(storedInput);
+  useEffect(() => {
+    setLocalInput(storedInput);
+  }, [storedInput]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.value);
+    setLocalInput(event.target.value);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -20,8 +27,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   };
 
   const handleSearch = () => {
-    const trimmedText = input.trim();
-    setSearchText(trimmedText);
+    const trimmedText = localInput.trim();
+    setLocalInput(trimmedText);
+    setStoredInput(trimmedText);
     onSearch(trimmedText);
   };
 
@@ -31,7 +39,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         type="text"
         placeholder="Search..."
         className="px-3 py-2 text-base rounded-md border border-gray-400 shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
-        value={input}
+        value={localInput}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />

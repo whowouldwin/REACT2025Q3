@@ -19,5 +19,9 @@ it('saves search to LS when search button is clicked', async () => {
   await userEvent.click(button);
 
   const saved = localStorage.getItem('searchText');
-  expect(saved).toBe('typed text');
+  if (saved !== null) {
+    expect(JSON.parse(saved)).toBe('typed text');
+  } else {
+    throw new Error('searchText not found in localStorage');
+  }
 });

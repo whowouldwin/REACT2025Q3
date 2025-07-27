@@ -5,11 +5,11 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as rickAndMortyApi from '../api/rickAndMorty.ts';
 import { App } from '../App.tsx';
 import { FetchError } from '../error/FetchError.ts';
-import * as localStorageUtils from '../utils/localStorage.ts';
+import { __mocks__ } from '../hooks/__mocks__/useLocalStorage.ts';
 
 import type { ApiResponse, Character } from '../types/rickAndMorty.ts';
 
-vi.mock('../utils/localStorage');
+vi.mock('../hooks/useLocalStorage');
 vi.mock('../api/rickAndMorty.ts');
 
 const mockCharacters: Character[] = [
@@ -40,6 +40,7 @@ describe('app component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.spyOn(rickAndMortyApi, 'fetchAll').mockResolvedValue(mockApiResponse);
+    __mocks__.resetStore();
   });
 
   it('renders the header and search bar', async () => {
@@ -58,14 +59,13 @@ describe('app component', () => {
   });
 
   it('preloads characters', async () => {
-    vi.mocked(localStorageUtils.getSearchText).mockReturnValue('rick');
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
     await waitFor(() => {
-      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('rick', 1);
+      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('previous', 1);
     });
   });
 
@@ -83,13 +83,12 @@ describe('app component', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Search' }));
 
     await waitFor(() => {
-      expect(localStorageUtils.setSearchText).toHaveBeenCalledWith('morty');
+      expect(__mocks__.setValue).toHaveBeenCalledWith('morty');
       expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('morty', 1);
     });
   });
 
   it('goes to previous page', async () => {
-    vi.mocked(localStorageUtils.getSearchText).mockReturnValue('rick');
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
@@ -97,17 +96,17 @@ describe('app component', () => {
     );
 
     await waitFor(() => {
-      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('rick', 1);
+      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('previous', 1);
     });
 
     fireEvent.click(screen.getByRole('button', { name: 'Next' }));
     await waitFor(() => {
-      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('rick', 2);
+      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('previous', 2);
     });
 
     fireEvent.click(screen.getByRole('button', { name: 'Prev' }));
     await waitFor(() => {
-      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('rick', 1);
+      expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('previous', 1);
     });
   });
 

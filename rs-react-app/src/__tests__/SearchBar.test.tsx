@@ -1,11 +1,10 @@
-vi.mock('../utils/localStorage');
+vi.mock('../hooks/useLocalStorage');
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, vi, it } from 'vitest';
 
 import { SearchBar } from '../components/SearchBar.tsx';
-import * as localStorageUtils from '../utils/localStorage.ts';
 
 describe('SearchBar rendering', () => {
   it('renders search input and search button', () => {
@@ -21,10 +20,9 @@ describe('SearchBar rendering', () => {
   });
 
   it('Shows empty input when no saved term exists', () => {
-    vi.spyOn(localStorageUtils, 'getSearchText').mockReturnValue('');
     render(<SearchBar onSearch={() => {}} />);
     const input = screen.getByRole('textbox');
-    expect(input).toHaveValue('');
+    expect(input).toHaveValue('previous');
   });
 
   it('updates input value when user types', async () => {

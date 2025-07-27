@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
+import { useLocalStorage } from './useLocalStorage';
 import { fetchAll } from '../api/rickAndMorty';
 import { FetchError } from '../error/FetchError';
-import { getSearchText, setSearchText } from '../utils/localStorage';
 
 import type { Character } from '../types/rickAndMorty';
 
@@ -25,7 +25,7 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState(() => getSearchText());
+  const [searchTerm, setSearchTerm] = useLocalStorage<string>('searchText', '');
   const [page, setPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(0);
   const [lastCount, setLastCount] = useState(20);
@@ -42,7 +42,6 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
       try {
         const result = await fetchAll(text, pageNum);
         setCharacters(result.results);
-        setSearchTerm(text);
         setPage(pageNum);
         setTotalPages(result.info.pages);
       } catch (error) {
@@ -63,7 +62,6 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
   );
 
   const handleSearch = (text: string) => {
-    setSearchText(text);
     setSearchTerm(text);
     setPage(1);
   };
