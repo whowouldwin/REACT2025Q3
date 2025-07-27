@@ -16,13 +16,22 @@ export const DetailsView: React.FC = () => {
   const detailsId = searchParams.get('details');
   const [loading, setLoading] = useState(false);
   const [character, setCharacter] = useState<Character | null>(null);
+  const [, setPendingCharacter] = useState<Character | null>(null);
 
   useEffect(() => {
     if (!detailsId) return;
+
     setLoading(true);
+
     getCharacterById(detailsId)
-      .then(setCharacter)
-      .catch(() => setCharacter(null))
+      .then((data) => {
+        setPendingCharacter(data);
+        setCharacter(data);
+      })
+      .catch(() => {
+        setPendingCharacter(null);
+        setCharacter(null);
+      })
       .finally(() => setLoading(false));
   }, [detailsId]);
 
@@ -45,6 +54,11 @@ export const DetailsView: React.FC = () => {
       onClick={handleOverlayClick}
     >
       <aside className="w-full max-w-md lg:w-full p-6 border border-gray-700 rounded-lg bg-gray-800 shadow-xl relative">
+        {loading && (
+          <div className="absolute top-0 left-0 right-0 flex justify-center">
+            <div className="w-8 h-1 bg-blue-500 animate-pulse rounded-full"></div>
+          </div>
+        )}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-red-600 rounded-full hover:bg-red-700 transition-colors"
@@ -66,14 +80,7 @@ export const DetailsView: React.FC = () => {
           </svg>
         </button>
 
-        {loading ? (
-          <div className="flex flex-col items-center justify-center py-10">
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p className="text-gray-300 font-medium">
-              Loading character details...
-            </p>
-          </div>
-        ) : character ? (
+        {character ? (
           <div className="text-white pt-6">
             <h2 className="text-2xl font-bold mb-4 text-blue-300">
               {character.name}
@@ -101,6 +108,13 @@ export const DetailsView: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+        ) : loading && !character ? (
+          <div className="flex flex-col items-center justify-center py-10">
+            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p className="text-gray-300 font-medium">
+              Loading character details...
+            </p>
           </div>
         ) : (
           <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-6 text-center">
