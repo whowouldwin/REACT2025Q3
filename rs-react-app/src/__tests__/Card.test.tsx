@@ -1,7 +1,9 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+
 import { Card } from '../components/Card.tsx';
-import type { Character } from '../api/rickAndMorty.ts';
+
+import type { Character } from '../types/rickAndMorty.ts';
 
 describe('Card', () => {
   const mockCharacter: Character = {
@@ -23,5 +25,12 @@ describe('Card', () => {
       screen.getByText(`${mockCharacter.status} — ${mockCharacter.species}`)
     ).toBeInTheDocument();
     expect(screen.getByText(mockCharacter.gender)).toBeInTheDocument();
+  });
+
+  it('renders "Selected" label and applies selected styles', () => {
+    render(<Card {...mockCharacter} isSelected />);
+    expect(screen.getByText(/Selected/i)).toBeInTheDocument();
+    const title = screen.getByText(mockCharacter.name);
+    expect(title).toHaveClass('text-blue-300');
   });
 });

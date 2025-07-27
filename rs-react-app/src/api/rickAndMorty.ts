@@ -1,20 +1,6 @@
 import { FetchError } from '../error/FetchError.ts';
 
-export interface Character {
-  id: number;
-  name: string;
-  status: string;
-  species: number;
-  image: string;
-  gender: string;
-}
-
-export interface ApiResponse {
-  info: {
-    pages: number;
-  };
-  results: Character[];
-}
+import type { ApiResponse } from '../types/rickAndMorty.ts';
 
 export async function fetchAll(
   name: string,
@@ -24,6 +10,16 @@ export async function fetchAll(
   const response = await fetch(url);
   if (!response.ok) {
     throw new FetchError('Could not fetch character');
+  }
+  return response.json();
+}
+
+export async function getCharacterById(id: string | number) {
+  const response = await fetch(
+    `https://rickandmortyapi.com/api/character/${id}`
+  );
+  if (!response.ok) {
+    throw new FetchError('Could not fetch character by ID');
   }
   return response.json();
 }

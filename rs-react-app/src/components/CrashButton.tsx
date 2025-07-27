@@ -1,15 +1,13 @@
 import React from 'react';
 
-interface Props {
+interface CrashButtonProps {
   onCrash: () => void;
 }
 
-export class CrashButton extends React.Component<Props> {
-  render() {
-    return (
-      <button className="throw-btn" onClick={this.props.onCrash}>
-        Error Button
-      </button>
-    );
-  }
-}
+export const CrashButton: React.FC<CrashButtonProps> = ({ onCrash }) => {
+  return (
+    <button className="btn btn-danger" onClick={onCrash}>
+      Error Button
+    </button>
+  );
+};

@@ -1,9 +1,10 @@
-import { defineConfig } from 'vitest/config';
+import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vitest/config';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   test: {
     globals: true,
     mockReset: true,
@@ -18,6 +19,7 @@ export default defineConfig({
         'src/index.{js,jsx,ts,tsx}',
         'src/setupTests.{js,ts}',
         'src/**/*.d.ts',
+        'src/**/__mocks__/**',
       ],
       thresholds: {
         global: {
@@ -29,5 +31,4 @@ export default defineConfig({
       },
     },
   },
-  base: '/REACT2025Q3/',
 });

@@ -1,7 +1,8 @@
-import { beforeEach, describe, vi, it, expect } from 'vitest';
-import { ErrorBoundary } from '../error/ErrorBoundary.tsx';
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import { beforeEach, describe, vi, it, expect } from 'vitest';
+
+import { ErrorBoundary } from '../error/ErrorBoundary.tsx';
 
 const ProblemChild: React.FC = () => {
   throw new Error('ProblemChild');
