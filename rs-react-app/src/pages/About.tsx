@@ -9,6 +9,18 @@ export const About: React.FC = () => {
         </h1>
         <div className="text-white space-y-4">
           <p>This is a Rick & Morty application built with React.</p>
+          <p>
+            This project is part of the{' '}
+            <a
+              href="https://rs.school/courses/reactjs"
+              className="text-blue-400 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              RS School React Course
+            </a>
+          </p>
+
           <div className="border-t border-gray-700 pt-4 mt-4">
             <h2 className="text-xl font-semibold text-blue-300 mb-2">
               Author Information
