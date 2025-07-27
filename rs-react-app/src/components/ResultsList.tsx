@@ -19,7 +19,8 @@ export const ResultsList: React.FC<ResultsListProps> = ({
   error,
   skeletonCount,
 }) => {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedId = searchParams.get('details');
   const renderSkeletonCards = () => (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
       {Array.from({ length: skeletonCount }).map((_, i) => (
@@ -39,20 +40,27 @@ export const ResultsList: React.FC<ResultsListProps> = ({
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
-      {data.map((item) => (
-        <div
-          key={item.id}
-          onClick={() => {
-            setSearchParams((prev) => {
-              prev.set('details', item.id.toString());
-              return prev;
-            });
-          }}
-          className="cursor-pointer w-full"
-        >
-          <Card {...item} />
-        </div>
-      ))}
+      {data.map((item) => {
+        const isSelected = selectedId === item.id.toString();
+        return (
+          <div
+            key={item.id}
+            onClick={() => {
+              setSearchParams((prev) => {
+                prev.set('details', item.id.toString());
+                return prev;
+              });
+            }}
+            className={`cursor-pointer w-full transition-all duration-300 ${
+              isSelected
+                ? 'ring-4 ring-blue-500 ring-opacity-75 scale-[1.03] z-10 rounded-xl shadow-lg shadow-blue-500/20'
+                : 'hover:scale-[1.02]'
+            }`}
+          >
+            <Card {...item} isSelected={isSelected} />
+          </div>
+        );
+      })}
     </div>
   );
 };
