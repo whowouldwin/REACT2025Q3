@@ -11,7 +11,7 @@ if (!rootElement) {
 }
 createRoot(rootElement).render(
   <StrictMode>
-    <BrowserRouter basename="/REACT2025Q3/">
+    <BrowserRouter basename="/">
       <App />
     </BrowserRouter>
   </StrictMode>
