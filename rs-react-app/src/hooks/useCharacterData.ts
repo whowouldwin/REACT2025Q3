@@ -55,7 +55,7 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
 
         setError(message);
         setTotalPages(0);
-        setPage(0);
+        setPage(1);
         setLoading(false);
       }
     },
@@ -64,25 +64,26 @@ export const useCharacterData = (initialPage: number = 1): CharacterData => {
 
   const handleSearch = (text: string) => {
     setSearchText(text);
-    loadCharacters(text, 1);
+    setSearchTerm(text);
+    setPage(1);
   };
 
   const handlePrev = () => {
     if (page > 1) {
-      loadCharacters(searchTerm, page - 1);
+      setPage((prev) => prev - 1);
     }
   };
 
   const handleNext = () => {
     if (page < totalPages) {
-      loadCharacters(searchTerm, page + 1);
+      setPage((prev) => prev + 1);
     }
   };
 
   const triggerCrash = () => setCrash(true);
   useEffect(() => {
-    loadCharacters(searchTerm, initialPage);
-  }, [initialPage, searchTerm, loadCharacters]);
+    loadCharacters(searchTerm, page);
+  }, [page, searchTerm, loadCharacters]);
 
   return {
     characters,
