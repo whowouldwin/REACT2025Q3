@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, vi, expect } from 'vitest';
 
-import { Header } from './components/Header.tsx';
+import { Header } from '../components/Header.tsx';
 describe('Header navigation and search behavior', () => {
   const mockHandleSearch = vi.fn();
 
