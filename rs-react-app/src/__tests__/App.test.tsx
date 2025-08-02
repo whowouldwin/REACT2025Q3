@@ -1,10 +1,10 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 import * as rickAndMortyApi from '../api/rickAndMorty.ts';
 import { App } from '../App.tsx';
 import { FetchError } from '../error/FetchError.ts';
+import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 import { __mocks__ } from '../hooks/__mocks__/useLocalStorage.ts';
 
 import type { ApiResponse, Character } from '../types/rickAndMorty.ts';
@@ -36,7 +36,7 @@ const mockApiResponse: ApiResponse = {
   results: mockCharacters,
 };
 
-describe('app component', () => {
+describe('App component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     vi.spyOn(rickAndMortyApi, 'fetchAll').mockResolvedValue(mockApiResponse);
@@ -44,11 +44,8 @@ describe('app component', () => {
   });
 
   it('renders the header and search bar', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
     await waitFor(() => {
       expect(screen.getByText('Rick & Morty')).toBeInTheDocument();
       expect(screen.getByRole('textbox')).toBeInTheDocument();
@@ -59,22 +56,17 @@ describe('app component', () => {
   });
 
   it('preloads characters', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
+
     await waitFor(() => {
       expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('previous', 1);
     });
   });
 
   it('updates search term and loads characters while search', async () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
 
     fireEvent.change(screen.getByRole('textbox'), {
       target: { value: 'morty' },
@@ -89,11 +81,8 @@ describe('app component', () => {
   });
 
   it('goes to previous page', async () => {
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
 
     await waitFor(() => {
       expect(rickAndMortyApi.fetchAll).toHaveBeenCalledWith('previous', 1);
@@ -114,11 +103,9 @@ describe('app component', () => {
     vi.mocked(rickAndMortyApi.fetchAll).mockRejectedValue(
       new FetchError('Could not fetch character')
     );
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
+
     await waitFor(() => {
       expect(screen.getByText('Could not fetch character')).toBeInTheDocument();
     });
@@ -128,11 +115,9 @@ describe('app component', () => {
     vi.mocked(rickAndMortyApi.fetchAll).mockRejectedValue(
       new Error('Network error')
     );
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
+
     await waitFor(() => {
       expect(
         screen.getByText('Generic error: Network error')
@@ -144,11 +129,9 @@ describe('app component', () => {
     vi.mocked(rickAndMortyApi.fetchAll).mockRejectedValue(
       'Unexpected error occurred'
     );
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<App />, store, ['/']);
+
     await waitFor(() => {
       expect(screen.getByText('Unexpected error occurred')).toBeInTheDocument();
     });

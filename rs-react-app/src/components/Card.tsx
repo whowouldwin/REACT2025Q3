@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { toggleItemSelection } from '../store/selectedItemsSlice';
+
 import type { Character } from '../types/rickAndMorty.ts';
 
 interface CardProps extends Character {
@@ -7,6 +10,7 @@ interface CardProps extends Character {
 }
 
 export const Card: React.FC<CardProps> = ({
+  id,
   name,
   status,
   species,
@@ -14,21 +18,32 @@ export const Card: React.FC<CardProps> = ({
   gender,
   isSelected = false,
 }) => {
+  const dispatch = useAppDispatch();
+  const selectedIds = useAppSelector(
+    (state) => state.selectedItems.selectedIds
+  );
+  const isChecked = selectedIds.includes(id);
+
+  const handleCheckboxChange = (e: React.MouseEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    dispatch(toggleItemSelection(id));
+  };
   return (
     <div
       className={`bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 w-full max-w-xs h-[420px] flex flex-col ${
-        isSelected
-          ? 'bg-gray-700 border border-blue-500/50'
-          : 'hover:shadow-xl hover:scale-[1.02] hover:translate-y-[-4px]'
+        isSelected ? 'bg-gray-700 border border-blue-500/50' : 'hover:shadow-xl'
       }`}
     >
       <div className="relative h-64 flex-shrink-0">
         <img src={image} alt={name} className="w-full h-full object-cover" />
-        {isSelected && (
-          <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-            Selected
-          </div>
-        )}
+        <div className="absolute top-2 left-2 ">
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onClick={handleCheckboxChange}
+            className="h-7 w-7 cursor-pointer"
+          />
+        </div>
       </div>
       <div
         className={`p-4 flex-1 flex flex-col ${isSelected ? 'bg-gradient-to-b from-gray-700 to-gray-800' : ''}`}

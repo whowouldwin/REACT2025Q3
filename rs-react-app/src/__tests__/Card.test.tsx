@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
 import { Card } from '../components/Card.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 
 import type { Character } from '../types/rickAndMorty.ts';
 
@@ -14,9 +15,10 @@ describe('Card', () => {
     image: 'https://ex.com/${id}.png',
     gender: 'Male',
   };
-
   it('displays item name and description correctly', () => {
-    render(<Card {...mockCharacter} />);
+    const store = createMockStore();
+    renderWithProviders(<Card {...mockCharacter} />, store);
+
     const image = screen.getByRole('img', { name: mockCharacter.name });
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', mockCharacter.image);
@@ -28,8 +30,10 @@ describe('Card', () => {
   });
 
   it('renders "Selected" label and applies selected styles', () => {
-    render(<Card {...mockCharacter} isSelected />);
-    expect(screen.getByText(/Selected/i)).toBeInTheDocument();
+    const store = createMockStore([mockCharacter.id]);
+    renderWithProviders(<Card {...mockCharacter} isSelected />, store);
+
+    expect(screen.getByText(mockCharacter.name)).toBeInTheDocument();
     const title = screen.getByText(mockCharacter.name);
     expect(title).toHaveClass('text-blue-300');
   });

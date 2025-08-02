@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import { describe, it, expect } from 'vitest';
+import { screen } from '@testing-library/react';
+import { it, describe, expect } from 'vitest'; // добавь describe
 
 import { ResultsList } from '../components/ResultsList.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 
 import type { Character } from '../types/rickAndMorty.ts';
+
 const makeCharacter = (id: number): Character => ({
   id,
   name: `Name ${id}`,
@@ -35,15 +36,15 @@ describe('ResultsList', () => {
       },
     ];
 
-    render(
-      <MemoryRouter>
-        <ResultsList
-          data={data}
-          loading={false}
-          error={null}
-          skeletonCount={0}
-        />
-      </MemoryRouter>
+    const store = createMockStore();
+    renderWithProviders(
+      <ResultsList
+        data={data}
+        loading={false}
+        error={null}
+        skeletonCount={0}
+      />,
+      store
     );
 
     expect(screen.getByText(/Rick/i)).toBeInTheDocument();
@@ -52,15 +53,15 @@ describe('ResultsList', () => {
 
   it('render cards', () => {
     const data = [makeCharacter(1), makeCharacter(2)];
-    render(
-      <MemoryRouter>
-        <ResultsList
-          data={data}
-          loading={false}
-          error={null}
-          skeletonCount={0}
-        />
-      </MemoryRouter>
+    const store = createMockStore();
+    renderWithProviders(
+      <ResultsList
+        data={data}
+        loading={false}
+        error={null}
+        skeletonCount={0}
+      />,
+      store
     );
 
     data.forEach((item) => {
@@ -71,15 +72,15 @@ describe('ResultsList', () => {
 
   it('displays error message when API call fails', () => {
     const message = 'HTTP status codes (4xx, 5xx)';
-    render(
-      <MemoryRouter>
-        <ResultsList
-          data={[]}
-          loading={false}
-          error={message}
-          skeletonCount={3}
-        />
-      </MemoryRouter>
+    const store = createMockStore();
+    renderWithProviders(
+      <ResultsList
+        data={[]}
+        loading={false}
+        error={message}
+        skeletonCount={3}
+      />,
+      store
     );
     expect(screen.getByText(message)).toBeInTheDocument();
   });

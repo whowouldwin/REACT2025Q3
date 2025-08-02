@@ -67,8 +67,8 @@ export const ResultsList: React.FC<ResultsListProps> = ({
             }}
             className={`cursor-pointer w-full transition-all duration-300 ${
               isSelected
-                ? 'ring-4 ring-blue-500 ring-opacity-75 scale-[1.03] z-10 rounded-xl shadow-lg shadow-blue-500/20'
-                : 'hover:scale-[1.02]'
+                ? 'ring-4 ring-blue-500 ring-opacity-75 z-10 rounded-xl shadow-lg shadow-blue-500/20'
+                : ''
             }`}
           >
             <Card {...item} isSelected={isSelected} />

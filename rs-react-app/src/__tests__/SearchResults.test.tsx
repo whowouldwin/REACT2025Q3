@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
 import { SearchResults } from '../components/SearchResults.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 
 import type { Character } from '../types/rickAndMorty.ts';
 
@@ -31,51 +31,45 @@ describe('search results', () => {
   };
 
   it('disables previous button on first page', () => {
-    render(
-      <MemoryRouter>
-        <SearchResults {...defaultProps} page={1} />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<SearchResults {...defaultProps} page={1} />, store);
     const prevButton = screen.getByRole('button', { name: 'Prev' });
     expect(prevButton).toBeDisabled();
   });
 
   it('enables previous button when not on first page', () => {
-    render(
-      <MemoryRouter>
-        <SearchResults {...defaultProps} page={2} />
-      </MemoryRouter>
-    );
+    const store = createMockStore();
+    renderWithProviders(<SearchResults {...defaultProps} page={2} />, store);
     const prevButton = screen.getByRole('button', { name: 'Prev' });
     expect(prevButton).not.toBeDisabled();
   });
 
   it('disables next button on last page', () => {
-    render(
-      <MemoryRouter>
-        <SearchResults {...defaultProps} page={5} totalPages={5} />
-      </MemoryRouter>
+    const store = createMockStore();
+    renderWithProviders(
+      <SearchResults {...defaultProps} page={5} totalPages={5} />,
+      store
     );
     const nextButton = screen.getByRole('button', { name: 'Next' });
     expect(nextButton).toBeDisabled();
   });
 
   it('enables next button when not on last page', () => {
-    render(
-      <MemoryRouter>
-        <SearchResults {...defaultProps} page={4} totalPages={5} />
-      </MemoryRouter>
+    const store = createMockStore();
+    renderWithProviders(
+      <SearchResults {...defaultProps} page={4} totalPages={5} />,
+      store
     );
     const nextButton = screen.getByRole('button', { name: 'Next' });
     expect(nextButton).not.toBeDisabled();
   });
 
   it('throws error when crash prop is true', () => {
+    const store = createMockStore();
     const renderWithCrushed = () =>
-      render(
-        <MemoryRouter>
-          <SearchResults {...defaultProps} crash={true} />
-        </MemoryRouter>
+      renderWithProviders(
+        <SearchResults {...defaultProps} crash={true} />,
+        store
       );
     expect(renderWithCrushed).toThrow('Render crash!');
   });
