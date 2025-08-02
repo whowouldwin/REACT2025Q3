@@ -1,5 +1,7 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+import type { RootState } from './store.ts';
+
 interface SelectedItemsState {
   selectedIds: number[];
 }
@@ -41,8 +43,7 @@ export const selectedItemsSlice = createSlice({
 export const { toggleItemSelection, clearSelection } =
   selectedItemsSlice.actions;
 
-export const selectSelectedIds = (state: {
-  selectedItems: SelectedItemsState;
-}) => state.selectedItems.selectedIds;
+export const selectSelectedIds = (state: RootState) =>
+  state.selectedItems.selectedIds;
 
 export default selectedItemsSlice.reducer;

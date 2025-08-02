@@ -29,9 +29,13 @@ export const renderWithProviders = (
   store: EnhancedStore,
   routeEntries: MemoryRouterProps['initialEntries'] = ['/']
 ) => {
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
   return render(
     <Provider store={store}>
       <MemoryRouter initialEntries={routeEntries}>{ui}</MemoryRouter>
-    </Provider>
+    </Provider>,
+    { container }
   );
 };
