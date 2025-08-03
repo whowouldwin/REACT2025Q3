@@ -18,6 +18,7 @@ export default defineConfig({
         'src/**/*.spec.{js,jsx,ts,tsx}',
         'src/index.{js,jsx,ts,tsx}',
         'src/setupTests.{js,ts}',
+        'src/components/icons/**/*.{js,jsx,ts,tsx}',
         'src/**/*.d.ts',
         'src/**/__mocks__/**',
       ],
