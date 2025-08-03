@@ -38,4 +38,8 @@ html[data-theme="dark"] {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --error-color: hsl(0, 70%, 50%);
+  --error-bg: hsl(0, 70%, 10%, 0.2);
+  --error-border: hsl(0, 70%, 50%, 0.5);
+  --error-text: hsl(0, 70%, 70%);
 }

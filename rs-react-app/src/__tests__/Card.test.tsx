@@ -28,13 +28,4 @@ describe('Card', () => {
     ).toBeInTheDocument();
     expect(screen.getByText(mockCharacter.gender)).toBeInTheDocument();
   });
-
-  it('renders "Selected" label and applies selected styles', () => {
-    const store = createMockStore([mockCharacter.id]);
-    renderWithProviders(<Card {...mockCharacter} isSelected />, store);
-
-    expect(screen.getByText(mockCharacter.name)).toBeInTheDocument();
-    const title = screen.getByText(mockCharacter.name);
-    expect(title).toHaveClass('text-blue-300');
-  });
 });

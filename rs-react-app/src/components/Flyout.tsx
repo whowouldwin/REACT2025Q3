@@ -57,22 +57,36 @@ export const Flyout: React.FC = () => {
   if (selectedIds.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 p-4 shadow-lg z-50">
+    <div
+      className="fixed bottom-0 left-0 right-0 border-t p-4 shadow-lg z-50"
+      style={{
+        backgroundColor: 'var(--bg-primary)',
+        borderColor: 'var(--border-color)',
+      }}
+    >
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-white">
+        <div style={{ color: 'var(--text-primary)' }}>
           {selectedIds.length}{' '}
           {selectedIds.length === 1 ? 'item is' : 'items are'} selected
         </div>
         <div className="space-x-4">
           <button
             onClick={handleUnselectAll}
-            className="px-4 py-2 bg-gray-700 text-white rounded transition-colors hover:bg-gray-600 cursor-pointer"
+            className="px-4 py-2 rounded transition-colors cursor-pointer"
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+            }}
           >
             Unselect all
           </button>
           <button
             onClick={handleDownload}
-            className="px-4 py-2 bg-blue-600  text-white rounded transition-colors hover:bg-blue-500 cursor-pointer"
+            className="px-4 py-2 rounded transition-colors cursor-pointer"
+            style={{
+              backgroundColor: 'var(--accent-color)',
+              color: 'white',
+            }}
           >
             Download
           </button>

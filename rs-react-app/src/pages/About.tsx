@@ -3,17 +3,27 @@ import React from 'react';
 export const About: React.FC = () => {
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-blue-400 mb-6">
+      <div
+        className="p-8 rounded-lg shadow-lg max-w-2xl mx-auto border"
+        style={{
+          backgroundColor: 'var(--bg-secondary)',
+          borderColor: 'var(--border-color)',
+        }}
+      >
+        <h1
+          className="text-3xl font-bold mb-6"
+          style={{ color: 'var(--accent-color)' }}
+        >
           About This App
         </h1>
-        <div className="text-white space-y-4">
+        <div className="space-y-4" style={{ color: 'var(--text-primary)' }}>
           <p>This is a Rick & Morty application built with React.</p>
           <p>
             This project is part of the{' '}
             <a
               href="https://rs.school/courses/reactjs"
-              className="text-blue-400 hover:underline"
+              className="hover:underline"
+              style={{ color: 'var(--accent-color)' }}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -21,8 +31,14 @@ export const About: React.FC = () => {
             </a>
           </p>
 
-          <div className="border-t border-gray-700 pt-4 mt-4">
-            <h2 className="text-xl font-semibold text-blue-300 mb-2">
+          <div
+            className="pt-4 mt-4 border-t"
+            style={{ borderColor: 'var(--border-color)' }}
+          >
+            <h2
+              className="text-xl font-semibold mb-2"
+              style={{ color: 'var(--accent-color)' }}
+            >
               Author Information
             </h2>
             <p>
@@ -32,7 +48,8 @@ export const About: React.FC = () => {
               <span className="font-medium">GitHub:</span>{' '}
               <a
                 href="https://github.com/whowouldwin/REACT2025Q3"
-                className="text-blue-400 hover:underline"
+                className="hover:underline"
+                style={{ color: 'var(--accent-color)' }}
               >
                 github.com/whowouldwin/REACT2025Q3
               </a>

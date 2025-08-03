@@ -38,10 +38,15 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       <input
         type="text"
         placeholder="Search..."
-        className="px-3 py-2 text-base rounded-md border border-gray-400 shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-black dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
         value={localInput}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
+        className="px-3 py-2 text-base rounded-md border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        style={{
+          backgroundColor: 'var(--bg-primary)',
+          color: 'var(--text-primary)',
+          borderColor: 'var(--border-color)',
+        }}
       />
       <button onClick={handleSearch} className="btn btn-dark">
         Search

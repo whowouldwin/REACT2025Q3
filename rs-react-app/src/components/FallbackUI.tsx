@@ -2,11 +2,22 @@ import React from 'react';
 
 export const FallbackUI: React.FC = () => {
   return (
-    <div className="max-w-2xl mx-auto my-8 p-8 bg-red-900/20 border-2 border-dashed border-red-500/50 rounded-lg text-center">
-      <h2 className="text-2xl font-bold text-red-400 mb-4">
+    <div
+      className="max-w-2xl mx-auto my-8 p-8 border-2 border-dashed rounded-lg text-center"
+      style={{
+        backgroundColor: 'var(--error-bg)',
+        borderColor: 'var(--error-border)',
+      }}
+    >
+      <h2
+        className="text-2xl font-bold mb-4"
+        style={{ color: 'var(--error-text)' }}
+      >
         Something went wrong.
       </h2>
-      <p className="text-white mb-6">Please reload the page.</p>
+      <p className="mb-6" style={{ color: 'var(--text-primary)' }}>
+        Please reload the page.
+      </p>
       <button
         onClick={() => window.location.reload()}
         className="btn btn-danger"

@@ -39,9 +39,13 @@ export const Card: React.FC<CardProps> = ({
   };
   return (
     <div
-      className={`bg-gray-800 rounded-xl overflow-hidden shadow-lg transition-all duration-300 w-full max-w-xs h-[420px] flex flex-col ${
-        isSelected ? 'bg-gray-700 border border-blue-500/50' : 'hover:shadow-xl'
-      }`}
+      className="rounded-xl overflow-hidden shadow-lg transition-all duration-300 w-full max-w-xs h-[420px] flex flex-col border"
+      style={{
+        backgroundColor: isSelected
+          ? 'var(--bg-secondary)'
+          : 'var(--bg-primary)',
+        borderColor: isSelected ? 'var(--accent-color)' : 'var(--border-color)',
+      }}
     >
       <div className="relative h-64 flex-shrink-0">
         <img src={image} alt={name} className="w-full h-full object-cover" />
@@ -55,28 +59,43 @@ export const Card: React.FC<CardProps> = ({
         </div>
       </div>
       <div
-        className={`p-4 flex-1 flex flex-col ${isSelected ? 'bg-gradient-to-b from-gray-700 to-gray-800' : ''}`}
+        className="p-4 flex-1 flex flex-col"
+        style={{
+          background: isSelected
+            ? 'linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary))'
+            : undefined,
+        }}
       >
         <h3
-          className={`text-xl font-bold mb-2 truncate ${isSelected ? 'text-blue-300' : 'text-white'}`}
+          className="text-xl font-bold mb-2 truncate"
+          style={{
+            color: isSelected ? 'var(--accent-color)' : 'var(--text-primary)',
+          }}
         >
           {name}
         </h3>
-        <p className="text-gray-300 mb-1 flex items-center">
+        <p
+          className="mb-1 flex items-center"
+          style={{ color: 'var(--text-secondary)' }}
+        >
           <span
-            className={`inline-block w-2 h-2 rounded-full mr-2 flex-shrink-0 ${
-              status === 'Alive'
-                ? 'bg-green-500'
-                : status === 'Dead'
-                  ? 'bg-red-500'
-                  : 'bg-gray-500'
-            }`}
+            className="inline-block w-2 h-2 rounded-full mr-2 flex-shrink-0"
+            style={{
+              backgroundColor:
+                status === 'Alive'
+                  ? 'hsl(140, 70%, 45%)'
+                  : status === 'Dead'
+                    ? 'hsl(0, 70%, 50%)'
+                    : 'hsl(0, 0%, 50%)',
+            }}
           ></span>
           <span className="truncate">
             {status} — {species}
           </span>
         </p>
-        <p className="text-gray-400 truncate">{gender}</p>
+        <p className="truncate" style={{ color: 'var(--text-secondary)' }}>
+          {gender}
+        </p>
       </div>
     </div>
   );

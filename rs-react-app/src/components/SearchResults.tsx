@@ -51,7 +51,13 @@ export const SearchResults: React.FC<SearchResultsProps> = ({
           >
             Prev
           </button>
-          <span className="px-4 py-2 bg-gray-800 rounded-lg font-medium text-white">
+          <span
+            className="px-4 py-2 rounded-lg font-medium"
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+            }}
+          >
             Page {page} of {totalPages || 1}
           </span>
           <button
