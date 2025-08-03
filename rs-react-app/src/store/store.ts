@@ -1,6 +1,7 @@
 import { configureStore, type Middleware } from '@reduxjs/toolkit';
 
 import selectedItemsReducer from './selectedItemsSlice';
+import themeReducer from './themeSlice';
 
 const localStorageMiddleware: Middleware =
   (storeAPI) => (next) => (action: unknown) => {
@@ -30,6 +31,7 @@ export const makeStore = () =>
   configureStore({
     reducer: {
       selectedItems: selectedItemsReducer,
+      theme: themeReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(localStorageMiddleware),

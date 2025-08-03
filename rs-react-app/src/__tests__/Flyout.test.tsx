@@ -62,12 +62,12 @@ describe('Flyout', () => {
     expect(screen.getByText('1 item is selected')).toBeInTheDocument();
   });
 
-  it('clears selection when "Unselect all" button is clicked', async () => {
+  it('clears selection when "Unselect all" button is clicked', () => {
     const mockCharacters = [createMockCharacter(1), createMockCharacter(2)];
     const store = createMockStore([1, 2], mockCharacters);
     renderWithProviders(<Flyout />, store);
 
-    const button = await screen.findByRole('button', { name: /unselect all/i });
+    const button = screen.getByText('Unselect all');
     fireEvent.click(button);
     expect(screen.queryByText(/items? are selected/i)).not.toBeInTheDocument();
   });

@@ -10,12 +10,14 @@ import { Provider } from 'react-redux';
 import { MemoryRouter, type MemoryRouterProps } from 'react-router-dom';
 
 import { selectedItemsSlice } from '../../store/selectedItemsSlice.ts';
+import { themeSlice } from '../../store/themeSlice.ts';
 
 import type { Character } from '../../types/rickAndMorty.ts';
 
 export const createMockStore = (
   selectedIds: number[] = [],
-  selectedItems: Character[] = []
+  selectedItems: Character[] = [],
+  themeMode: 'light' | 'dark' = 'light'
 ): Store => {
   const selectedItemsMap: Record<number, Character> = {};
   selectedItems.forEach((item) => {
@@ -25,11 +27,15 @@ export const createMockStore = (
   return configureStore({
     reducer: {
       selectedItems: selectedItemsSlice.reducer,
+      theme: themeSlice.reducer,
     },
     preloadedState: {
       selectedItems: {
         selectedIds,
         selectedItems: selectedItemsMap,
+      },
+      theme: {
+        mode: themeMode,
       },
     },
   });
