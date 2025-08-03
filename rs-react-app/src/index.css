@@ -9,7 +9,7 @@
   --border-color: hsl(220, 10%, 30%);
 }
 
-html[data-theme="light"] {
+html[data-theme='light'] {
   --text-primary: hsl(222, 25%, 10%);
   --text-secondary: hsl(220, 10%, 50%);
   --bg-primary: hsl(0, 0%, 98%);
@@ -18,7 +18,7 @@ html[data-theme="light"] {
   --border-color: hsl(0, 0%, 85%);
 }
 
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   --text-primary: hsla(0, 0%, 100%, 0.87);
   --text-secondary: hsla(0, 0%, 100%, 0.6);
   --bg-primary: hsl(0, 0%, 14%);

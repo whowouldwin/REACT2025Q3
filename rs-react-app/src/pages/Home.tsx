@@ -29,9 +29,11 @@ export const Home: React.FC<HomeProps> = ({ characterData }) => {
   const detailsId = searchParams.get('details');
 
   return (
-    <div className="container mx-auto pt-40 pb-10 px-4">
-      <div className="flex flex-col lg:flex-row gap-8 relative">
-        <div className={`flex-1 ${detailsId ? 'lg:w-2/3' : 'w-full'}`}>
+    <div className="container mx-auto pt-40 pb-10 px-4 relative">
+      <div className="flex flex-col lg:flex-row gap-6 transition-all duration-300 ease-in-out">
+        <div
+          className={`transition-all duration-300 ease-in-out ${detailsId ? 'lg:w-2/3' : 'w-full'}`}
+        >
           <ErrorBoundary fallback={<FallbackUI />}>
             <SearchResults
               data={characterData.characters}
@@ -47,9 +49,8 @@ export const Home: React.FC<HomeProps> = ({ characterData }) => {
             />
           </ErrorBoundary>
         </div>
-
         {detailsId && (
-          <div className="lg:w-1/3 fixed lg:relative top-0 right-0 bottom-0 lg:top-auto lg:right-auto lg:bottom-auto z-10 w-full lg:w-auto">
+          <div className="relative lg:w-1/3 transition-all duration-300 ease-in-out ml-4">
             <DetailsView />
           </div>
         )}
