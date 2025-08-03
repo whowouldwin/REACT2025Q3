@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { getCharacterById } from '../api/rickAndMorty';
 import CloseIcon from './icons/CloseIcon.tsx';
+import { useLockBodyScrollOnMobile } from '../hooks/useLockBodyScrollOnMobile.ts';
 
 interface Character {
   id: number;
@@ -18,6 +19,7 @@ export const DetailsView: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [character, setCharacter] = useState<Character | null>(null);
   const [, setPendingCharacter] = useState<Character | null>(null);
+  useLockBodyScrollOnMobile(!!detailsId);
 
   useEffect(() => {
     if (!detailsId) return;
@@ -51,7 +53,7 @@ export const DetailsView: React.FC = () => {
 
   return (
     <div
-      className="h-full w-full lg:h-auto flex items-center justify-center bg-black/50 lg:bg-transparent p-4 lg:p-0"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 lg:static lg:bg-transparent p-4 lg:p-0"
       onClick={handleOverlayClick}
     >
       <aside
