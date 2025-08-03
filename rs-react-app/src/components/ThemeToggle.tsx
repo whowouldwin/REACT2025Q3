@@ -23,7 +23,7 @@ export const ThemeToggle: React.FC = () => {
       </span>
       <button
         onClick={handleToggle}
-        className="p-2 rounded-full transition hover:scale-105 active:scale-95"
+        className="p-2 rounded-full transition-all transform hover:scale-105 active:scale-95 cursor-pointer hover:shadow"
         style={{
           backgroundColor: 'var(--bg-secondary)',
           color: 'var(--text-primary)',

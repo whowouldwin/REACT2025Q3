@@ -71,7 +71,7 @@ export const DetailsView: React.FC = () => {
         )}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full hover:brightness-110 transition-colors"
+          className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full transition-all transform hover:scale-105 hover:brightness-110 hover:shadow-md cursor-pointer"
           aria-label="Close details"
           style={{
             backgroundColor: 'var(--error-color)',
