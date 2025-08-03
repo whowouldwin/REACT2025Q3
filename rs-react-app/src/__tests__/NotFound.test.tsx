@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
 import { NotFound } from '../pages/NotFound.tsx';
@@ -7,9 +7,14 @@ import { NotFound } from '../pages/NotFound.tsx';
 describe('NotFound', () => {
   it('renders the 404 page correctly', () => {
     render(
-      <BrowserRouter>
+      <MemoryRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <NotFound />
-      </BrowserRouter>
+      </MemoryRouter>
     );
     expect(screen.getByText('404')).toBeInTheDocument();
     expect(screen.getByText('Page Not Found')).toBeInTheDocument();

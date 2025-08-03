@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ChangeEvent } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { toggleItemSelection } from '../store/selectedItemsSlice';
@@ -24,9 +24,18 @@ export const Card: React.FC<CardProps> = ({
   );
   const isChecked = selectedIds.includes(id);
 
-  const handleCheckboxChange = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
-    dispatch(toggleItemSelection(id));
+    dispatch(
+      toggleItemSelection({
+        id,
+        name,
+        status,
+        species,
+        image,
+        gender,
+      })
+    );
   };
   return (
     <div
@@ -40,7 +49,7 @@ export const Card: React.FC<CardProps> = ({
           <input
             type="checkbox"
             checked={isChecked}
-            onClick={handleCheckboxChange}
+            onChange={handleCheckboxChange}
             className="h-7 w-7 cursor-pointer"
           />
         </div>

@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 
 import { Flyout } from './Flyout';
 import { Header } from './Header';
-import { useSelectedItems } from '../hooks/useSelectedItems';
 
 import type { Character } from '../types/rickAndMorty';
 
@@ -12,17 +11,12 @@ interface MainLayoutProps {
   characters: Character[];
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({
-  handleSearch,
-  characters,
-}) => {
-  const { getSelectedItems } = useSelectedItems(characters);
-
+export const MainLayout: React.FC<MainLayoutProps> = ({ handleSearch }) => {
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Header handleSearch={handleSearch} />
       <Outlet />
-      <Flyout getSelectedItems={getSelectedItems} />
+      <Flyout />
     </div>
   );
 };

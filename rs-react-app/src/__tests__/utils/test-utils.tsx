@@ -11,7 +11,17 @@ import { MemoryRouter, type MemoryRouterProps } from 'react-router-dom';
 
 import { selectedItemsSlice } from '../../store/selectedItemsSlice.ts';
 
-export const createMockStore = (selectedIds: number[] = []): Store => {
+import type { Character } from '../../types/rickAndMorty.ts';
+
+export const createMockStore = (
+  selectedIds: number[] = [],
+  selectedItems: Character[] = []
+): Store => {
+  const selectedItemsMap: Record<number, Character> = {};
+  selectedItems.forEach((item) => {
+    selectedItemsMap[item.id] = item;
+  });
+
   return configureStore({
     reducer: {
       selectedItems: selectedItemsSlice.reducer,
@@ -19,6 +29,7 @@ export const createMockStore = (selectedIds: number[] = []): Store => {
     preloadedState: {
       selectedItems: {
         selectedIds,
+        selectedItems: selectedItemsMap,
       },
     },
   });
@@ -34,7 +45,15 @@ export const renderWithProviders = (
 
   return render(
     <Provider store={store}>
-      <MemoryRouter initialEntries={routeEntries}>{ui}</MemoryRouter>
+      <MemoryRouter
+        initialEntries={routeEntries}
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        {ui}
+      </MemoryRouter>
     </Provider>,
     { container }
   );

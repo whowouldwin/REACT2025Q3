@@ -1,16 +1,17 @@
 import React from 'react';
 
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-import { clearSelection, selectSelectedIds } from '../store/selectedItemsSlice';
+import {
+  clearSelection,
+  selectSelectedIds,
+  selectSelectedItems,
+} from '../store/selectedItemsSlice';
 
 import type { Character } from '../types/rickAndMorty.ts';
 
-interface FlyoutProps {
-  getSelectedItems: () => Character[];
-}
-
-export const Flyout: React.FC<FlyoutProps> = ({ getSelectedItems }) => {
+export const Flyout: React.FC = () => {
   const selectedIds = useAppSelector(selectSelectedIds);
+  const selectedItems = useAppSelector(selectSelectedItems);
   const dispatch = useAppDispatch();
 
   const handleUnselectAll = () => {
@@ -18,7 +19,6 @@ export const Flyout: React.FC<FlyoutProps> = ({ getSelectedItems }) => {
   };
 
   const handleDownload = () => {
-    const selectedItems = getSelectedItems();
     if (selectedItems.length === 0) return;
 
     const escapeCsvValue = (value: unknown): string => {

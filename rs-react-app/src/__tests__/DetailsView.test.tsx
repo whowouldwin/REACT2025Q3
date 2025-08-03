@@ -26,7 +26,13 @@ describe('DetailsView', () => {
 
   function Wrapper({ initialEntries = ['/details?details=1'] }: WrapperProps) {
     return (
-      <MemoryRouter initialEntries={initialEntries}>
+      <MemoryRouter
+        initialEntries={initialEntries}
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <DetailsView />
       </MemoryRouter>
     );
@@ -79,7 +85,13 @@ describe('DetailsView', () => {
     };
 
     render(
-      <MemoryRouter initialEntries={['/somepage?details=1']}>
+      <MemoryRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+        initialEntries={['/somepage?details=1']}
+      >
         <TestWrapper />
       </MemoryRouter>
     );

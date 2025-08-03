@@ -8,7 +8,13 @@ describe('Header navigation and search behavior', () => {
 
   it('renders the search bar only on home page', () => {
     render(
-      <MemoryRouter initialEntries={['/']}>
+      <MemoryRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+        initialEntries={['/']}
+      >
         <Header handleSearch={mockHandleSearch} />
       </MemoryRouter>
     );
@@ -18,7 +24,13 @@ describe('Header navigation and search behavior', () => {
 
   it('does not render the search bar on other pages', () => {
     render(
-      <MemoryRouter initialEntries={['/about']}>
+      <MemoryRouter
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+        initialEntries={['/about']}
+      >
         <Header handleSearch={mockHandleSearch} />
       </MemoryRouter>
     );
