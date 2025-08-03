@@ -1,19 +1,19 @@
 @import 'tailwindcss';
 
 @theme {
-  --text-primary: hsla(0, 0%, 100%, 0.87);
-  --text-secondary: hsla(0, 0%, 100%, 0.6);
-  --bg-primary: hsl(0, 0%, 14%);
-  --bg-secondary: hsl(0, 0%, 18%);
-  --accent-color: hsl(210, 100%, 50%);
-  --border-color: hsl(0, 0%, 30%);
+  --text-primary: hsl(220, 15%, 88%);
+  --text-secondary: hsl(220, 10%, 60%);
+  --bg-primary: hsl(222, 14%, 10%);
+  --bg-secondary: hsl(222, 16%, 16%);
+  --accent-color: hsl(210, 100%, 60%);
+  --border-color: hsl(220, 10%, 30%);
 }
 
 html[data-theme="light"] {
-  --text-primary: hsl(0, 0%, 10%);
-  --text-secondary: hsl(0, 0%, 30%);
-  --bg-primary: hsl(0, 0%, 100%);
-  --bg-secondary: hsl(0, 0%, 95%);
+  --text-primary: hsl(222, 25%, 10%);
+  --text-secondary: hsl(220, 10%, 50%);
+  --bg-primary: hsl(0, 0%, 98%);
+  --bg-secondary: hsl(0, 0%, 94%);
   --accent-color: hsl(210, 100%, 50%);
   --border-color: hsl(0, 0%, 85%);
 }

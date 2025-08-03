@@ -13,22 +13,45 @@ export const Header: React.FC<HeaderProps> = ({ handleSearch }) => {
   const isHomePage = location.pathname === '/';
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-gray-800 z-50 shadow-lg border-b border-gray-700">
+    <div
+      className="fixed top-0 left-0 w-full z-50 shadow-lg border-b"
+      style={{
+        backgroundColor: 'var(--bg-primary)',
+        borderColor: 'var(--border-color)',
+      }}
+    >
       <div className="container mx-auto py-4 px-4">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold text-blue-400"> Rick & Morty </h1>
-          <div className="flex items-center space-x-6">
+          <h1
+            className="text-3xl font-bold"
+            style={{ color: 'var(--accent-color)' }}
+          >
+            Rick & Morty
+          </h1>
+          <div className="flex items-center gap-6">
             <ThemeToggle />
-            <nav className="flex space-x-4">
+            <nav className="flex gap-4">
               <Link
                 to="/"
-                className={`text-lg ${location.pathname === '/' ? 'text-blue-400 font-medium' : 'text-gray-300 hover:text-white'}`}
+                style={{
+                  color:
+                    location.pathname === '/'
+                      ? 'var(--accent-color)'
+                      : 'var(--text-secondary)',
+                }}
+                className="text-lg hover:underline hover:brightness-110"
               >
                 Home
               </Link>
               <Link
                 to="/about"
-                className={`text-lg ${location.pathname === '/about' ? 'text-blue-400 font-medium' : 'text-gray-300 hover:text-white'}`}
+                style={{
+                  color:
+                    location.pathname === '/about'
+                      ? 'var(--accent-color)'
+                      : 'var(--text-secondary)',
+                }}
+                className="text-lg hover:underline hover:brightness-110"
               >
                 About
               </Link>
