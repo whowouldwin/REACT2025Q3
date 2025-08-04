@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+@theme {
+  --text-primary: hsl(220, 15%, 88%);
+  --text-secondary: hsl(220, 10%, 60%);
+  --bg-primary: hsl(222, 14%, 10%);
+  --color-bg-secondary: hsl(222, 16%, 16%);
+  --accent-color: hsl(210, 100%, 60%);
+  --color-border-color: hsl(220, 10%, 30%);
+}
+
+html[data-theme='light'] {
+  --text-primary: hsl(222, 25%, 10%);
+  --text-secondary: hsl(220, 10%, 50%);
+  --bg-primary: hsl(0, 0%, 98%);
+  --bg-secondary: hsl(0, 0%, 94%);
+  --accent-color: hsl(210, 100%, 50%);
+  --border-color: hsl(0, 0%, 85%);
+}
+
+html[data-theme='dark'] {
+  --text-primary: hsla(0, 0%, 100%, 0.87);
+  --text-secondary: hsla(0, 0%, 100%, 0.6);
+  --bg-primary: hsl(0, 0%, 14%);
+  --bg-secondary: hsl(0, 0%, 18%);
+  --accent-color: hsl(210, 100%, 60%);
+  --border-color: hsl(0, 0%, 30%);
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --error-color: hsl(0, 70%, 50%);
+  --error-bg: hsl(0, 70%, 10%, 0.2);
+  --error-border: hsl(0, 70%, 50%, 0.5);
+  --error-text: hsl(0, 70%, 70%);
+}
