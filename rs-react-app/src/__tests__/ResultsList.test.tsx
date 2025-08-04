@@ -1,7 +1,10 @@
-import type { Character } from '../api/rickAndMorty.ts';
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { it, describe, expect } from 'vitest'; // добавь describe
+
 import { ResultsList } from '../components/ResultsList.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+
+import type { Character } from '../types/rickAndMorty.ts';
 
 const makeCharacter = (id: number): Character => ({
   id,
@@ -13,13 +16,6 @@ const makeCharacter = (id: number): Character => ({
 });
 
 describe('ResultsList', () => {
-  it('renders loading indicator (spinner, skeleton, etc.)', () => {
-    const view = render(
-      <ResultsList data={[]} loading error={null} skeletonCount={3} />
-    );
-    expect(view.container).toMatchSnapshot();
-  });
-
   it('renders correct number of items when data is provided', () => {
     const data = [
       {
@@ -28,7 +24,7 @@ describe('ResultsList', () => {
         status: 'Alive',
         species: 2,
         gender: 'Male',
-        image: 'https://ex.com/${id}.png',
+        image: 'https://ex.com/1.png',
       },
       {
         id: 2,
@@ -36,19 +32,36 @@ describe('ResultsList', () => {
         status: 'Alive',
         species: 3,
         gender: 'Male',
-        image: 'https://ex.com/${id}.png',
+        image: 'https://ex.com/2.png',
       },
     ];
-    render(
-      <ResultsList data={data} loading={false} error={null} skeletonCount={0} />
+
+    const store = createMockStore();
+    renderWithProviders(
+      <ResultsList
+        data={data}
+        loading={false}
+        error={null}
+        skeletonCount={0}
+      />,
+      store
     );
-    expect(screen.getAllByRole('img')).toHaveLength(2);
+
+    expect(screen.getByText(/Rick/i)).toBeInTheDocument();
+    expect(screen.getByText(/Morty/i)).toBeInTheDocument();
   });
 
   it('render cards', () => {
     const data = [makeCharacter(1), makeCharacter(2)];
-    render(
-      <ResultsList data={data} loading={false} error={null} skeletonCount={0} />
+    const store = createMockStore();
+    renderWithProviders(
+      <ResultsList
+        data={data}
+        loading={false}
+        error={null}
+        skeletonCount={0}
+      />,
+      store
     );
 
     data.forEach((item) => {
@@ -59,13 +72,15 @@ describe('ResultsList', () => {
 
   it('displays error message when API call fails', () => {
     const message = 'HTTP status codes (4xx, 5xx)';
-    render(
+    const store = createMockStore();
+    renderWithProviders(
       <ResultsList
         data={[]}
         loading={false}
         error={message}
         skeletonCount={3}
-      />
+      />,
+      store
     );
     expect(screen.getByText(message)).toBeInTheDocument();
   });

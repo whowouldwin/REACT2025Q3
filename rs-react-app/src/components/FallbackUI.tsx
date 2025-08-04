@@ -1,12 +1,29 @@
 import React from 'react';
 
-export class FallbackUI extends React.Component {
-  render() {
-    return (
-      <div className="error-fallback">
-        <h2>Something went wrong.</h2>
-        <p>Please reload the page.</p>
-      </div>
-    );
-  }
-}
+export const FallbackUI: React.FC = () => {
+  return (
+    <div
+      className="max-w-2xl mx-auto my-8 p-8 border-2 border-dashed rounded-lg text-center"
+      style={{
+        backgroundColor: 'var(--error-bg)',
+        borderColor: 'var(--error-border)',
+      }}
+    >
+      <h2
+        className="text-2xl font-bold mb-4"
+        style={{ color: 'var(--error-text)' }}
+      >
+        Something went wrong.
+      </h2>
+      <p className="mb-6" style={{ color: 'var(--text-primary)' }}>
+        Please reload the page.
+      </p>
+      <button
+        onClick={() => window.location.reload()}
+        className="btn btn-danger"
+      >
+        Reload Page
+      </button>
+    </div>
+  );
+};

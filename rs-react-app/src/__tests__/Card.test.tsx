@@ -1,7 +1,10 @@
+import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+
 import { Card } from '../components/Card.tsx';
-import type { Character } from '../api/rickAndMorty.ts';
+import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+
+import type { Character } from '../types/rickAndMorty.ts';
 
 describe('Card', () => {
   const mockCharacter: Character = {
@@ -12,9 +15,10 @@ describe('Card', () => {
     image: 'https://ex.com/${id}.png',
     gender: 'Male',
   };
-
   it('displays item name and description correctly', () => {
-    render(<Card {...mockCharacter} />);
+    const store = createMockStore();
+    renderWithProviders(<Card {...mockCharacter} />, store);
+
     const image = screen.getByRole('img', { name: mockCharacter.name });
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', mockCharacter.image);

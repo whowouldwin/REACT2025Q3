@@ -1,8 +1,10 @@
 import React from 'react';
-import { ResultsList } from './ResultsList.tsx';
-import type { Character } from '../api/rickAndMorty.ts';
 
-interface Props {
+import { ResultsList } from './ResultsList.tsx';
+
+import type { Character } from '../types/rickAndMorty.ts';
+
+interface SearchResultsProps {
   data: Character[];
   loading: boolean;
   error: string | null;
@@ -12,42 +14,61 @@ interface Props {
   onPrev: () => void;
   onNext: () => void;
   crash: boolean;
+  detailsOpen?: boolean;
 }
 
-export class SearchResults extends React.Component<Props> {
-  render() {
-    if (this.props.crash) {
-      throw new Error('Render crash!');
-    }
-    const {
-      data,
-      loading,
-      error,
-      skeletonCount,
-      page,
-      totalPages,
-      onPrev,
-      onNext,
-    } = this.props;
+export const SearchResults: React.FC<SearchResultsProps> = ({
+  data,
+  loading,
+  error,
+  skeletonCount,
+  page,
+  totalPages,
+  onPrev,
+  onNext,
+  crash,
+  detailsOpen = false,
+}) => {
+  if (crash) {
+    throw new Error('Render crash!');
+  }
 
-    return (
-      <>
-        <ResultsList
-          data={data}
-          loading={loading}
-          error={error}
-          skeletonCount={skeletonCount}
-        />
-        <div className="pagination-controls">
-          <button onClick={onPrev} disabled={page <= 1}>
+  return (
+    <>
+      <ResultsList
+        data={data}
+        loading={loading}
+        error={error}
+        skeletonCount={skeletonCount}
+        detailsOpen={detailsOpen}
+      />
+      {!error && data.length > 0 && (
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <button
+            onClick={onPrev}
+            disabled={page <= 1}
+            className="btn btn-primary"
+          >
             Prev
           </button>
-          <span>Page {page}</span>
-          <button onClick={onNext} disabled={page >= totalPages}>
+          <span
+            className="px-4 py-2 rounded-lg font-medium"
+            style={{
+              backgroundColor: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+            }}
+          >
+            Page {page} of {totalPages || 1}
+          </span>
+          <button
+            onClick={onNext}
+            disabled={page >= totalPages}
+            className="btn btn-primary"
+          >
             Next
           </button>
         </div>
-      </>
-    );
-  }
-}
+      )}
+    </>
+  );
+};
