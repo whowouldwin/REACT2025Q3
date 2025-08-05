@@ -2,10 +2,10 @@ import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 
-import { FetchError } from '../features/error-boundary/FetchError.ts';
-import { fetchAll, getCharacterById } from '../utils/api/rickAndMorty.ts';
+import { FetchError } from '@/features/error-boundary/FetchError.ts';
+import { fetchAll, getCharacterById } from '@/utils/api/rickAndMorty.ts';
 
-import type { ApiResponse, Character } from '../utils/types/rickAndMorty.ts';
+import type { ApiResponse, Character } from '@/utils/types/rickAndMorty.ts';
 
 const mockCharacters: Character[] = [
   {

@@ -1,7 +1,7 @@
 import React, { type FC, useEffect } from 'react';
 
-import { useAppSelector } from '../store/hooks.ts';
-import { selectTheme } from '../store/themeSlice.ts';
+import { useAppSelector } from '@/state/store/hooks.ts';
+import { selectTheme } from '@/state/store/themeSlice.ts';
 
 interface ThemeProviderProps {
   children: React.ReactNode;

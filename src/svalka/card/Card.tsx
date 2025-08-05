@@ -1,9 +1,9 @@
 import { type ChangeEvent, type FC } from 'react';
 
-import { useAppDispatch, useAppSelector } from '../../state/store/hooks.ts';
-import { toggleItemSelection } from '../../state/store/selectedItemsSlice.ts';
+import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
+import { toggleItemSelection } from '@/state/store/selectedItemsSlice.ts';
 
-import type { Character } from '../../utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 interface CardProps extends Character {
   isSelected?: boolean;

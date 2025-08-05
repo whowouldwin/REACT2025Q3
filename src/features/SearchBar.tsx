@@ -1,7 +1,6 @@
 import React, { useState, useEffect, type FC } from 'react';
 
-import { useLocalStorage } from '../utils/hooks/useLocalStorage.ts';
-
+import { useLocalStorage } from '@/utils/hooks/useLocalStorage.ts';
 interface SearchBarProps {
   onSearch: (text: string) => void;
 }

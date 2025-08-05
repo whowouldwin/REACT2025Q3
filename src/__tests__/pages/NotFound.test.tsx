@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect } from 'vitest';
 
-import { NotFound } from '../pages/NotFound.tsx';
+import { NotFound } from '../../pages/NotFound.tsx';
 
 describe('NotFound', () => {
   it('renders the 404 page correctly', () => {

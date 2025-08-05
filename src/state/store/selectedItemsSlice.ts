@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import type { RootState } from './store.ts';
-import type { Character } from '../../utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 interface SelectedItemsState {
   selectedIds: number[];

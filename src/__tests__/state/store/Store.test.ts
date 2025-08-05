@@ -1,7 +1,7 @@
 import { expect, beforeEach, describe, it } from 'vitest';
 
-import { toggleItemSelection } from '../state/store/selectedItemsSlice.ts';
-import { makeStore } from '../state/store/store.ts';
+import { toggleItemSelection } from '@/state/store/selectedItemsSlice.ts';
+import { makeStore } from '@/state/store/store.ts';
 
 describe('store middleware', () => {
   beforeEach(() => {

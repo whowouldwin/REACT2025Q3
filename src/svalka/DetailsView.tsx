@@ -2,7 +2,8 @@ import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
-import { CloseIcon } from '../assets/svg-icons';
+import { CloseIcon } from '@/assets/svg-icons';
+
 import { getCharacterById } from '../utils/api/rickAndMorty.ts';
 import { useLockBodyScrollOnMobile } from '../utils/hooks/useLockBodyScrollOnMobile.ts';
 

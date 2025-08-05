@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../state/store/hooks.ts';
-import { selectSelectedIds } from '../../state/store/selectedItemsSlice.ts';
+import { useAppSelector } from '@/state/store/hooks.ts';
+import { selectSelectedIds } from '@/state/store/selectedItemsSlice.ts';
 
 import type { Character } from '../types/rickAndMorty.ts';
 

@@ -7,7 +7,7 @@ import {
   renderWithProviders,
 } from '../../__tests__/utils/test-utils.tsx';
 
-import type { Character } from '../../utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 describe('Card', () => {
   const mockCharacter: Character = {
