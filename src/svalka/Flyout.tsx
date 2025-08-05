@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../state/store/hooks.ts';
 import {
@@ -9,7 +9,7 @@ import {
 
 import type { Character } from '../utils/types/rickAndMorty.ts';
 
-export const Flyout: React.FC = () => {
+export const Flyout: FC = () => {
   const selectedIds = useAppSelector(selectSelectedIds);
   const selectedItems = useAppSelector(selectSelectedItems);
   const dispatch = useAppDispatch();

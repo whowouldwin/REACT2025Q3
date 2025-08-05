@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, type FC } from 'react';
 
 import { useLocalStorage } from '../utils/hooks/useLocalStorage.ts';
 
@@ -6,7 +6,7 @@ interface SearchBarProps {
   onSearch: (text: string) => void;
 }
 
-export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+export const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
   const [storedInput, setStoredInput] = useLocalStorage<string>(
     'searchText',
     ''

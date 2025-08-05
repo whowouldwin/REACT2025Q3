@@ -1,6 +1,6 @@
-import React from 'react';
+import type { FC } from 'react';
 
-export const About: React.FC = () => {
+export const About: FC = () => {
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
       <div

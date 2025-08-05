@@ -1,13 +1,17 @@
 # Logs
 logs
 *.log
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# dependencies
 node_modules
+
 dist
 dist-ssr
 *.local
@@ -22,3 +26,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# testing
+/coverage
+
+# React Router
+/.react-router/
+/build/
+
+# production
+/build
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo

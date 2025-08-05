@@ -1,4 +1,4 @@
-import React, { type ChangeEvent } from 'react';
+import { type ChangeEvent, type FC } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../state/store/hooks.ts';
 import { toggleItemSelection } from '../../state/store/selectedItemsSlice.ts';
@@ -9,7 +9,7 @@ interface CardProps extends Character {
   isSelected?: boolean;
 }
 
-export const Card: React.FC<CardProps> = ({
+export const Card: FC<CardProps> = ({
   id,
   name,
   status,
@@ -38,7 +38,7 @@ export const Card: React.FC<CardProps> = ({
     );
   };
   return (
-    <div
+    <article
       className="rounded-xl overflow-hidden shadow-lg transition-all duration-300 w-full max-w-xs h-[420px] flex flex-col border"
       style={{
         backgroundColor: isSelected
@@ -58,7 +58,7 @@ export const Card: React.FC<CardProps> = ({
           />
         </div>
       </div>
-      <div
+      <section
         className="p-4 flex-1 flex flex-col"
         style={{
           background: isSelected
@@ -96,7 +96,7 @@ export const Card: React.FC<CardProps> = ({
         <p className="truncate" style={{ color: 'var(--text-secondary)' }}>
           {gender}
         </p>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };

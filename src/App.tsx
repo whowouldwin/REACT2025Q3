@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import { type FC } from 'react';
 import { Routes, Route, useSearchParams } from 'react-router-dom';
 
 import About from './pages/About.tsx';
@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound.tsx';
 import { MainLayout } from './svalka/MainLayout.tsx';
 import { useCharacterData } from './utils/hooks/useCharacterData.ts';
 
-export const App: React.FC = () => {
+export const App: FC = () => {
   const [searchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
   const characterData = useCharacterData(currentPage);

@@ -1,6 +1,6 @@
-import React from 'react';
+import { type FC } from 'react';
 
-export const FallbackUI: React.FC = () => {
+export const FallbackUI: FC = () => {
   return (
     <div
       className="max-w-2xl mx-auto my-8 p-8 border-2 border-dashed rounded-lg text-center"

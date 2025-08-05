@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC } from 'react';
 
 import { ResultsList } from './ResultsList.tsx';
 
@@ -17,7 +17,7 @@ interface SearchResultsProps {
   detailsOpen?: boolean;
 }
 
-export const SearchResults: React.FC<SearchResultsProps> = ({
+export const SearchResults: FC<SearchResultsProps> = ({
   data,
   loading,
   error,

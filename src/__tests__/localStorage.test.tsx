@@ -25,3 +25,16 @@ it('saves search to LS when search button is clicked', async () => {
     throw new Error('searchText not found in localStorage');
   }
 });
+
+it('does not save empty input to localStorage when search button is clicked', async () => {
+  render(<SearchBar onSearch={() => {}} />);
+
+  const input = screen.getByRole('textbox');
+  const button = screen.getByRole('button', { name: 'Search' });
+
+  await userEvent.clear(input);
+  await userEvent.click(button);
+
+  const saved = localStorage.getItem('searchText');
+  expect(saved).toBe('""');
+});

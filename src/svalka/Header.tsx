@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { ThemeToggle } from './ThemeToggle.tsx';
@@ -8,7 +8,7 @@ interface HeaderProps {
   handleSearch: (text: string) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ handleSearch }) => {
+export const Header: FC<HeaderProps> = ({ handleSearch }) => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 

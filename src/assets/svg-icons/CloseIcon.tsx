@@ -1,11 +1,11 @@
-import React from 'react';
+import type { FC } from 'react';
 
 interface CloseIconProps {
   size?: number;
   stroke?: string;
 }
 
-export const CloseIcon: React.FC<CloseIconProps> = ({
+export const CloseIcon: FC<CloseIconProps> = ({
   size = 16,
   stroke = 'currentColor',
 }) => (

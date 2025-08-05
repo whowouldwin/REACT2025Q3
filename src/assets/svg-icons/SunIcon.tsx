@@ -1,6 +1,6 @@
-import React from 'react';
+import { type FC } from 'react';
 
-export const SunIcon: React.FC<{ className?: string }> = ({ className }) => (
+export const SunIcon: FC<{ className?: string }> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className={className ?? 'w-6 h-6'}

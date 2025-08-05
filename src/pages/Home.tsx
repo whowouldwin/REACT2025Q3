@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { ErrorBoundary } from '../features/error-boundary/ErrorBoundary.tsx';
@@ -12,7 +12,7 @@ interface HomeProps {
   characterData: CharacterData;
 }
 
-export const Home: React.FC<HomeProps> = ({ characterData }) => {
+export const Home: FC<HomeProps> = ({ characterData }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
   const { page } = characterData;

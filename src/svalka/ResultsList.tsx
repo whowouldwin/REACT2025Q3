@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { Card } from './card/Card.tsx';
@@ -14,7 +14,7 @@ interface ResultsListProps {
   detailsOpen?: boolean;
 }
 
-export const ResultsList: React.FC<ResultsListProps> = ({
+export const ResultsList: FC<ResultsListProps> = ({
   data,
   loading,
   error,

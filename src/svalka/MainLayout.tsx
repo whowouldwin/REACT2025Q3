@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { Flyout } from './Flyout.tsx';
@@ -11,7 +11,7 @@ interface MainLayoutProps {
   characters: Character[];
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ handleSearch }) => {
+export const MainLayout: FC<MainLayoutProps> = ({ handleSearch }) => {
   return (
     <div
       className="min-h-screen"

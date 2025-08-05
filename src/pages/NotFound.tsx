@@ -1,7 +1,7 @@
-import React from 'react';
+import { type FC } from 'react';
 import { Link } from 'react-router-dom';
 
-export const NotFound: React.FC = () => {
+export const NotFound: FC = () => {
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
       <div

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
@@ -14,7 +14,7 @@ interface Character {
   image: string;
 }
 
-export const DetailsView: React.FC = () => {
+export const DetailsView: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const detailsId = searchParams.get('details');
   const [loading, setLoading] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { type FC, useEffect } from 'react';
 
 import { useAppSelector } from '../store/hooks.ts';
 import { selectTheme } from '../store/themeSlice.ts';
@@ -7,7 +7,7 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const theme = useAppSelector(selectTheme);
 
   useEffect(() => {

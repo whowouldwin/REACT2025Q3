@@ -1,6 +1,6 @@
-import React from 'react';
+import { type FC } from 'react';
 
-export const SkeletonCard: React.FC = () => {
+export const SkeletonCard: FC = () => {
   return (
     <div
       className="rounded-xl overflow-hidden shadow-lg w-full max-w-xs h-[420px] flex flex-col"
