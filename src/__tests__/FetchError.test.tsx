@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { FetchError } from '../features/error/FetchError.ts';
+import { FetchError } from '../features/error-boundary/FetchError';
 
 describe('FetchError', () => {
   it('should create an error-boundary with correct name and message', () => {
