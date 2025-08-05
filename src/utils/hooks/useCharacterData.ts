@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { useLocalStorage } from './useLocalStorage.ts';
+import { FetchError } from '../../features/error-boundary/FetchError.ts';
 import { fetchAll } from '../api/rickAndMorty.ts';
-import { FetchError } from '../../features/error/FetchError.ts';
 
 import type { Character } from '../types/rickAndMorty.ts';
 

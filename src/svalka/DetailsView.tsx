@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { twMerge } from 'tailwind-merge';
 
 import { getCharacterById } from '../utils/api/rickAndMorty.ts';
-import CloseIcon from '../assets/icons/CloseIcon.tsx';
 import { useLockBodyScrollOnMobile } from '../utils/hooks/useLockBodyScrollOnMobile.ts';
-import { twMerge } from 'tailwind-merge';
+import { CloseIcon } from '../assets/svg-icons';
 
 interface Character {
   id: number;
@@ -61,7 +61,7 @@ export const DetailsView: React.FC = () => {
         className={twMerge(
           'w-full max-w-md lg:w-full ',
           'p-6 rounded-lg shadow-xl relative border',
-          "bg-secondary "
+          'bg-secondary '
         )}
         style={{
           backgroundColor: 'var(--bg-secondary)',

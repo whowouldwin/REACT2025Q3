@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { beforeEach, describe, vi, it, expect } from 'vitest';
 
-import { ErrorBoundary } from '../features/error/ErrorBoundary.tsx';
+import { ErrorBoundary } from '../features/error-boundary/ErrorBoundary.tsx';
 
 const ProblemChild: React.FC = () => {
   throw new Error('ProblemChild');

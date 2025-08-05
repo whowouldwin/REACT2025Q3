@@ -1,4 +1,4 @@
-import { FetchError } from '../../features/error/FetchError.ts';
+import { FetchError } from '../../features/error-boundary/FetchError.ts';
 
 import type { ApiResponse } from '../types/rickAndMorty.ts';
 
