@@ -1,4 +1,5 @@
 import React, { useState, useEffect, type FC } from 'react';
+import { twMerge } from 'tailwind-merge'
 
 import { useLocalStorage } from '@/utils/hooks/useLocalStorage.ts';
 interface SearchBarProps {
@@ -40,12 +41,11 @@ export const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
         value={localInput}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        className="px-3 py-2 text-base rounded-md border shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        style={{
-          backgroundColor: 'var(--bg-primary)',
-          color: 'var(--text-primary)',
-          borderColor: 'var(--border-color)',
-        }}
+        className={twMerge(
+          'px-3 py-2 text-base rounded-md border shadow-sm',
+          'bg-bg text-text-primary border-border',
+          'focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent'
+        )}
       />
       <button onClick={handleSearch} className="btn btn-dark">
         Search

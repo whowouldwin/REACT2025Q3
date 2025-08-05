@@ -60,8 +60,8 @@ export const Flyout: FC = () => {
     <div
       className="fixed bottom-0 left-0 right-0 border-t p-4 shadow-lg z-50"
       style={{
-        backgroundColor: 'var(--bg-primary)',
-        borderColor: 'var(--border-color)',
+        backgroundColor: 'var(--color-bg)',
+        borderColor: 'var(--color-border)',
       }}
     >
       <div className="container mx-auto flex justify-between items-center">
@@ -74,7 +74,7 @@ export const Flyout: FC = () => {
             onClick={handleUnselectAll}
             className="px-4 py-2 rounded transition-colors cursor-pointer"
             style={{
-              backgroundColor: 'var(--bg-secondary)',
+              backgroundColor: 'var(--color-bg-secondary)',
               color: 'var(--text-primary)',
             }}
           >
@@ -84,7 +84,7 @@ export const Flyout: FC = () => {
             onClick={handleDownload}
             className="px-4 py-2 rounded transition-colors cursor-pointer"
             style={{
-              backgroundColor: 'var(--accent-color)',
+              backgroundColor: 'var(--color-accent)',
               color: 'white',
             }}
           >

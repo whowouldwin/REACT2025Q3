@@ -42,9 +42,9 @@ export const Card: FC<CardProps> = ({
       className="rounded-xl overflow-hidden shadow-lg transition-all duration-300 w-full max-w-xs h-[420px] flex flex-col border"
       style={{
         backgroundColor: isSelected
-          ? 'var(--bg-secondary)'
-          : 'var(--bg-primary)',
-        borderColor: isSelected ? 'var(--accent-color)' : 'var(--border-color)',
+          ? 'var(--color-bg-secondary)'
+          : 'var(--color-bg)',
+        borderColor: isSelected ? 'var(--color-accent)' : 'var(--color-border)',
       }}
     >
       <div className="relative h-64 flex-shrink-0">
@@ -62,21 +62,21 @@ export const Card: FC<CardProps> = ({
         className="p-4 flex-1 flex flex-col"
         style={{
           background: isSelected
-            ? 'linear-gradient(to bottom, var(--bg-secondary), var(--bg-primary))'
+            ? 'linear-gradient(to bottom, var(--color-bg-secondary), var(--color-bg))'
             : undefined,
         }}
       >
         <h3
           className="text-xl font-bold mb-2 truncate"
           style={{
-            color: isSelected ? 'var(--accent-color)' : 'var(--text-primary)',
+            color: isSelected ? 'var(--color-accent)' : 'var(--text-primary)',
           }}
         >
           {name}
         </h3>
         <p
           className="mb-1 flex items-center"
-          style={{ color: 'var(--text-secondary)' }}
+          style={{ color: 'var(--color-text-secondary)' }}
         >
           <span
             className="inline-block w-2 h-2 rounded-full mr-2 flex-shrink-0"
@@ -93,7 +93,10 @@ export const Card: FC<CardProps> = ({
             {status} — {species}
           </span>
         </p>
-        <p className="truncate" style={{ color: 'var(--text-secondary)' }}>
+        <p
+          className="truncate"
+          style={{ color: 'var(--color-text-secondary)' }}
+        >
           {gender}
         </p>
       </section>

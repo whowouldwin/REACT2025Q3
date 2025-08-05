@@ -7,7 +7,7 @@ export const NotFound: FC = () => {
       <div
         className="p-8 rounded-lg shadow-lg max-w-2xl mx-auto text-center"
         style={{
-          backgroundColor: 'var(--bg-secondary)',
+          backgroundColor: 'var(--color-bg-secondary',
         }}
       >
         <h1
@@ -22,14 +22,14 @@ export const NotFound: FC = () => {
         >
           Page Not Found
         </h2>
-        <p className="mb-8" style={{ color: 'var(--text-secondary)' }}>
+        <p className="mb-8" style={{ color: 'var(--color-text-secondary)' }}>
           The page you are looking for doesn&#39;t exist or has been moved.
         </p>
         <Link
           to="/"
           className="inline-block font-medium py-2 px-6 rounded-lg transition-colors"
           style={{
-            backgroundColor: 'var(--accent-color)',
+            backgroundColor: 'var(--color-accent)',
             color: 'white',
           }}
         >

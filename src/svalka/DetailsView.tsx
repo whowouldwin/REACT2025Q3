@@ -65,15 +65,15 @@ export const DetailsView: FC = () => {
           'bg-secondary '
         )}
         style={{
-          backgroundColor: 'var(--bg-secondary)',
-          borderColor: 'var(--border-color)',
+          backgroundColor: 'var(--color-bg-secondary)',
+          borderColor: 'var(--color-border)',
         }}
       >
         {loading && (
           <div className="absolute top-0 left-0 right-0 flex justify-center">
             <div
               className="w-8 h-1 rounded-full animate-pulse"
-              style={{ backgroundColor: 'var(--accent-color)' }}
+              style={{ backgroundColor: 'var(--color-accent)' }}
             ></div>
           </div>
         )}
@@ -93,7 +93,7 @@ export const DetailsView: FC = () => {
           <div style={{ color: 'var(--text-primary)', paddingTop: '1.5rem' }}>
             <h2
               className="text-2xl font-bold mb-4"
-              style={{ color: 'var(--accent-color)' }}
+              style={{ color: 'var(--color-accent)' }}
             >
               {character.name}
             </h2>
@@ -102,7 +102,7 @@ export const DetailsView: FC = () => {
                 src={character.image}
                 alt={character.name}
                 className="rounded-lg mb-4 w-full md:w-48 object-cover shadow-lg border"
-                style={{ borderColor: 'var(--border-color)' }}
+                style={{ borderColor: 'var(--color-border)' }}
               />
               <div className="flex-1">
                 <div
@@ -112,7 +112,7 @@ export const DetailsView: FC = () => {
                   <p className="mb-2">
                     <span
                       style={{
-                        color: 'var(--text-secondary)',
+                        color: 'var(--color-text-secondary)',
                         fontWeight: 500,
                       }}
                     >
@@ -127,13 +127,13 @@ export const DetailsView: FC = () => {
                   <p>
                     <span
                       style={{
-                        color: 'var(--text-secondary)',
+                        color: 'var(--color-text-secondary)',
                         fontWeight: 500,
                       }}
                     >
                       Species:{' '}
                     </span>
-                    <span style={{ color: 'var(--accent-color)' }}>
+                    <span style={{ color: 'var(--color-accent)' }}>
                       {character.species}
                     </span>
                   </p>
@@ -146,13 +146,13 @@ export const DetailsView: FC = () => {
             <div
               className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin mb-4"
               style={{
-                borderColor: 'var(--accent-color)',
+                borderColor: 'var(--color-accent)',
                 borderTopColor: 'transparent',
               }}
             ></div>
             <p
               className="font-medium"
-              style={{ color: 'var(--text-secondary)' }}
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               Loading character details...
             </p>

@@ -24,7 +24,7 @@ export const ThemeToggle: FC = () => {
         onClick={handleToggle}
         className="p-2 rounded-full transition-all transform hover:scale-105 active:scale-95 cursor-pointer hover:shadow"
         style={{
-          backgroundColor: 'var(--bg-secondary)',
+          backgroundColor: 'var(--color-bg-secondary)',
           color: 'var(--text-primary)',
         }}
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}

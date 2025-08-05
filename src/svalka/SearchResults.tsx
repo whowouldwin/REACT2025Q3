@@ -54,7 +54,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
           <span
             className="px-4 py-2 rounded-lg font-medium"
             style={{
-              backgroundColor: 'var(--bg-secondary)',
+              backgroundColor: 'var(--color-bg-secondary)',
               color: 'var(--text-primary)',
             }}
           >

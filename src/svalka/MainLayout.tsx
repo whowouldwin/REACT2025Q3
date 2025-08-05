@@ -16,7 +16,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ handleSearch }) => {
     <div
       className="min-h-screen"
       style={{
-        backgroundColor: 'var(--bg-primary)',
+        backgroundColor: 'var(--color-bg)',
         color: 'var(--text-primary)',
       }}
     >
