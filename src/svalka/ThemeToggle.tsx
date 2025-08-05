@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 
-import { MoonIcon, SunIcon } from '../assets/svg-icons';
-import { useAppSelector, useAppDispatch } from '../state/store/hooks.ts';
-import { toggleTheme, selectTheme } from '../state/store/themeSlice.ts';
+import { MoonIcon, SunIcon } from '@/assets/svg-icons';
+import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
+import { selectTheme, toggleTheme } from '@/state/store/themeSlice.ts';
 
 export const ThemeToggle: FC = () => {
   const theme = useAppSelector(selectTheme);
