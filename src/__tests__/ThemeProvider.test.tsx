@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 
-import { ThemeProvider } from '../state/context/ThemeProvider.tsx';
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+import { ThemeProvider } from '../state/context/ThemeProvider.tsx';
 
 describe('ThemeProvider', () => {
   beforeEach(() => {

@@ -1,13 +1,13 @@
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import * as rickAndMortyApi from '../utils/api/rickAndMorty.ts';
 import { App } from '../App.tsx';
-import { FetchError } from '../features/error/FetchError.ts';
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+import * as rickAndMortyApi from '../utils/api/rickAndMorty.ts';
 import { __mocks__ } from '../utils/hooks/__mocks__/useLocalStorage.ts';
 
 import type { ApiResponse, Character } from '../utils/types/rickAndMorty.ts';
+import { FetchError } from '../features/error-boundary/FetchError.ts';
 
 vi.mock('../hooks/useLocalStorage');
 vi.mock('../api/rickAndMorty.ts');
@@ -133,7 +133,9 @@ describe('App component', () => {
     renderWithProviders(<App />, store, ['/']);
 
     await waitFor(() => {
-      expect(screen.getByText('Unexpected error-boundary occurred')).toBeInTheDocument();
+      expect(
+        screen.getByText('Unexpected error-boundary occurred')
+      ).toBeInTheDocument();
     });
   });
 });

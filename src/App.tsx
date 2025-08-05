@@ -2,11 +2,11 @@ import './App.css';
 import React from 'react';
 import { Routes, Route, useSearchParams } from 'react-router-dom';
 
-import { MainLayout } from './svalka/MainLayout.tsx';
-import { useCharacterData } from './utils/hooks/useCharacterData.ts';
 import About from './pages/About.tsx';
 import Home from './pages/Home.tsx';
 import NotFound from './pages/NotFound.tsx';
+import { MainLayout } from './svalka/MainLayout.tsx';
+import { useCharacterData } from './utils/hooks/useCharacterData.ts';
 
 export const App: React.FC = () => {
   const [searchParams] = useSearchParams();

@@ -2,8 +2,8 @@ import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter, useSearchParams } from 'react-router-dom';
 import { describe, it, vi, expect, beforeEach } from 'vitest';
 
-import * as api from '../utils/api/rickAndMorty.ts';
 import { DetailsView } from '../svalka/DetailsView.tsx';
+import * as api from '../utils/api/rickAndMorty.ts';
 
 vi.mock('../api/rickAndMorty');
 

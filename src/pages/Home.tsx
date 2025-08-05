@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { ErrorBoundary } from '../features/error-boundary/ErrorBoundary.tsx';
 import { DetailsView } from '../svalka/DetailsView.tsx';
 import { FallbackUI } from '../svalka/FallbackUI.tsx';
 import { SearchResults } from '../svalka/SearchResults.tsx';
 
-
 import type { CharacterData } from '../utils/hooks/useCharacterData.ts';
-import { ErrorBoundary } from '../features/error-boundary/ErrorBoundary.tsx';
 
 interface HomeProps {
   characterData: CharacterData;

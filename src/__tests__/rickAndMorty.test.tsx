@@ -3,9 +3,9 @@ import { setupServer } from 'msw/node';
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 
 import { fetchAll, getCharacterById } from '../utils/api/rickAndMorty.ts';
-import { FetchError } from '../features/error/FetchError.ts';
 
 import type { ApiResponse, Character } from '../utils/types/rickAndMorty.ts';
+import { FetchError } from '../features/error-boundary/FetchError.ts';
 
 const mockCharacters: Character[] = [
   {

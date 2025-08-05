@@ -12,9 +12,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint:fix": "eslint rs-react-app --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs --fix",
     "preview": "vite preview",
-    "format:fix": "prettier --write rs-react-app",
+    "format:fix": "prettier --write \"./**/*.{ts,tsx,js,html,css,mjs,json,md}\"",
     "prepare": "cd  && husky rs-react-app/.husky",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -r https://github.com/whowouldwin/REACT2025Q3.git",
@@ -32,6 +33,8 @@
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@eslint/js": "^9.30.1",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
