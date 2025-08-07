@@ -36,13 +36,21 @@ export const Home: FC<HomeProps> = () => {
 
   return (
     <div className="container mx-auto pt-40 pb-10 px-4 relative">
+      {(isLoading || isFetching) && (
+        <div className="fixed top-0 left-0 right-0 h-2 bg-blue-200 z-50">
+          <div
+            className="h-full bg-blue-600 animate-pulse w-100"
+            style={{ width: '100%' }}
+          ></div>
+        </div>
+      )}
       <div className="flex justify-end mb-4">
         <button
           onClick={() => refetch()}
-          className="py-2 px-4 rounded-lg text-white"
-          style={{ backgroundColor: 'var(--color-accent)' }}
+          className={`py-2 px-4 rounded-lg bg-accent cursor-pointer text-white ${isFetching ? 'opacity-70' : ''}`}
+          disabled={isFetching}
         >
-          Refresh
+          {isFetching ? 'Refreshing...' : 'Refresh'}
         </button>
       </div>
 
