@@ -1,25 +1,21 @@
-import { FetchError } from '@/features/error-boundary/FetchError.ts';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import type { ApiResponse } from '../types/rickAndMorty.ts';
+import type { ApiResponse, Character } from '@/utils/types/rickAndMorty.ts';
+export const rickAndMortyApi = createApi({
+  reducerPath: 'rickAndMortyApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://rickandmortyapi.com/api/',
+  }),
+  endpoints: (builder) => ({
+    getCharacters: builder.query<ApiResponse, { name: string; page: number }>({
+      query: ({ name, page }) =>
+        `character/?name=${encodeURIComponent(name)}&page=${page}`,
+    }),
+    getCharacterById: builder.query<Character, string | number>({
+      query: (id) => `character/${id}`,
+    }),
+  }),
+});
 
-export async function fetchAll(
-  name: string,
-  page: number = 1
-): Promise<ApiResponse> {
-  const url = `https://rickandmortyapi.com/api/character/?name=${encodeURIComponent(name)}&page=${page}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new FetchError('Could not fetch character');
-  }
-  return response.json();
-}
-
-export async function getCharacterById(id: string | number) {
-  const response = await fetch(
-    `https://rickandmortyapi.com/api/character/${id}`
-  );
-  if (!response.ok) {
-    throw new FetchError('Could not fetch character by ID');
-  }
-  return response.json();
-}
+export const { useGetCharactersQuery, useGetCharacterByIdQuery } =
+  rickAndMortyApi;

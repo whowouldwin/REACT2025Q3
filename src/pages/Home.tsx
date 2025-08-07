@@ -1,10 +1,11 @@
 import { type FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { DetailsView } from '@/features/character-details/ui/DetailsView.tsx';
 import { ErrorBoundary } from '@/features/error-boundary/ErrorBoundary.tsx';
-import { DetailsView } from '@/svalka/DetailsView.tsx';
 import { FallbackUI } from '@/svalka/FallbackUI.tsx';
 import { SearchResults } from '@/svalka/SearchResults.tsx';
+import { useGetCharactersQuery } from '@/utils/api/rickAndMorty.ts';
 
 import type { CharacterData } from '@/utils/hooks/useCharacterData.ts';
 
@@ -12,43 +13,69 @@ interface HomeProps {
   characterData: CharacterData;
 }
 
-export const Home: FC<HomeProps> = ({ characterData }) => {
+export const Home: FC<HomeProps> = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
-  const { page } = characterData;
+  const nameFilter = searchParams.get('name') || '';
+
+  const { data, isLoading, refetch, isFetching } = useGetCharactersQuery({
+    name: nameFilter,
+    page: currentPage,
+  });
 
   useEffect(() => {
-    if (page > 0 && page !== currentPage) {
+    if (data?.info?.pages && currentPage > data.info.pages) {
       setSearchParams((prev) => {
-        prev.set('page', page.toString());
+        prev.set('page', '1');
         return prev;
       });
     }
-  }, [page, currentPage, setSearchParams]);
+  }, [data, currentPage, setSearchParams]);
 
   const detailsId = searchParams.get('details');
 
   return (
     <div className="container mx-auto pt-40 pb-10 px-4 relative">
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() => refetch()}
+          className="py-2 px-4 rounded-lg text-white"
+          style={{ backgroundColor: 'var(--color-accent)' }}
+        >
+          Refresh
+        </button>
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-6 transition-all duration-300 ease-in-out">
         <div
           className={`transition-all duration-300 ease-in-out ${detailsId ? 'lg:w-2/3' : 'w-full'}`}
         >
           <ErrorBoundary fallback={<FallbackUI />}>
             <SearchResults
-              data={characterData.characters}
-              loading={characterData.loading}
-              error={characterData.error}
-              skeletonCount={characterData.lastCount}
-              page={characterData.page}
-              totalPages={characterData.totalPages}
-              onPrev={characterData.handlePrev}
-              onNext={characterData.handleNext}
-              crash={characterData.crash}
+              data={data?.results ?? []}
+              loading={isLoading || isFetching}
+              skeletonCount={10}
+              page={currentPage}
+              totalPages={data?.info?.pages ?? 1}
+              onPrev={() =>
+                setSearchParams((prev) => {
+                  prev.set('page', String(currentPage - 1));
+                  return prev;
+                })
+              }
+              onNext={() =>
+                setSearchParams((prev) => {
+                  prev.set('page', String(currentPage + 1));
+                  return prev;
+                })
+              }
               detailsOpen={!!detailsId}
+              error={null}
+              crash={false}
             />
           </ErrorBoundary>
         </div>
+
         {detailsId && (
           <div className="relative lg:w-1/3 transition-all duration-300 ease-in-out ml-4">
             <DetailsView />

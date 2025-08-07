@@ -7,6 +7,9 @@
   --color-bg-secondary: hsl(222, 16%, 16%);
   --color-accent: hsl(210, 100%, 60%);
   --color-border: hsl(220, 10%, 30%);
+  --color-error-bg: hsl(0, 70%, 10%, 0.2);
+  --color-error-border: hsl(0, 70%, 50%, 0.5);
+  --color-error-text: hsl(0, 70%, 70%);
 }
 
 [data-theme='light'] {
@@ -16,6 +19,9 @@
   --color-bg-secondary: hsl(0, 0%, 94%);
   --color-accent: hsl(210, 100%, 50%);
   --color-border: hsl(0, 0%, 85%);
+  --color-error-bg: hsl(0, 70%, 95%);
+  --color-error-border: hsl(0, 70%, 70%);
+  --color-error-text: hsl(0, 70%, 30%);
 }
 
 [data-theme='dark'] {
@@ -25,6 +31,9 @@
   --color-bg-secondary: hsl(0, 0%, 18%);
   --color-accent: hsl(210, 100%, 60%);
   --color-border: hsl(0, 0%, 30%);
+  --color-error-bg: hsl(0, 70%, 10%, 0.2);
+  --color-error-border: hsl(0, 70%, 50%, 0.5);
+  --color-error-text: hsl(0, 70%, 70%);
 }
 
 :root {
@@ -38,8 +47,4 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --error-color: hsl(0, 70%, 50%);
-  --error-bg: hsl(0, 70%, 10%, 0.2);
-  --error-border: hsl(0, 70%, 50%, 0.5);
-  --error-text: hsl(0, 70%, 70%);
 }

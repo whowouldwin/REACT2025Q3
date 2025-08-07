@@ -1,9 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
-import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
-
-import { FetchError } from '@/features/error-boundary/FetchError.ts';
-import { fetchAll, getCharacterById } from '@/utils/api/rickAndMorty.ts';
+import { beforeAll, afterAll, afterEach } from 'vitest';
 
 import type { ApiResponse, Character } from '@/utils/types/rickAndMorty.ts';
 
@@ -72,24 +69,3 @@ const server = setupServer(
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
-
-describe('fetchAll', () => {
-  it('fetch successfully', async () => {
-    const response = await fetchAll('Rick', 1);
-    expect(response).toEqual(mockApiResponse);
-  });
-
-  it('fetch unsuccessfully (404 and FetchError)', async () => {
-    await expect(fetchAll('MissingCharacter')).rejects.toThrow(FetchError);
-    await expect(fetchAll('MissingCharacter')).rejects.toThrow(
-      'Could not fetch character'
-    );
-  });
-});
-
-describe('getCharacterById', () => {
-  it('fetches a character by ID successfully', async () => {
-    const character = await getCharacterById(1);
-    expect(character).toEqual(mockSingleCharacter);
-  });
-});

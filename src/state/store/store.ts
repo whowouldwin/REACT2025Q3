@@ -1,5 +1,7 @@
 import { configureStore, type Middleware } from '@reduxjs/toolkit';
 
+import { rickAndMortyApi } from '@/utils/api/rickAndMorty.ts';
+
 import selectedItemsReducer from './selectedItemsSlice.ts';
 import themeReducer from './themeSlice.ts';
 
@@ -30,11 +32,14 @@ const localStorageMiddleware: Middleware =
 export const makeStore = () =>
   configureStore({
     reducer: {
+      [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
       selectedItems: selectedItemsReducer,
       theme: themeReducer,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(localStorageMiddleware),
+      getDefaultMiddleware()
+        .concat(rickAndMortyApi.middleware)
+        .concat(localStorageMiddleware),
   });
 
 export const store = makeStore();

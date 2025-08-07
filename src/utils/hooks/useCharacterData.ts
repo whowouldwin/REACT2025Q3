@@ -1,9 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import { FetchError } from '@/features/error-boundary/FetchError.ts';
-
-import { useLocalStorage } from './useLocalStorage.ts';
-import { fetchAll } from '../api/rickAndMorty.ts';
+import { useGetCharactersQuery } from '../api/rickAndMorty.ts';
 
 import type { Character } from '../types/rickAndMorty.ts';
 
@@ -22,77 +19,59 @@ export interface CharacterData {
   triggerCrash: () => void;
 }
 
-export const useCharacterData = (initialPage: number = 1): CharacterData => {
-  const [characters, setCharacters] = useState<Character[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useLocalStorage<string>('searchText', '');
-  const [page, setPage] = useState(initialPage);
-  const [totalPages, setTotalPages] = useState(0);
-  const [lastCount, setLastCount] = useState(20);
-  const [crash, setCrash] = useState(false);
+export const useCharacterData = (): CharacterData => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchTerm = searchParams.get('name') || '';
+  const page = Number(searchParams.get('page')) || 1;
 
-  const loadCharacters = useCallback(
-    async (text: string, pageNum: number) => {
-      setLoading(true);
-      setError(null);
-      if (characters.length > 0) {
-        setLastCount(characters.length);
-      }
+  const { data, error, isLoading, isFetching } = useGetCharactersQuery({
+    name: searchTerm,
+    page,
+  });
 
-      try {
-        const result = await fetchAll(text, pageNum);
-        setCharacters(result.results);
-        setPage(pageNum);
-        setTotalPages(result.info.pages);
-      } catch (error) {
-        let message = 'Unexpected error-boundary occurred';
-        if (error instanceof FetchError) {
-          message = error.message;
-        } else if (error instanceof Error) {
-          message = `Generic error: ${error.message}`;
-        }
-
-        setError(message);
-        setTotalPages(0);
-        setPage(1);
-        setLoading(false);
-      }
-    },
-    [characters.length]
-  );
+  const totalPages = data?.info?.pages ?? 0;
+  const characters = data?.results ?? [];
+  const lastCount = characters.length;
 
   const handleSearch = (text: string) => {
-    setSearchTerm(text);
-    setPage(1);
+    setSearchParams((prev) => {
+      prev.set('name', text);
+      prev.set('page', '1');
+      return prev;
+    });
   };
 
   const handlePrev = () => {
     if (page > 1) {
-      setPage((prev) => prev - 1);
+      setSearchParams((prev) => {
+        prev.set('page', String(page - 1));
+        return prev;
+      });
     }
   };
 
   const handleNext = () => {
     if (page < totalPages) {
-      setPage((prev) => prev + 1);
+      setSearchParams((prev) => {
+        prev.set('page', String(page + 1));
+        return prev;
+      });
     }
   };
 
-  const triggerCrash = () => setCrash(true);
-  useEffect(() => {
-    loadCharacters(searchTerm, page);
-  }, [page, searchTerm, loadCharacters]);
+  const triggerCrash = () => {
+    throw new Error('Crash triggered manually');
+  };
 
   return {
     characters,
-    loading,
-    error,
+    loading: isLoading || isFetching,
+    error: error ? 'Failed to load characters' : null,
     searchTerm,
     page,
     totalPages,
     lastCount,
-    crash,
+    crash: false,
     handleSearch,
     handlePrev,
     handleNext,
