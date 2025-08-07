@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, vi, it } from 'vitest';
 
-import { SearchBar } from '../../features/SearchBar.tsx';
+import { SearchBar } from '../../features/search-character/ui/SearchBar.tsx';
 
 describe('SearchBar rendering', () => {
   it('renders search input and search button', () => {

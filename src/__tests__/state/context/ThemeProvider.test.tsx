@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 
-import { ThemeProvider } from '@/state/context/ThemeProvider.tsx';
+import { ThemeProvider } from '@/app/providers/theme/ThemeProvider.tsx';
 
 import {
   createMockStore,

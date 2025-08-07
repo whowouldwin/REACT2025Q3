@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import App from './App.tsx';
-import { ThemeProvider } from './state/context/ThemeProvider.tsx';
+import { ThemeProvider } from './app/providers/theme/ThemeProvider.tsx';
 import { store } from './state/store/store.ts';
 
 const rootElement = document.getElementById('root');
