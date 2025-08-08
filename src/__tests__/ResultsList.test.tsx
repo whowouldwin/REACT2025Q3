@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react';
-import { it, describe, expect } from 'vitest'; // добавь describe
+import { it, describe, expect } from 'vitest';
 
-import { ResultsList } from '../svalka/ResultsList.tsx';
+import { ResultsList } from '@/widgets/results-list/ResultsList.tsx';
+
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 
 import type { Character } from '../utils/types/rickAndMorty.ts';

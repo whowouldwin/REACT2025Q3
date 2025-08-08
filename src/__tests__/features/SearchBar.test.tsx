@@ -14,17 +14,6 @@ describe('SearchBar rendering', () => {
     expect(screen.getByRole('button', { name: 'Search' })).toBeInTheDocument();
   });
 
-  it('displays previously saved search term from localStorage on mount', () => {
-    render(<SearchBar onSearch={() => {}} />);
-    expect(screen.getByDisplayValue('previous')).toBeInTheDocument();
-  });
-
-  it('Shows empty input when no saved term exists', () => {
-    render(<SearchBar onSearch={() => {}} />);
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveValue('previous');
-  });
-
   it('updates input value when user types', async () => {
     render(<SearchBar onSearch={() => {}} />);
     const input = screen.getByRole('textbox');

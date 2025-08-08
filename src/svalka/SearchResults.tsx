@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 
-import { ResultsList } from './ResultsList.tsx';
+import { ResultsList } from '@/widgets/results-list/ResultsList.tsx';
 
 import type { Character } from '../utils/types/rickAndMorty.ts';
 
