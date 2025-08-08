@@ -1,5 +1,7 @@
 import type { FC } from 'react';
 
+import { twMerge } from 'tailwind-merge';
+
 import { MoonIcon, SunIcon } from '@/assets/svg-icons';
 import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
 import { selectTheme, toggleTheme } from '@/state/store/themeSlice.ts';
@@ -14,19 +16,16 @@ export const ThemeToggle: FC = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <span
-        className="text-sm font-medium"
-        style={{ color: 'var(--text-primary)' }}
-      >
+      <span className={twMerge('text-sm font-medium', 'text-text-primary')}>
         {theme === 'light' ? 'Light' : 'Dark'} Mode
       </span>
       <button
         onClick={handleToggle}
-        className="p-2 rounded-full transition-all transform hover:scale-105 active:scale-95 cursor-pointer hover:shadow"
-        style={{
-          backgroundColor: 'var(--color-bg-secondary)',
-          color: 'var(--text-primary)',
-        }}
+        className={twMerge(
+          'p-2 rounded-full transition-all transform',
+          'hover:scale-105 active:scale-95 cursor-pointer hover:shadow',
+          'bg-bg-secondary text-text-primary'
+        )}
         aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
       >
         {theme === 'light' ? <SunIcon /> : <MoonIcon />}

@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import { ThemeToggle } from '../svalka/ThemeToggle.tsx';
+import { ThemeToggle } from '../features/theme/ThemeToggle.tsx';
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 
 describe('ThemeToggle', () => {
