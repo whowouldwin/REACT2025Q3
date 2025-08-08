@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SkeletonCard } from '@/svalka/SkeletonCard.tsx';
+import { SkeletonCard } from '@/shared/skeleton/SkeletonCard.tsx';
 import { getGridClass } from '@/widgets/results-list/getGridClass.ts';
 
 interface Props {
