@@ -25,7 +25,7 @@ export default defineConfig({
         'src/**/*.spec.{js,jsx,ts,tsx}',
         'src/index.{js,jsx,ts,tsx}',
         'src/setupTests.{js,ts}',
-        'src/components/svg-icons/**/*.{js,jsx,ts,tsx}',
+        'src/assets/svg-icons/**/*.{js,jsx,ts,tsx}',
         'src/**/*.d.ts',
         'src/**/__mocks__/**',
       ],
