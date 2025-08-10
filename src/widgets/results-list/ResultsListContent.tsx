@@ -1,9 +1,9 @@
 import React from 'react';
 
+import { SkeletonList } from '@/shared/skeleton/SkeletonList.tsx';
 import { ErrorMessage } from '@/widgets/results-list/ErrorMessage.tsx';
 import { getGridClass } from '@/widgets/results-list/getGridClass.ts';
 import { ResultsCard } from '@/widgets/results-list/ResultsCard.tsx';
-import { SkeletonList } from '@/widgets/results-list/SkeletonList.tsx';
 
 import type { Character } from '@/utils/types/rickAndMorty.ts';
 

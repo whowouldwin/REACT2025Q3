@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import About from './pages/About.tsx';
 import Home from './pages/Home.tsx';
 import NotFound from './pages/NotFound.tsx';
-import { MainLayout } from './svalka/MainLayout.tsx';
+import { MainLayout } from './app/layouts/MainLayout.tsx';
 import { useCharacterData } from './utils/hooks/useCharacterData.ts';
 
 export const App: FC = () => {

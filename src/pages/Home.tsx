@@ -1,10 +1,10 @@
 import { type FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { DetailsView } from '@/features/character-details/ui/DetailsView.tsx';
+import { DetailsView } from '@/features/character-details/DetailsView.tsx';
 import { ErrorBoundary } from '@/features/error-boundary/ErrorBoundary.tsx';
 import { FallbackUI } from '@/svalka/FallbackUI.tsx';
-import { SearchResults } from '@/svalka/SearchResults.tsx';
+import { SearchResults } from '@/widgets/search-results/SearchResults.tsx';
 import { useGetCharactersQuery } from '@/utils/api/rickAndMorty.ts';
 
 import type { CharacterData } from '@/utils/hooks/useCharacterData.ts';

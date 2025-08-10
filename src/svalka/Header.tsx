@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { ThemeToggle } from '../features/theme/ThemeToggle.tsx';
-import { SearchBar } from '../features/search-character/ui/SearchBar.tsx';
+import { SearchBar } from '../features/search-character/SearchBar.tsx';
 
 interface HeaderProps {
   handleSearch: (text: string) => void;

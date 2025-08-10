@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-import { SearchResults } from '../svalka/SearchResults.tsx';
+import { SearchResults } from '../widgets/search-results/SearchResults.tsx';
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
 
 import type { Character } from '../utils/types/rickAndMorty.ts';

@@ -1,8 +1,9 @@
 import { type FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import { ResultsList } from '@/widgets/results-list/ResultsList.tsx';
 
-import type { Character } from '../utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 interface SearchResultsProps {
   data: Character[];
@@ -52,11 +53,10 @@ export const SearchResults: FC<SearchResultsProps> = ({
             Prev
           </button>
           <span
-            className="px-4 py-2 rounded-lg font-medium"
-            style={{
-              backgroundColor: 'var(--color-bg-secondary)',
-              color: 'var(--text-primary)',
-            }}
+            className={twMerge(
+              'px-4 py-2 rounded-lg font-medium',
+              'bg-bg-secondary text-text-primary'
+            )}
           >
             Page {page} of {totalPages || 1}
           </span>

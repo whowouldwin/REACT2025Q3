@@ -1,11 +1,11 @@
 import { type FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { CharacterDetails } from '@/entities/character/ui/CharacterDetails.tsx';
-import { CloseButton } from '@/shared/close-button/ui/CloseButton.tsx';
-import { ErrorMessage } from '@/shared/error-message/ui/ErrorMessage.tsx';
-import { OverlayWrapper } from '@/shared/overlay-wrapper/ui/OverlayWrapper.tsx';
-import { Spinner } from '@/shared/spinner/ui/Spinner.tsx';
+import { CharacterDetails } from '@/entities/character/CharacterDetails.tsx';
+import { CloseButton } from '@/shared/close-button/CloseButton.tsx';
+import { ErrorMessage } from '@/shared/error-message/ErrorMessage.tsx';
+import { OverlayWrapper } from '@/shared/overlay-wrapper/OverlayWrapper.tsx';
+import { Spinner } from '@/shared/spinner/Spinner.tsx';
 import { useGetCharacterByIdQuery } from '@/utils/api/rickAndMorty.ts';
 import { useLockBodyScrollOnMobile } from '@/utils/hooks/useLockBodyScrollOnMobile.ts';
 
