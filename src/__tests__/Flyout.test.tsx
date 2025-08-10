@@ -32,7 +32,7 @@ const createMockCharacter = (id: number): Character => ({
   id,
   name: `Character ${id}`,
   status: 'Alive',
-  species: 1,
+  species: 'Human',
   image: `https://example.com/${id}.png`,
   gender: 'Male',
 });

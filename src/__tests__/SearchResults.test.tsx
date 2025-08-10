@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-import { SearchResults } from '../widgets/search-results/SearchResults.tsx';
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+import { SearchResults } from '../widgets/search-results/SearchResults.tsx';
 
 import type { Character } from '../utils/types/rickAndMorty.ts';
 
@@ -12,7 +12,7 @@ describe('search results', () => {
       id: 1,
       name: 'Rick',
       status: 'Alive',
-      species: 2,
+      species: 'Alien',
       image: 'https://ex.com/${id}.png',
       gender: 'Male',
     },

@@ -15,7 +15,7 @@ describe('Card', () => {
     id: 1,
     name: 'Rick',
     status: 'Alive',
-    species: 1,
+    species: 'Alien',
     image: 'https://ex.com/${id}.png',
     gender: 'Male',
   };

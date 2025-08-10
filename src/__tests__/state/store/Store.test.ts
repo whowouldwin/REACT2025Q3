@@ -15,7 +15,7 @@ describe('store middleware', () => {
       id: 123,
       name: 'Morty',
       status: 'Alive',
-      species: 1,
+      species: 'Alien',
       gender: 'Male',
       image: 'https://example.com/morty.jpg',
     };
