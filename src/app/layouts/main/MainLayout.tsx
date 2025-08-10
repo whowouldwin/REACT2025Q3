@@ -1,8 +1,8 @@
 import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Flyout } from '../../svalka/Flyout.tsx';
-import { Header } from '../../svalka/Header.tsx';
+import { Header } from '@/features/site-header/Header.tsx';
+import { Flyout } from '@/widgets/selected-items-flyout/Flyout.tsx';
 
 import type { Character } from '@/utils/types/rickAndMorty.ts';
 

@@ -1,13 +1,14 @@
 import { type FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-import { useAppSelector, useAppDispatch } from '../state/store/hooks.ts';
+import { useAppSelector, useAppDispatch } from '@/state/store/hooks.ts';
 import {
   clearSelection,
   selectSelectedIds,
   selectSelectedItems,
-} from '../state/store/selectedItemsSlice.ts';
+} from '@/state/store/selectedItemsSlice.ts';
 
-import type { Character } from '../utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 export const Flyout: FC = () => {
   const selectedIds = useAppSelector(selectSelectedIds);
@@ -58,35 +59,32 @@ export const Flyout: FC = () => {
 
   return (
     <div
-      className="fixed bottom-0 left-0 right-0 border-t p-4 shadow-lg z-50"
-      style={{
-        backgroundColor: 'var(--color-bg)',
-        borderColor: 'var(--color-border)',
-      }}
+      className={twMerge(
+        'fixed bottom-0 left-0 right-0 border-t p-4 shadow-lg z-50',
+        'bg-bg border-border'
+      )}
     >
       <div className="container mx-auto flex justify-between items-center">
-        <div style={{ color: 'var(--text-primary)' }}>
+        <div className="text-text-primary">
           {selectedIds.length}{' '}
           {selectedIds.length === 1 ? 'item is' : 'items are'} selected
         </div>
         <div className="space-x-4">
           <button
             onClick={handleUnselectAll}
-            className="px-4 py-2 rounded transition-colors cursor-pointer"
-            style={{
-              backgroundColor: 'var(--color-bg-secondary)',
-              color: 'var(--text-primary)',
-            }}
+            className={twMerge(
+              'px-4 py-2 rounded transition-colors cursor-pointer',
+              'bg-bg-secondary text-text-primary'
+            )}
           >
             Unselect all
           </button>
           <button
             onClick={handleDownload}
-            className="px-4 py-2 rounded transition-colors cursor-pointer"
-            style={{
-              backgroundColor: 'var(--color-accent)',
-              color: 'white',
-            }}
+            className={twMerge(
+              'px-4 py-2 rounded transition-colors cursor-pointer',
+              'bg-accent text-white'
+            )}
           >
             Download
           </button>

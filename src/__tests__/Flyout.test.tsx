@@ -1,8 +1,8 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import { Flyout } from '../svalka/Flyout.tsx';
 import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+import { Flyout } from '../widgets/selected-items-flyout/Flyout.tsx';
 
 import type { Character } from '../utils/types/rickAndMorty.ts';
 

@@ -2,10 +2,11 @@ import './App.css';
 import { type FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
+import { MainLayout } from '@/app/layouts/main/MainLayout.tsx';
+
 import About from './pages/About.tsx';
 import Home from './pages/Home.tsx';
 import NotFound from './pages/NotFound.tsx';
-import { MainLayout } from './app/layouts/MainLayout.tsx';
 import { useCharacterData } from './utils/hooks/useCharacterData.ts';
 
 export const App: FC = () => {
