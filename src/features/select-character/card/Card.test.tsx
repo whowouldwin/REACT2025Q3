@@ -1,11 +1,12 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import { Card } from './Card.tsx';
 import {
   createMockStore,
   renderWithProviders,
-} from '../../__tests__/utils/test-utils.tsx';
+} from '@/__tests__/utils/test-utils.tsx';
+
+import { Card } from './Card.tsx';
 
 import type { Character } from '@/utils/types/rickAndMorty.ts';
 

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import { FallbackUI } from '../svalka/FallbackUI.tsx';
+import { FallbackUI } from '../shared/fallback-ui/FallbackUI.tsx';
 
 describe('FallbackUI', () => {
   beforeEach(() => {

@@ -3,9 +3,9 @@ import { useSearchParams } from 'react-router-dom';
 
 import { DetailsView } from '@/features/character-details/DetailsView.tsx';
 import { ErrorBoundary } from '@/features/error-boundary/ErrorBoundary.tsx';
-import { FallbackUI } from '@/svalka/FallbackUI.tsx';
-import { SearchResults } from '@/widgets/search-results/SearchResults.tsx';
+import { FallbackUI } from '@/shared/fallback-ui/FallbackUI.tsx';
 import { useGetCharactersQuery } from '@/utils/api/rickAndMorty.ts';
+import { SearchResults } from '@/widgets/search-results/SearchResults.tsx';
 
 import type { CharacterData } from '@/utils/hooks/useCharacterData.ts';
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, type FC } from 'react';
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 
 import { useLocalStorage } from '@/utils/hooks/useLocalStorage.ts';
 interface SearchBarProps {

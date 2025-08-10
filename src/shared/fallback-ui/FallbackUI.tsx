@@ -2,17 +2,8 @@ import { type FC } from 'react';
 
 export const FallbackUI: FC = () => {
   return (
-    <div
-      className="max-w-2xl mx-auto my-8 p-8 border-2 border-dashed rounded-lg text-center"
-      style={{
-        backgroundColor: 'var(--error-boundary-bg)',
-        borderColor: 'var(--error-boundary-border)',
-      }}
-    >
-      <h2
-        className="text-2xl font-bold mb-4"
-        style={{ color: 'var(--error-boundary-text)' }}
-      >
+    <div className="max-w-2xl mx-auto my-8 p-8 border-2 border-dashed rounded-lg text-center bg-error-bg border-error-border">
+      <h2 className="text-2xl font-bold mb-4 text-error-text">
         Something went wrong.
       </h2>
       <p className="mb-6" style={{ color: 'var(--text-primary)' }}>
