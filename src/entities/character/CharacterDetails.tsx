@@ -7,7 +7,14 @@ interface Props {
   character: Character;
 }
 
+const statusToClass: Record<Character['status'], string> = {
+  Alive: 'text-green-400',
+  Dead: 'text-red-400',
+  unknown: 'text-yellow-400',
+};
+
 export const CharacterDetails: React.FC<Props> = ({ character }) => {
+  const { status } = character;
   return (
     <div className={twMerge('pt-6 text-primary')}>
       <h2 className={twMerge('text-2xl font-bold mb-4 text-accent')}>
@@ -25,16 +32,7 @@ export const CharacterDetails: React.FC<Props> = ({ character }) => {
           <div className={twMerge('p-4 rounded-lg mb-4 bg-white/5')}>
             <p className="mb-2">
               <span className="text-secondary font-medium">Status:</span>
-              <span
-                className={twMerge(
-                  'ml-2',
-                  character.status === 'Alive'
-                    ? 'text-green-400'
-                    : character.status === 'Dead'
-                      ? 'text-red-400'
-                      : 'text-yellow-400'
-                )}
-              >
+              <span className={twMerge(statusToClass[status])}>
                 {character.status}
               </span>
             </p>
