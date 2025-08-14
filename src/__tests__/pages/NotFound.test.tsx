@@ -7,12 +7,7 @@ import { NotFound } from '../../pages/NotFound';
 describe('NotFound', () => {
   it('renders the 404 page correctly', () => {
     render(
-      <MemoryRouter
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
-      >
+      <MemoryRouter>
         <NotFound />
       </MemoryRouter>
     );

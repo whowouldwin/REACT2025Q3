@@ -51,15 +51,7 @@ export const renderWithProviders = (
 
   return render(
     <Provider store={store}>
-      <MemoryRouter
-        initialEntries={routeEntries}
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true,
-        }}
-      >
-        {ui}
-      </MemoryRouter>
+      <MemoryRouter initialEntries={routeEntries}>{ui}</MemoryRouter>
     </Provider>,
     { container }
   );

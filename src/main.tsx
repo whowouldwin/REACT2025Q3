@@ -16,13 +16,7 @@ createRoot(rootElement).render(
   <StrictMode>
     <Provider store={store}>
       <ThemeProvider>
-        <BrowserRouter
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-          basename="/"
-        >
+        <BrowserRouter basename="/">
           <App />
         </BrowserRouter>
       </ThemeProvider>
