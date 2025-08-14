@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { vi, describe, it, expect } from 'vitest';
 
-import { DetailsView } from '@/features/character-details/DetailsView.tsx';
+import { DetailsView } from '@/features/character-details/DetailsView';
 import { useGetCharacterByIdQuery } from '@/utils/api/rickAndMorty';
 
 vi.mock('@/utils/api/rickAndMorty', () => ({
@@ -41,18 +41,18 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
-vi.mock('@/shared/spinner/Spinner.tsx', () => ({
+vi.mock('@/shared/spinner/Spinner', () => ({
   Spinner: () => <div>Loading...</div>,
 }));
-vi.mock('@/shared/error-message/ErrorMessage.tsx', () => ({
+vi.mock('@/shared/error-message/ErrorMessage', () => ({
   ErrorMessage: () => <div>Error</div>,
 }));
-vi.mock('@/entities/character/CharacterDetails.tsx', () => ({
+vi.mock('@/entities/character/CharacterDetails', () => ({
   CharacterDetails: ({ character }: { character: { name: string } }) => (
     <div>{character.name}</div>
   ),
 }));
-vi.mock('@/utils/hooks/useLockBodyScrollOnMobile.ts', () => ({
+vi.mock('@/utils/hooks/useLockBodyScrollOnMobile', () => ({
   useLockBodyScrollOnMobile: () => {},
 }));
 

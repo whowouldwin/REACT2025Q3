@@ -3,20 +3,20 @@ import React from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 
-import Home from '@/pages/Home.tsx';
+import Home from '@/pages/Home';
 
-import type { CharacterData } from '@/utils/hooks/useCharacterData.ts';
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { CharacterData } from '@/utils/hooks/useCharacterData';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 const refetchMock = vi.fn();
 const useGetCharactersQueryMock = vi.fn();
 
-vi.mock('@/utils/api/rickAndMorty.ts', () => ({
+vi.mock('@/utils/api/rickAndMorty', () => ({
   useGetCharactersQuery: (args: { name: string; page: number }) =>
     useGetCharactersQueryMock(args),
 }));
 
-vi.mock('@/widgets/search-results/SearchResults.tsx', () => ({
+vi.mock('@/widgets/search-results/SearchResults', () => ({
   SearchResults: (p: {
     data: Character[];
     loading: boolean;
@@ -39,16 +39,16 @@ vi.mock('@/widgets/search-results/SearchResults.tsx', () => ({
   ),
 }));
 
-vi.mock('@/features/character-details/DetailsView.tsx', () => ({
+vi.mock('@/features/character-details/DetailsView', () => ({
   DetailsView: () => <div data-testid="DetailsView">DETAILS</div>,
 }));
 
-vi.mock('@/features/error-boundary/ErrorBoundary.tsx', () => ({
+vi.mock('@/features/error-boundary/ErrorBoundary', () => ({
   ErrorBoundary: ({ children }: { children: React.ReactNode }) => (
     <>{children}</>
   ),
 }));
-vi.mock('@/shared/fallback-ui/FallbackUI.tsx', () => ({
+vi.mock('@/shared/fallback-ui/FallbackUI', () => ({
   FallbackUI: () => <div>Fallback</div>,
 }));
 

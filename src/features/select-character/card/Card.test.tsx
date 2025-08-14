@@ -4,11 +4,11 @@ import { describe, it, expect } from 'vitest';
 import {
   createMockStore,
   renderWithProviders,
-} from '@/__tests__/utils/test-utils.tsx';
+} from '@/__tests__/utils/test-utils';
 
-import { Card } from './Card.tsx';
+import { Card } from './Card';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 describe('Card', () => {
   const mockCharacter: Character = {

@@ -2,9 +2,9 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
 
-import { MainLayout } from '@/app/layouts/main/MainLayout.tsx';
+import { MainLayout } from '@/app/layouts/main/MainLayout';
 
-vi.mock('@/features/site-header/Header.tsx', () => ({
+vi.mock('@/features/site-header/Header', () => ({
   Header: (props: { handleSearch: (q: string) => void }) => (
     <div data-testid="header" onClick={() => props.handleSearch('test')}>
       Header
@@ -12,7 +12,7 @@ vi.mock('@/features/site-header/Header.tsx', () => ({
   ),
 }));
 
-vi.mock('@/widgets/selected-items-flyout/Flyout.tsx', () => ({
+vi.mock('@/widgets/selected-items-flyout/Flyout', () => ({
   Flyout: () => <div data-testid="flyout">Flyout</div>,
 }));
 

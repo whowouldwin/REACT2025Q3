@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import { ThemeToggle } from '../features/theme/ThemeToggle.tsx';
-import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils';
+import { ThemeToggle } from '../features/theme/ThemeToggle';
 
 describe('ThemeToggle', () => {
   it('renders with light mode by default', () => {

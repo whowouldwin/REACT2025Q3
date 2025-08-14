@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
-import { SearchResults } from '../widgets/search-results/SearchResults.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils';
+import { SearchResults } from '../widgets/search-results/SearchResults';
 
-import type { Character } from '../utils/types/rickAndMorty.ts';
+import type { Character } from '../utils/types/rickAndMorty';
 
 describe('search results', () => {
   const mockData: Character[] = [

@@ -1,14 +1,14 @@
 import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { useAppSelector, useAppDispatch } from '@/state/store/hooks.ts';
+import { useAppSelector, useAppDispatch } from '@/state/store/hooks';
 import {
   clearSelection,
   selectSelectedIds,
   selectSelectedItems,
-} from '@/state/store/selectedItemsSlice.ts';
+} from '@/state/store/selectedItemsSlice';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 export const Flyout: FC = () => {
   const selectedIds = useAppSelector(selectSelectedIds);

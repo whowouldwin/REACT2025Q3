@@ -1,11 +1,11 @@
 import { screen } from '@testing-library/react';
 import { it, describe, expect } from 'vitest';
 
-import { ResultsList } from '@/widgets/results-list/ResultsList.tsx';
+import { ResultsList } from '@/widgets/results-list/ResultsList';
 
-import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils';
 
-import type { Character } from '../utils/types/rickAndMorty.ts';
+import type { Character } from '../utils/types/rickAndMorty';
 
 const makeCharacter = (id: number): Character => ({
   id,

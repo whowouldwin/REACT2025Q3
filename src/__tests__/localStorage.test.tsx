@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, expect, it } from 'vitest';
 
-import { SearchBar } from '../features/search-character/SearchBar.tsx';
+import { SearchBar } from '../features/search-character/SearchBar';
 
 beforeEach(() => {
   localStorage.clear();

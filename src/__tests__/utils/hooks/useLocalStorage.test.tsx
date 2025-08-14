@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react';
 import { describe, it, expect, beforeEach } from 'vitest';
 
-import { useLocalStorage } from '@/utils/hooks/useLocalStorage.ts';
+import { useLocalStorage } from '@/utils/hooks/useLocalStorage';
 
 describe('useLocalStorage (real)', () => {
   const key = 'searchText';

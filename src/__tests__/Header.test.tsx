@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import { describe, it, vi, expect } from 'vitest';
 
-import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
-import { Header } from '../features/site-header/Header.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils';
+import { Header } from '../features/site-header/Header';
 
 describe('Header navigation and search behavior', () => {
   const mockHandleSearch = vi.fn();

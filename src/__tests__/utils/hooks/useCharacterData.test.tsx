@@ -2,14 +2,14 @@ import { renderHook, act } from '@testing-library/react';
 import { useSearchParams } from 'react-router-dom';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import { useGetCharactersQuery } from '@/utils/api/rickAndMorty.ts';
-import { useCharacterData } from '@/utils/hooks/useCharacterData.ts';
+import { useGetCharactersQuery } from '@/utils/api/rickAndMorty';
+import { useCharacterData } from '@/utils/hooks/useCharacterData';
 
 vi.mock('react-router-dom', () => ({
   useSearchParams: vi.fn(),
 }));
 
-vi.mock('@/utils/api/rickAndMorty.ts', () => ({
+vi.mock('@/utils/api/rickAndMorty', () => ({
   useGetCharactersQuery: vi.fn(),
 }));
 

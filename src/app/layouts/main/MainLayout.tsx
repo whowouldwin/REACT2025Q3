@@ -1,10 +1,10 @@
 import { type FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Header } from '@/features/site-header/Header.tsx';
-import { Flyout } from '@/widgets/selected-items-flyout/Flyout.tsx';
+import { Header } from '@/features/site-header/Header';
+import { Flyout } from '@/widgets/selected-items-flyout/Flyout';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 interface MainLayoutProps {
   handleSearch: (query: string) => void;

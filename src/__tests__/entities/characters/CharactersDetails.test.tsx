@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import { CharacterDetails } from '@/entities/character/CharacterDetails.tsx';
+import { CharacterDetails } from '@/entities/character/CharacterDetails';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 const makeCharacter = (overrides: Partial<Character> = {}): Character => ({
   id: 1,

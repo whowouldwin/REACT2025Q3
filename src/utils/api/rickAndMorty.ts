@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import type { ApiResponse, Character } from '@/utils/types/rickAndMorty.ts';
+import type { ApiResponse, Character } from '@/utils/types/rickAndMorty';
 export const rickAndMortyApi = createApi({
   reducerPath: 'rickAndMortyApi',
   baseQuery: fetchBaseQuery({

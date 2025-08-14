@@ -2,8 +2,8 @@ import { type FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
-import { SearchBar } from '@/features/search-character/SearchBar.tsx';
-import { ThemeToggle } from '@/features/theme/ThemeToggle.tsx';
+import { SearchBar } from '@/features/search-character/SearchBar';
+import { ThemeToggle } from '@/features/theme/ThemeToggle';
 
 interface HeaderProps {
   handleSearch: (text: string) => void;

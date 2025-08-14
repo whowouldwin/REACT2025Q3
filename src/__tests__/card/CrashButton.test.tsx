@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 
-import { CrashButton } from '../../shared/crash-button/CrashButton.tsx';
+import { CrashButton } from '../../shared/crash-button/CrashButton';
 
 describe('CrashButton', () => {
   it('calls onCrash function when clicked', () => {

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import { Spinner } from '@/shared/spinner/Spinner.tsx';
+import { Spinner } from '@/shared/spinner/Spinner';
 
 describe('Spinner', () => {
   it('renders spinner element', () => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { ResultsListContent } from '@/widgets/results-list/ResultsListContent.tsx';
+import { ResultsListContent } from '@/widgets/results-list/ResultsListContent';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 interface Props {
   data: Character[];
   loading: boolean;

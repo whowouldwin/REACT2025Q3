@@ -1,13 +1,13 @@
 import { type FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { DetailsView } from '@/features/character-details/DetailsView.tsx';
-import { ErrorBoundary } from '@/features/error-boundary/ErrorBoundary.tsx';
-import { FallbackUI } from '@/shared/fallback-ui/FallbackUI.tsx';
-import { useGetCharactersQuery } from '@/utils/api/rickAndMorty.ts';
-import { SearchResults } from '@/widgets/search-results/SearchResults.tsx';
+import { DetailsView } from '@/features/character-details/DetailsView';
+import { ErrorBoundary } from '@/features/error-boundary/ErrorBoundary';
+import { FallbackUI } from '@/shared/fallback-ui/FallbackUI';
+import { useGetCharactersQuery } from '@/utils/api/rickAndMorty';
+import { SearchResults } from '@/widgets/search-results/SearchResults';
 
-import type { CharacterData } from '@/utils/hooks/useCharacterData.ts';
+import type { CharacterData } from '@/utils/hooks/useCharacterData';
 
 interface HomeProps {
   characterData: CharacterData;

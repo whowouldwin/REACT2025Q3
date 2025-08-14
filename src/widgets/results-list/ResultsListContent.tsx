@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { SkeletonList } from '@/shared/skeleton/SkeletonList.tsx';
-import { ErrorMessage } from '@/widgets/results-list/ErrorMessage.tsx';
-import { getGridClass } from '@/widgets/results-list/getGridClass.ts';
-import { ResultsCard } from '@/widgets/results-list/ResultsCard.tsx';
+import { SkeletonList } from '@/shared/skeleton/SkeletonList';
+import { ErrorMessage } from '@/widgets/results-list/ErrorMessage';
+import { getGridClass } from '@/widgets/results-list/getGridClass';
+import { ResultsCard } from '@/widgets/results-list/ResultsCard';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 interface Props {
   data: Character[];

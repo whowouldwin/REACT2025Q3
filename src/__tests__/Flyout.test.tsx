@@ -1,10 +1,10 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import { createMockStore, renderWithProviders } from './utils/test-utils.tsx';
-import { Flyout } from '../widgets/selected-items-flyout/Flyout.tsx';
+import { createMockStore, renderWithProviders } from './utils/test-utils';
+import { Flyout } from '../widgets/selected-items-flyout/Flyout';
 
-import type { Character } from '../utils/types/rickAndMorty.ts';
+import type { Character } from '../utils/types/rickAndMorty';
 
 global.URL.createObjectURL = vi.fn(() => '');
 

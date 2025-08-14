@@ -1,9 +1,9 @@
 import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ResultsList } from '@/widgets/results-list/ResultsList.tsx';
+import { ResultsList } from '@/widgets/results-list/ResultsList';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 interface SearchResultsProps {
   data: Character[];

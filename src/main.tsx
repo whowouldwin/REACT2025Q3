@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
-import App from './App.tsx';
-import { ThemeProvider } from './app/providers/theme/ThemeProvider.tsx';
-import { store } from './state/store/store.ts';
+import App from './App';
+import { ThemeProvider } from './app/providers/theme/ThemeProvider';
+import { store } from './state/store/store';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {

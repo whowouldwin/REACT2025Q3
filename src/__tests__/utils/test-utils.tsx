@@ -9,10 +9,10 @@ import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { MemoryRouter, type MemoryRouterProps } from 'react-router-dom';
 
-import { selectedItemsSlice } from '@/state/store/selectedItemsSlice.ts';
-import { themeSlice } from '@/state/store/themeSlice.ts';
+import { selectedItemsSlice } from '@/state/store/selectedItemsSlice';
+import { themeSlice } from '@/state/store/themeSlice';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 export const createMockStore = (
   selectedIds: number[] = [],

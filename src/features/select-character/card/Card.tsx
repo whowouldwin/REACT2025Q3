@@ -1,10 +1,10 @@
 import { type ChangeEvent, type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
-import { toggleItemSelection } from '@/state/store/selectedItemsSlice.ts';
+import { useAppDispatch, useAppSelector } from '@/state/store/hooks';
+import { toggleItemSelection } from '@/state/store/selectedItemsSlice';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 interface CardProps extends Character {
   isSelected?: boolean;

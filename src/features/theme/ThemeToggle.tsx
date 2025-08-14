@@ -3,8 +3,8 @@ import type { FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { MoonIcon, SunIcon } from '@/assets/svg-icons';
-import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
-import { selectTheme, toggleTheme } from '@/state/store/themeSlice.ts';
+import { useAppDispatch, useAppSelector } from '@/state/store/hooks';
+import { selectTheme, toggleTheme } from '@/state/store/themeSlice';
 
 export const ThemeToggle: FC = () => {
   const theme = useAppSelector(selectTheme);
