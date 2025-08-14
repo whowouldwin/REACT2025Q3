@@ -1,0 +1,1 @@
+export { useGetCharacterByIdQuery } from './rickAndMorty';

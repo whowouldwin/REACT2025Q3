@@ -1,0 +1,1 @@
+export { useLockBodyScrollOnMobile } from './useLockBodyScrollOnMobile';
