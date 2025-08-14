@@ -5,7 +5,6 @@ import { describe, it, expect, vi } from 'vitest';
 
 import Home from '@/pages/Home';
 
-import type { CharacterData } from '@/utils/hooks/useCharacterData';
 import type { Character } from '@/utils/types/rickAndMorty';
 
 const refetchMock = vi.fn();
@@ -80,29 +79,11 @@ function makeData(pages: number, count = 3): QueryData {
   };
 }
 
-function createCharacterData(): CharacterData {
-  return {
-    characters: [],
-    loading: false,
-    error: null,
-    searchTerm: '',
-    page: 1,
-    totalPages: 1,
-    lastCount: 0,
-    crash: false,
-    handleSearch: () => {},
-    handlePrev: () => {},
-    handleNext: () => {},
-    triggerCrash: () => {},
-  };
-}
-
 function renderHome(url = '/') {
-  const cd: CharacterData = createCharacterData();
   render(
     <MemoryRouter initialEntries={[url]}>
       <Routes>
-        <Route path="/" element={<Home characterData={cd} />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </MemoryRouter>
   );
