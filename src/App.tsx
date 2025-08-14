@@ -23,7 +23,7 @@ export const App: FC = () => {
           />
         }
       >
-        <Route index element={<Home characterData={characterData} />} />
+        <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Route>

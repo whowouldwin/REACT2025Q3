@@ -7,13 +7,7 @@ import { FallbackUI } from '@/shared/fallback-ui/FallbackUI';
 import { useGetCharactersQuery } from '@/utils/api/rickAndMorty';
 import { SearchResults } from '@/widgets/search-results/SearchResults';
 
-import type { CharacterData } from '@/utils/hooks/useCharacterData';
-
-interface HomeProps {
-  characterData: CharacterData;
-}
-
-export const Home: FC<HomeProps> = () => {
+export const Home: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
   const nameFilter = searchParams.get('name') || '';
