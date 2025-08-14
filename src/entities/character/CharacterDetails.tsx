@@ -14,16 +14,14 @@ const statusToClass: Record<Character['status'], string> = {
 };
 
 export const CharacterDetails: React.FC<Props> = ({ character }) => {
-  const { status } = character;
+  const { name, image, status, species } = character;
   return (
     <div className={twMerge('pt-6 text-primary')}>
-      <h2 className={twMerge('text-2xl font-bold mb-4 text-accent')}>
-        {character.name}
-      </h2>
+      <h2 className={twMerge('text-2xl font-bold mb-4 text-accent')}>{name}</h2>
       <div className="flex flex-col md:flex-row gap-6">
         <img
-          src={character.image}
-          alt={character.name}
+          src={image}
+          alt={name}
           className={twMerge(
             'rounded-lg mb-4 w-full md:w-48 object-cover shadow-lg border border-border'
           )}
@@ -32,13 +30,11 @@ export const CharacterDetails: React.FC<Props> = ({ character }) => {
           <div className={twMerge('p-4 rounded-lg mb-4 bg-white/5')}>
             <p className="mb-2">
               <span className="text-secondary font-medium">Status:</span>
-              <span className={twMerge(statusToClass[status])}>
-                {character.status}
-              </span>
+              <span className={twMerge(statusToClass[status])}>{status}</span>
             </p>
             <p>
               <span className="text-secondary font-medium">Species: </span>
-              <span className="text-accent">{character.species}</span>
+              <span className="text-accent">{species}</span>
             </p>
           </div>
         </div>
