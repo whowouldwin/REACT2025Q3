@@ -25,8 +25,8 @@ export const Card: FC<CardProps> = ({
   );
   const isChecked = selectedIds.includes(id);
 
-  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.stopPropagation();
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.stopPropagation();
     dispatch(
       toggleItemSelection({
         id,

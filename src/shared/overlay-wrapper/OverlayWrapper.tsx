@@ -10,8 +10,8 @@ export const OverlayWrapper: React.FC<Props> = ({
   children,
   onClickOutside,
 }) => {
-  const handleClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget && onClickOutside) {
+  const handleClick = (event: React.MouseEvent) => {
+    if (event.target === event.currentTarget && onClickOutside) {
       onClickOutside();
     }
   };
