@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { Card } from '@/features/select-character/card/Card';
+import { Card } from '@/entities/character/ui/Card.tsx';
 
 import type { Character } from '@/utils/types/rickAndMorty';
 

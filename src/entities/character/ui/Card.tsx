@@ -1,10 +1,11 @@
 import { type ChangeEvent, type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { useAppDispatch, useAppSelector } from '@/state/store/hooks';
-import { toggleItemSelection } from '@/state/store/selectedItemsSlice';
+import { getStatusDotClass } from '@/entities/character/lib/getStatusColor.ts';
+import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
+import { toggleItemSelection } from '@/state/store/selectedItemsSlice.ts';
 
-import type { Character } from '@/utils/types/rickAndMorty';
+import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 interface CardProps extends Character {
   isSelected?: boolean;
@@ -39,12 +40,7 @@ export const Card: FC<CardProps> = ({
     );
   };
 
-  const statusColor =
-    status === 'Alive'
-      ? 'bg-[hsl(140,70%,45%)]'
-      : status === 'Dead'
-        ? 'bg-[hsl(0,70%,50%)]'
-        : 'bg-[hsl(0,0%,50%)]';
+  const statusColor = getStatusDotClass(status);
 
   return (
     <article

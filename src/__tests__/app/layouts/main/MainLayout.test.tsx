@@ -21,7 +21,7 @@ describe('MainLayout', () => {
     const handleSearch = vi.fn();
     render(
       <MemoryRouter>
-        <MainLayout handleSearch={handleSearch} characters={[]} />
+        <MainLayout handleSearch={handleSearch} />
       </MemoryRouter>
     );
     expect(screen.getByTestId('header')).toBeInTheDocument();
@@ -32,7 +32,7 @@ describe('MainLayout', () => {
     const handleSearch = vi.fn();
     render(
       <MemoryRouter>
-        <MainLayout handleSearch={handleSearch} characters={[]} />
+        <MainLayout handleSearch={handleSearch} />
       </MemoryRouter>
     );
     screen.getByTestId('header').click();

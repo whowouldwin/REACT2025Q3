@@ -16,12 +16,7 @@ export const App: FC = () => {
     <Routes>
       <Route
         path="/"
-        element={
-          <MainLayout
-            handleSearch={characterData.handleSearch}
-            characters={characterData.characters}
-          />
-        }
+        element={<MainLayout handleSearch={characterData.handleSearch} />}
       >
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
