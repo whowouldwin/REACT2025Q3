@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
-import { SearchBar } from '@/features/search-character/SearchBar';
+import { SearchBar } from '@/features/search-bar/SearchBar';
 import { ThemeToggle } from '@/features/theme/ThemeToggle';
 
 interface HeaderProps {
