@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Character } from '../../utils/types/rickAndMorty';
+import { Card } from '../../entities/character/ui/Card';
 
-import { Card } from '@/entities/character/ui/Card.tsx';
 
-import type { Character } from '@/utils/types/rickAndMorty';
 
 interface Props {
   character: Character;

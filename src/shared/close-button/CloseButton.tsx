@@ -1,6 +1,7 @@
 import React from 'react';
+import { CloseIcon } from '../../assets/svg-icons';
 
-import { CloseIcon } from '@/assets/svg-icons';
+
 
 interface Props {
   onClick: () => void;
