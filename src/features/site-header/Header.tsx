@@ -1,16 +1,21 @@
 import { type FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+// import { Link, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+// import { ThemeToggle } from '../theme/ThemeToggle';
+import { SearchBar } from '../search-bar/SearchBar';
+import Link from 'next/link';
 
-import { SearchBar } from '@/features/search-bar/SearchBar';
-import { ThemeToggle } from '@/features/theme/ThemeToggle';
 
-interface HeaderProps {
-  handleSearch: (text: string) => void;
-}
+// interface HeaderProps {
+//   handleSearch: (text: string) => void;
+// }
 
-export const Header: FC<HeaderProps> = ({ handleSearch }) => {
-  const location = useLocation();
+export const Header: FC = () => {
+  const location = {
+    pathname: '/',
+  } ;
+
+  const handleSearch = () => {};
   const isHomePage = location.pathname === '/';
 
   const linkBase = 'text-lg hover:underline hover:brightness-110';
@@ -37,19 +42,19 @@ export const Header: FC<HeaderProps> = ({ handleSearch }) => {
           </h1>
 
           <div className="flex items-center gap-6">
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <nav className="flex gap-4">
-              <Link to="/" className={homeLinkClass}>
+              <Link href="/" className={homeLinkClass}>
                 Home
               </Link>
-              <Link to="/about" className={aboutLinkClass}>
+              <Link href="/about" className={aboutLinkClass}>
                 About
               </Link>
             </nav>
           </div>
         </div>
 
-        {isHomePage && <SearchBar onSearch={handleSearch} />}
+        {isHomePage && <SearchBar />}
       </div>
     </div>
   );

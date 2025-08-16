@@ -1,13 +1,15 @@
+'use client'
 import React, { useState, type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { useLocalStorage } from '../../utils/hooks/useLocalStorage';
 
-import { useLocalStorage } from '@/utils/hooks/useLocalStorage';
 
-interface SearchBarProps {
-  onSearch: (text: string) => void;
-}
 
-export const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
+// interface SearchBarProps {
+//   onSearch: (text: string) => void;
+// }
+
+export const SearchBar: FC = ({ }) => {
   const [stored, setStored] = useLocalStorage<string>('searchText', '');
   const [input, setInput] = useState(stored);
 
@@ -16,7 +18,7 @@ export const SearchBar: FC<SearchBarProps> = ({ onSearch }) => {
     const trimmed = input.trim();
     if (trimmed !== stored) setStored(trimmed);
 
-    onSearch(trimmed);
+    // onSearch(trimmed);
   };
 
   return (

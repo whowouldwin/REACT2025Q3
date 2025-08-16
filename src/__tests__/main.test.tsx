@@ -26,13 +26,13 @@ describe('main entry file', () => {
 
   it('throws error-boundary if root element is missing', async () => {
     mockGetElementById.mockReturnValue(null);
-    await expect(import('../main')).rejects.toThrow('Root element not found');
+    await expect(import('../garbage/main')).rejects.toThrow('Root element not found');
   });
 
   it('renders App if root element is found', async () => {
     const mockElement = {};
     mockGetElementById.mockReturnValue(mockElement);
-    await import('../main');
+    await import('../garbage/main');
     expect(createRootMock).toHaveBeenCalledWith(mockElement);
     expect(renderMock).toHaveBeenCalled();
   });

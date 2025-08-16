@@ -10,8 +10,9 @@
   },
   "homepage": "https://whowouldwin.github.io/REACT2025Q3",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs --fix",
     "preview": "vite preview",
@@ -26,9 +27,11 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/vite": "^4.1.12",
     "next": "^15.4.6",
     "npm-check-updates": "^18.0.2",
+    "postcss": "^8.5.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-redux": "^9.2.0",
