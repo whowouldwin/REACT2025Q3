@@ -1,11 +1,12 @@
 import { type FC, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { DetailsView } from '@/features/character-details/DetailsView';
-import { ErrorBoundary } from '@/features/error-boundary/ErrorBoundary';
-import { FallbackUI } from '@/shared/fallback-ui/FallbackUI';
-import { useGetCharactersQuery } from '@/utils/api/rickAndMorty';
-import { SearchResults } from '@/widgets/search-results/SearchResults';
+
+import { ErrorBoundary } from '../features/error-boundary/ErrorBoundary';
+import { FallbackUI } from '../shared/fallback-ui/FallbackUI';
+import { useGetCharactersQuery } from '../utils/api/rickAndMorty';
+import { SearchResults } from '../widgets/search-results/SearchResults';
+import { DetailsView } from '../features/character-details/DetailsView';
 
 export const Home: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();

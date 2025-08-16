@@ -1,5 +1,7 @@
+
+
+import Link from 'next/link';
 import { type FC } from 'react';
-import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 export const NotFound: FC = () => {
@@ -18,7 +20,7 @@ export const NotFound: FC = () => {
           The page you are looking for doesn&#39;t exist or has been moved.
         </p>
         <Link
-          to="/"
+          href="/"
           className={twMerge(
             'inline-block font-medium py-2 px-6 rounded-lg transition-colors',
             'bg-accent text-white hover:opacity-90 focus:outline-none focus:ring ring-offset-2'
