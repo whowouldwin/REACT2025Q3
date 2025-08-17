@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { SkeletonList } from '@/shared/skeleton/SkeletonList.tsx';
-import { ErrorMessage } from '@/widgets/results-list/ErrorMessage.tsx';
-import { getGridClass } from '@/widgets/results-list/getGridClass.ts';
-import { ResultsCard } from '@/widgets/results-list/ResultsCard.tsx';
-
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import { ErrorMessage } from './ErrorMessage';
+import { getGridClass } from './getGridClass';
+import { ResultsCard } from './ResultsCard';
+import { SkeletonList } from '../../shared/skeleton/SkeletonList';
+import { Character } from '../../utils/types/rickAndMorty';
 
 interface Props {
   data: Character[];
-  loading: boolean;
   error: string | null;
   skeletonCount: number;
   detailsOpen: boolean;
@@ -18,13 +16,12 @@ interface Props {
 
 export const ResultsListContent: React.FC<Props> = ({
   data,
-  loading,
   error,
   skeletonCount,
   detailsOpen,
   selectedId,
 }) => {
-  if (loading && data.length === 0)
+  if (data.length === 0)
     return <SkeletonList count={skeletonCount} detailsOpen={detailsOpen} />;
 
   if (error) return <ErrorMessage message={error} />;

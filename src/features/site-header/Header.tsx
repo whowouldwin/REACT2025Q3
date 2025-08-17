@@ -1,16 +1,21 @@
+'use client';
+import { useTranslations } from 'next-intl';
 import { type FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
-import { SearchBar } from '@/features/search-character/SearchBar.tsx';
-import { ThemeToggle } from '@/features/theme/ThemeToggle.tsx';
+import { LanguageSwitcher } from './LanguageSwitcher.tsx';
+import { Link } from '../../i18n/navigation';
+import { usePathname } from '../../i18n/navigation';
+import { SearchBar } from '../search-bar/SearchBar';
+import { ThemeToggle } from '../theme/ThemeToggle';
 
-interface HeaderProps {
-  handleSearch: (text: string) => void;
-}
+export const Header: FC = () => {
+  const t = useTranslations('Header');
 
-export const Header: FC<HeaderProps> = ({ handleSearch }) => {
-  const location = useLocation();
+  const location = {
+    pathname: usePathname(),
+  };
+
   const isHomePage = location.pathname === '/';
 
   const linkBase = 'text-lg hover:underline hover:brightness-110';
@@ -33,23 +38,24 @@ export const Header: FC<HeaderProps> = ({ handleSearch }) => {
       <div className="container mx-auto py-4 px-4">
         <div className="flex justify-between items-center mb-4">
           <h1 className={twMerge('text-3xl font-bold', 'text-accent')}>
-            Rick & Morty
+            {t('title')}
           </h1>
 
           <div className="flex items-center gap-6">
             <ThemeToggle />
+            <LanguageSwitcher />
             <nav className="flex gap-4">
-              <Link to="/" className={homeLinkClass}>
-                Home
+              <Link href="/" className={homeLinkClass}>
+                {t('home')}
               </Link>
-              <Link to="/about" className={aboutLinkClass}>
-                About
+              <Link href="/about" className={aboutLinkClass}>
+                {t('about')}
               </Link>
             </nav>
           </div>
         </div>
 
-        {isHomePage && <SearchBar onSearch={handleSearch} />}
+        {isHomePage && <SearchBar />}
       </div>
     </div>
   );

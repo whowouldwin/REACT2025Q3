@@ -1,41 +1,32 @@
-import { type FC } from 'react';
-import { useSearchParams } from 'react-router-dom';
+'use client';
 
-import { CharacterDetails } from '@/entities/character/CharacterDetails.tsx';
-import { CloseButton } from '@/shared/close-button/CloseButton.tsx';
-import { ErrorMessage } from '@/shared/error-message/ErrorMessage.tsx';
-import { OverlayWrapper } from '@/shared/overlay-wrapper/OverlayWrapper.tsx';
-import { Spinner } from '@/shared/spinner/Spinner.tsx';
-import { useGetCharacterByIdQuery } from '@/utils/api/rickAndMorty.ts';
-import { useLockBodyScrollOnMobile } from '@/utils/hooks/useLockBodyScrollOnMobile.ts';
+import { useSearchParams } from 'next/dist/client/components/navigation';
 
-export const DetailsView: FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const detailsId = searchParams.get('details');
-  useLockBodyScrollOnMobile(!!detailsId);
+import { CharacterDetails } from '../../entities/character';
+import { usePathname, useRouter } from '../../i18n/navigation';
+import { CloseButton } from '../../shared/close-button';
+import { OverlayWrapper } from '../../shared/overlay-wrapper';
+import { useLockBodyScrollOnMobile } from '../../utils/hooks';
+import { Character } from '../../utils/types/rickAndMorty';
 
-  const {
-    data: character,
-    isLoading,
-    isError,
-  } = useGetCharacterByIdQuery(detailsId ?? '', {
-    skip: !detailsId,
-  });
+export const DetailsView = ({ character }: { character: Character }) => {
+  const searchParams = useSearchParams();
+
+  const detailsId = searchParams?.get('details');
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  useLockBodyScrollOnMobile(Boolean(detailsId));
+  if (!detailsId) return null;
 
   const handleClose = () => {
-    searchParams.delete('details');
-    setSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams || '');
+    params.delete('details');
+    replace(`${pathname}?${params.toString()}`);
   };
-
-  if (!detailsId) return null;
 
   return (
     <OverlayWrapper onClickOutside={handleClose}>
       <CloseButton onClick={handleClose} />
-      {isLoading && <Spinner message="Loading character details..." />}
-      {isError && (
-        <ErrorMessage message="Character information could not be loaded." />
-      )}
       {character && <CharacterDetails character={character} />}
     </OverlayWrapper>
   );

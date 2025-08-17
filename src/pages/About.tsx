@@ -1,6 +1,9 @@
 import type { FC } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 export const About: FC = () => {
+  const t = useTranslations('About');
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
       <div
@@ -14,12 +17,12 @@ export const About: FC = () => {
           className="text-3xl font-bold mb-6"
           style={{ color: 'var(--color-accent)' }}
         >
-          About This App
+          {t('aboutApp')}
         </h1>
         <div className="space-y-4" style={{ color: 'var(--text-primary)' }}>
-          <p>This is a Rick & Morty application built with React.</p>
+          <p>{t('intro')}</p>
           <p>
-            This project is part of the{' '}
+            {t('coursePrefix')}{' '}
             <a
               href="https://rs.school/courses/reactjs"
               className="hover:underline"
@@ -27,7 +30,7 @@ export const About: FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              RS School React Course
+              {t('courseText')}
             </a>
           </p>
 
@@ -39,19 +42,20 @@ export const About: FC = () => {
               className="text-xl font-semibold mb-2"
               style={{ color: 'var(--color-accent)' }}
             >
-              Author Information
+              {t('authorInfo')}
             </h2>
             <p>
-              <span className="font-medium">Author:</span> whowouldwin
+              <span className="font-medium">{t('authorLabel')}</span>{' '}
+              {t('authorName')}
             </p>
             <p>
-              <span className="font-medium">GitHub:</span>{' '}
+              <span className="font-medium">{t('githubLabel')}</span>{' '}
               <a
                 href="https://github.com/whowouldwin/REACT2025Q3"
                 className="hover:underline"
                 style={{ color: 'var(--color-accent)' }}
               >
-                github.com/whowouldwin/REACT2025Q3
+                {t('repoText')}
               </a>
             </p>
           </div>

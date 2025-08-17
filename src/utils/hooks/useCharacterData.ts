@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
 
-import { useGetCharactersQuery } from '../api/rickAndMorty.ts';
+import { useGetCharactersQuery } from '../api/rickAndMorty';
 
-import type { Character } from '../types/rickAndMorty.ts';
+import type { Character } from '../types/rickAndMorty';
 
 export interface CharacterData {
   characters: Character[];

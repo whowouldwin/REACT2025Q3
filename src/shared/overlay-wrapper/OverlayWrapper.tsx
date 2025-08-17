@@ -10,8 +10,8 @@ export const OverlayWrapper: React.FC<Props> = ({
   children,
   onClickOutside,
 }) => {
-  const handleClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget && onClickOutside) {
+  const handleClick = (event: React.MouseEvent) => {
+    if (event.target === event.currentTarget && onClickOutside) {
       onClickOutside();
     }
   };
@@ -26,7 +26,7 @@ export const OverlayWrapper: React.FC<Props> = ({
           'w-full max-w-md lg:w-full',
           'p-6 rounded-lg shadow-xl relative border',
           'border border-border',
-          'bg-secondary bg-bg-secondary'
+          'bg-bg-secondary'
         )}
       >
         {children}

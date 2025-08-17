@@ -4,8 +4,8 @@ import {
   type PayloadAction,
 } from '@reduxjs/toolkit';
 
-import type { RootState } from './store.ts';
-import type { Character } from '@/utils/types/rickAndMorty.ts';
+import type { RootState } from './store';
+import type { Character } from '@/utils/types/rickAndMorty';
 
 interface SelectedItemsState {
   selectedIds: number[];

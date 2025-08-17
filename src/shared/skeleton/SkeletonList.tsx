@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { SkeletonCard } from '@/shared/skeleton/SkeletonCard.tsx';
-import { getGridClass } from '@/widgets/results-list/getGridClass.ts';
+import { SkeletonCard } from './SkeletonCard';
+import { getGridClass } from '../../widgets/results-list/getGridClass';
 
 interface Props {
   count: number;

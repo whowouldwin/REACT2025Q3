@@ -2,12 +2,12 @@ import './App.css';
 import { type FC } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { MainLayout } from '@/app/layouts/main/MainLayout.tsx';
+import About from './pages/About';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import { useCharacterData } from './utils/hooks/useCharacterData';
 
-import About from './pages/About.tsx';
-import Home from './pages/Home.tsx';
-import NotFound from './pages/NotFound.tsx';
-import { useCharacterData } from './utils/hooks/useCharacterData.ts';
+import { MainLayout } from '@/app/layouts/main/MainLayout';
 
 export const App: FC = () => {
   const characterData = useCharacterData();
@@ -16,14 +16,9 @@ export const App: FC = () => {
     <Routes>
       <Route
         path="/"
-        element={
-          <MainLayout
-            handleSearch={characterData.handleSearch}
-            characters={characterData.characters}
-          />
-        }
+        element={<MainLayout handleSearch={characterData.handleSearch} />}
       >
-        <Route index element={<Home characterData={characterData} />} />
+        <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="*" element={<NotFound />} />
       </Route>

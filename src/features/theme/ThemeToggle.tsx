@@ -2,17 +2,16 @@ import type { FC } from 'react';
 
 import { twMerge } from 'tailwind-merge';
 
-import { MoonIcon, SunIcon } from '@/assets/svg-icons';
-import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
-import { selectTheme, toggleTheme } from '@/state/store/themeSlice.ts';
+import { MoonIcon, SunIcon } from '../../assets/svg-icons';
 
 export const ThemeToggle: FC = () => {
-  const theme = useAppSelector(selectTheme);
-  const dispatch = useAppDispatch();
+  const theme = 'Light';
+  // const theme = useAppSelector(selectTheme);
+  // const dispatch = useAppDispatch();
 
-  const handleToggle = () => {
-    dispatch(toggleTheme());
-  };
+  // const handleToggle = () => {
+  //   dispatch(toggleTheme());
+  // };
 
   return (
     <div className="flex items-center gap-3">
@@ -20,7 +19,7 @@ export const ThemeToggle: FC = () => {
         {theme === 'light' ? 'Light' : 'Dark'} Mode
       </span>
       <button
-        onClick={handleToggle}
+        onClick={() => {}}
         className={twMerge(
           'p-2 rounded-full transition-all transform',
           'hover:scale-105 active:scale-95 cursor-pointer hover:shadow',

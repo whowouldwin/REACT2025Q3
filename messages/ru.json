@@ -1,0 +1,28 @@
+{
+  "About": {
+    "aboutApp": "О приложении",
+    "intro": "Это приложение Rick & Morty, созданное на React.",
+    "coursePrefix": "Этот проект является частью",
+    "courseText": "курса RS School по React",
+    "authorInfo": "Информация об авторе",
+    "authorLabel": "Автор:",
+    "authorName": "whowouldwin",
+    "githubLabel": "GitHub:",
+    "repoText": "github.com/whowouldwin/REACT2025Q3"
+  },
+  "Header": {
+    "title": "Рик и Морти",
+    "home": "Главная",
+    "about": "О проекте"
+  },
+  "Pagination": {
+    "prev": "Назад",
+    "next": "Вперёд",
+    "pageOf": "Страница {page} из {total}"
+  },
+  "SearchBar": {
+    "placeholder": "Поиск персонажей...",
+    "ariaLabel": "Поиск по имени персонажа",
+    "search": "Поиск"
+  }
+}

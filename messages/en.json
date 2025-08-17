@@ -1,0 +1,28 @@
+{
+  "About": {
+    "aboutApp": "About this app",
+    "intro": "This is a Rick & Morty application built with React.",
+    "coursePrefix": "This project is part of the",
+    "courseText": "RS School React Course",
+    "authorInfo": "Author Information",
+    "authorLabel": "Author:",
+    "authorName": "whowouldwin",
+    "githubLabel": "GitHub:",
+    "repoText": "github.com/whowouldwin/REACT2025Q3"
+  },
+  "Header": {
+    "title": "Rick & Morty",
+    "home": "Home",
+    "about": "About"
+  },
+  "Pagination": {
+    "prev": "Prev",
+    "next": "Next",
+    "pageOf": "Page {page} of {total}"
+  },
+  "SearchBar": {
+    "placeholder": "Search characters...",
+    "ariaLabel": "Search by character name",
+    "search": "Search"
+  }
+}

@@ -1,9 +1,9 @@
 import { configureStore, type Middleware } from '@reduxjs/toolkit';
 
-import { rickAndMortyApi } from '@/utils/api/rickAndMorty.ts';
+import selectedItemsReducer from './selectedItemsSlice';
+import themeReducer from './themeSlice';
 
-import selectedItemsReducer from './selectedItemsSlice.ts';
-import themeReducer from './themeSlice.ts';
+import { rickAndMortyApi } from '@/utils/api/rickAndMorty';
 
 const localStorageMiddleware: Middleware =
   (storeAPI) => (next) => (action: unknown) => {
