@@ -9,5 +9,10 @@
     "authorName": "whowouldwin",
     "githubLabel": "GitHub:",
     "repoText": "github.com/whowouldwin/REACT2025Q3"
+  },
+  "Header": {
+    "title": "Rick & Morty",
+    "home": "Home",
+    "about": "About"
   }
 }

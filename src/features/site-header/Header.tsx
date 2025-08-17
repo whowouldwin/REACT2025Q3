@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge';
 // import { ThemeToggle } from '../theme/ThemeToggle';
 import { SearchBar } from '../search-bar/SearchBar';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 
 // interface HeaderProps {
@@ -11,6 +12,7 @@ import Link from 'next/link';
 // }
 
 export const Header: FC = () => {
+  const t = useTranslations('Header');
   const location = {
     pathname: '/',
   } ;
@@ -38,17 +40,17 @@ export const Header: FC = () => {
       <div className="container mx-auto py-4 px-4">
         <div className="flex justify-between items-center mb-4">
           <h1 className={twMerge('text-3xl font-bold', 'text-accent')}>
-            Rick & Morty
+            {t('title')}
           </h1>
 
           <div className="flex items-center gap-6">
             {/* <ThemeToggle /> */}
             <nav className="flex gap-4">
               <Link href="/" className={homeLinkClass}>
-                Home
+                {t('home')}
               </Link>
               <Link href="/about" className={aboutLinkClass}>
-                About
+                {t('about')}
               </Link>
             </nav>
           </div>
