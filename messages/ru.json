@@ -19,5 +19,10 @@
     "prev": "Назад",
     "next": "Вперёд",
     "pageOf": "Страница {page} из {total}"
+  },
+  "SearchBar": {
+    "placeholder": "Поиск персонажей...",
+    "ariaLabel": "Поиск по имени персонажа",
+    "search": "Поиск"
   }
 }

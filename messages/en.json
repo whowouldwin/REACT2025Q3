@@ -19,5 +19,10 @@
     "prev": "Prev",
     "next": "Next",
     "pageOf": "Page {page} of {total}"
+  },
+  "SearchBar": {
+    "placeholder": "Search characters...",
+    "ariaLabel": "Search by character name",
+    "search": "Search"
   }
 }

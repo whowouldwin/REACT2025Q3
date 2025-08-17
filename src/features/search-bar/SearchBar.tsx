@@ -3,6 +3,7 @@ import React, { useState, type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { useLocalStorage } from '../../utils/hooks/useLocalStorage';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 
 
@@ -11,6 +12,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 // }
 
 export const SearchBar: FC = ({ }) => {
+  const t = useTranslations('SearchBar');
   const searchParam = useSearchParams();
   const pathname = usePathname();
   const {replace} = useRouter();
@@ -37,7 +39,7 @@ export const SearchBar: FC = ({ }) => {
     <form onSubmit={onSubmit} className="p-4 flex gap-2 justify-center">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder={t('placeholder')}
         value={input}
         onChange={(event) => setInput(event.target.value)}
         className={twMerge(
@@ -45,10 +47,10 @@ export const SearchBar: FC = ({ }) => {
           'bg-bg text-text-primary border-border',
           'focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent'
         )}
-        aria-label="Search"
+        aria-label={t('ariaLabel')}
       />
       <button type="submit" className="btn btn-dark">
-        Search
+        {t('search')}
       </button>
     </form>
   );
