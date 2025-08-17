@@ -2,6 +2,7 @@ import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Character } from '../../utils/types/rickAndMorty';
 import { ResultsList } from '../results-list/ResultsList';
+import { useTranslations } from 'next-intl';
 
 
 interface SearchResultsProps {
@@ -27,6 +28,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
   crash,
   detailsOpen = false,
 }) => {
+  const t = useTranslations('Pagination');
   if (crash) {
     throw new Error('Render crash!');
   }
@@ -46,7 +48,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
             disabled={page <= 1}
             className="btn btn-primary"
           >
-            Prev
+            {t('prev')}
           </button>
           <span
             className={twMerge(
@@ -54,14 +56,14 @@ export const SearchResults: FC<SearchResultsProps> = ({
               'bg-bg-secondary text-text-primary'
             )}
           >
-            Page {page} of {totalPages || 1}
+            {t('pageOf', {page, total: totalPages || 1})}
           </span>
           <button
             // onClick={onNext}
             disabled={page >= totalPages}
             className="btn btn-primary"
           >
-            Next
+            {t('next')}
           </button>
         </div>
       )}

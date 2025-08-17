@@ -14,5 +14,10 @@
     "title": "Rick & Morty",
     "home": "Home",
     "about": "About"
+  },
+  "Pagination": {
+    "prev": "Prev",
+    "next": "Next",
+    "pageOf": "Page {page} of {total}"
   }
 }
