@@ -1,24 +1,20 @@
-'use client'
+'use client';
+import { useTranslations } from 'next-intl';
 import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { SearchBar } from '../search-bar/SearchBar';
-import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+
+import { Link } from '../../i18n/navigation';
 import { usePathname } from '../../i18n/navigation';
+import { SearchBar } from '../search-bar/SearchBar';
 import { ThemeToggle } from '../theme/ThemeToggle';
+import { LanguageSwitcher } from './LanguageSwitcher.tsx';
 
-
-// interface HeaderProps {
-//   handleSearch: (text: string) => void;
-// }
-
-export const Header: FC =  () => {
+export const Header: FC = () => {
   const t = useTranslations('Header');
 
   const location = {
     pathname: usePathname(),
-  } ;
-
+  };
 
   const isHomePage = location.pathname === '/';
 
@@ -32,9 +28,8 @@ export const Header: FC =  () => {
     location.pathname === '/about' ? 'text-accent' : 'text-text-secondary'
   );
 
-
-    return (
-    <div 
+  return (
+    <div
       className={twMerge(
         'fixed top-0 left-0 w-full z-50 shadow-lg border-b',
         'bg-bg border-border'
@@ -48,6 +43,7 @@ export const Header: FC =  () => {
 
           <div className="flex items-center gap-6">
             <ThemeToggle />
+            <LanguageSwitcher />
             <nav className="flex gap-4">
               <Link href="/" className={homeLinkClass}>
                 {t('home')}
