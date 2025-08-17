@@ -1,6 +1,8 @@
 import { Suspense, type FC } from 'react';
 
 import { TotalPage } from '../features/search-result/TotalPage';
+import { DetailsView } from '../features/character-details/DetailsView';
+import { DetailsViewServer } from '../features/character-details/DetailsViewServer';
 
 export const Home =  (props: {
   searchParams?: {
@@ -45,7 +47,7 @@ export const Home =  (props: {
 
         {detailsId && (
           <div className="relative lg:w-1/3 transition-all duration-300 ease-in-out ml-4">
-            {/* <DetailsView /> */}
+            <DetailsViewServer id={detailsId} />
           </div>
         )}
       </div>

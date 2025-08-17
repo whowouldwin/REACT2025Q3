@@ -1,40 +1,38 @@
-import { skipToken } from '@reduxjs/toolkit/query';
+'use client'
+
 import { type FC } from 'react';
-import { useSearchParams } from 'react-router-dom';
 
 import { CharacterDetails } from '../../entities/character';
 import { CloseButton } from '../../shared/close-button';
-import { ErrorMessage } from '@/shared/error-message';
-import { OverlayWrapper } from '@/shared/overlay-wrapper';
-import { Spinner } from '@/shared/spinner';
-import { useGetCharacterByIdQuery } from '@/utils/api';
-import { useLockBodyScrollOnMobile } from '@/utils/hooks';
 
-export const DetailsView: FC = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const detailsId = searchParams.get('details');
+import { OverlayWrapper } from '../../shared/overlay-wrapper';
+
+
+import { useLockBodyScrollOnMobile } from '../../utils/hooks';
+import { useSearchParams } from 'next/dist/client/components/navigation';
+import { usePathname, useRouter } from '../../i18n/navigation';
+import { Character } from '../../utils/types/rickAndMorty';
+
+export const DetailsView =  ({character}: {character: Character})=> {
+  const searchParams = useSearchParams();
+  
+  const detailsId = searchParams?.get('details');
+  const pathname = usePathname();
+  const {replace} = useRouter();
   useLockBodyScrollOnMobile(Boolean(detailsId));
-
-  const {
-    data: character,
-    isLoading,
-    isError,
-  } = useGetCharacterByIdQuery(detailsId ?? skipToken);
+  if (!detailsId) return null;
 
   const handleClose = () => {
-    searchParams.delete('details');
-    setSearchParams(searchParams);
+    const params = new URLSearchParams(searchParams || '')
+    params.delete('details');
+    replace(`${pathname}?${params.toString()}`)
   };
 
-  if (!detailsId) return null;
+  
 
   return (
     <OverlayWrapper onClickOutside={handleClose}>
       <CloseButton onClick={handleClose} />
-      {isLoading && <Spinner message="Loading character details..." />}
-      {isError && (
-        <ErrorMessage message="Character information could not be loaded." />
-      )}
       {character && <CharacterDetails character={character} />}
     </OverlayWrapper>
   );
