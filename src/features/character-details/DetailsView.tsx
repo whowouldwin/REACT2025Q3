@@ -2,8 +2,8 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import { type FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { CharacterDetails } from '@/entities/character';
-import { CloseButton } from '@/shared/close-button';
+import { CharacterDetails } from '../../entities/character';
+import { CloseButton } from '../../shared/close-button';
 import { ErrorMessage } from '@/shared/error-message';
 import { OverlayWrapper } from '@/shared/overlay-wrapper';
 import { Spinner } from '@/shared/spinner';

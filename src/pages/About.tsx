@@ -1,6 +1,8 @@
+import { useTranslations } from 'next-intl';
 import type { FC } from 'react';
 
 export const About: FC = () => {
+  const t = useTranslations('About');
   return (
     <div className="container mx-auto pt-40 pb-10 px-4">
       <div
@@ -14,7 +16,7 @@ export const About: FC = () => {
           className="text-3xl font-bold mb-6"
           style={{ color: 'var(--color-accent)' }}
         >
-          About This App
+          {t('aboutApp')}
         </h1>
         <div className="space-y-4" style={{ color: 'var(--text-primary)' }}>
           <p>This is a Rick & Morty application built with React.</p>

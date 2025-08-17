@@ -2,15 +2,15 @@ import { Suspense, type FC } from 'react';
 
 import { TotalPage } from '../features/search-result/TotalPage';
 
-export const Home: FC = async (props: {
-  searchParams?: Promise<{
+export const Home =  (props: {
+  searchParams?: {
     search?: string;
     page?: string;
     name?: string;
     details?: string;
-  }>;
+  };
 }) => {
-  const searchParams = await props.searchParams;
+  const searchParams = props.searchParams;
   const search = searchParams?.search || '';
   const currentPage = Number(searchParams?.page) || 1;
 
@@ -40,7 +40,7 @@ export const Home: FC = async (props: {
         <div
           className={`transition-all duration-300 ease-in-out ${detailsId ? 'lg:w-2/3' : 'w-full'}`}
         >
-        <TotalPage name={''} page={0} />
+        <TotalPage name={search} page={0} />
         </div>
 
         {detailsId && (
