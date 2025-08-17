@@ -40,7 +40,7 @@ export const Home =  (props: {
         <div
           className={`transition-all duration-300 ease-in-out ${detailsId ? 'lg:w-2/3' : 'w-full'}`}
         >
-        <TotalPage name={search} page={0} />
+        <TotalPage name={search} page={currentPage} />
         </div>
 
         {detailsId && (
