@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
 
-import { ResultsListContent } from '@/widgets/results-list/ResultsListContent';
 
-import type { Character } from '@/utils/types/rickAndMorty';
+import { ResultsListContent } from '../../widgets/results-list/ResultsListContent';
+import { Character } from '../../utils/types/rickAndMorty';
+
+
+
 interface Props {
   data: Character[];
-  loading: boolean;
   error: string | null;
   skeletonCount: number;
   detailsOpen?: boolean;
@@ -14,22 +15,20 @@ interface Props {
 
 export const ResultsList: React.FC<Props> = ({
   data,
-  loading,
   error,
   skeletonCount,
   detailsOpen = false,
 }) => {
-  const [searchParams] = useSearchParams();
-  const selectedId = searchParams.get('details');
+  const searchParams = {details: ''};
+  const selectedId = searchParams?.details;
 
   return (
     <ResultsListContent
       data={data}
-      loading={loading}
       error={error}
       skeletonCount={skeletonCount}
       detailsOpen={detailsOpen}
-      selectedId={selectedId}
+      selectedId={selectedId || ''}
     />
   );
 };

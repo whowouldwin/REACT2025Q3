@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { Character } from '../../utils/types/rickAndMorty';
 import { Card } from '../../entities/character/ui/Card';
 
@@ -11,19 +10,18 @@ interface Props {
 }
 
 export const ResultsCard: React.FC<Props> = ({ character, isSelected }) => {
-  const [, setSearchParams] = useSearchParams();
 
-  const handleClick = () => {
-    setSearchParams((prev) => {
-      prev.set('details', character.id.toString());
-      return prev;
-    });
-  };
+  // const handleClick = () => {
+  //   setSearchParams((prev) => {
+  //     prev.set('details', character.id.toString());
+  //     return prev;
+  //   });
+  // };
 
   return (
     <div
       key={character.id}
-      onClick={handleClick}
+      // onClick={handleClick}
       className={`cursor-pointer w-full transition-all duration-300 ${
         isSelected
           ? 'ring-4 ring-blue-500 ring-opacity-75 z-10 rounded-xl shadow-lg shadow-blue-500/20'

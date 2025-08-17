@@ -6,7 +6,6 @@ import { ResultsList } from '../results-list/ResultsList';
 
 interface SearchResultsProps {
   data: Character[];
-  loading: boolean;
   error: string | null;
   skeletonCount: number;
   page: number;
@@ -19,13 +18,12 @@ interface SearchResultsProps {
 
 export const SearchResults: FC<SearchResultsProps> = ({
   data,
-  loading,
   error,
   skeletonCount,
   page,
   totalPages,
-  onPrev,
-  onNext,
+  // onPrev,
+  // onNext,
   crash,
   detailsOpen = false,
 }) => {
@@ -37,7 +35,6 @@ export const SearchResults: FC<SearchResultsProps> = ({
     <>
       <ResultsList
         data={data}
-        loading={loading}
         error={error}
         skeletonCount={skeletonCount}
         detailsOpen={detailsOpen}
@@ -45,7 +42,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
       {!error && data.length > 0 && (
         <div className="flex justify-center items-center gap-4 mt-8">
           <button
-            onClick={onPrev}
+            // onClick={onPrev}
             disabled={page <= 1}
             className="btn btn-primary"
           >
@@ -60,7 +57,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
             Page {page} of {totalPages || 1}
           </span>
           <button
-            onClick={onNext}
+            // onClick={onNext}
             disabled={page >= totalPages}
             className="btn btn-primary"
           >

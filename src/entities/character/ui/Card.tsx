@@ -1,11 +1,10 @@
 import { type ChangeEvent, type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { Character } from '../../../utils/types/rickAndMorty';
+import { getStatusDotClass } from '../lib/getStatusColor';
+import Image from 'next/image';
 
-import { getStatusDotClass } from '@/entities/character/lib/getStatusColor.ts';
-import { useAppDispatch, useAppSelector } from '@/state/store/hooks.ts';
-import { toggleItemSelection } from '@/state/store/selectedItemsSlice.ts';
 
-import type { Character } from '@/utils/types/rickAndMorty.ts';
 
 interface CardProps extends Character {
   isSelected?: boolean;
@@ -20,24 +19,21 @@ export const Card: FC<CardProps> = ({
   gender,
   isSelected = false,
 }) => {
-  const dispatch = useAppDispatch();
-  const selectedIds = useAppSelector(
-    (state) => state.selectedItems.selectedIds
-  );
+  const selectedIds: number[] = [];
   const isChecked = selectedIds.includes(id);
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.stopPropagation();
-    dispatch(
-      toggleItemSelection({
-        id,
-        name,
-        status,
-        species,
-        image,
-        gender,
-      })
-    );
+    
+      // toggleItemSelection({
+      //   id,
+      //   name,
+      //   status,
+      //   species,
+      //   image,
+      //   gender,
+      // })
+    
   };
 
   const statusColor = getStatusDotClass(status);
@@ -50,12 +46,12 @@ export const Card: FC<CardProps> = ({
       )}
     >
       <div className="relative h-64 flex-shrink-0">
-        <img src={image} alt={name} className="w-full h-full object-cover" />
+        <Image width='100' height='100' src={image} alt={name} className="w-full h-full object-cover" />
         <div className="absolute top-2 left-2">
           <input
             type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
+            defaultChecked={isChecked}
+            // onChange={handleCheckboxChange}
             className="h-7 w-7 cursor-pointer"
           />
         </div>

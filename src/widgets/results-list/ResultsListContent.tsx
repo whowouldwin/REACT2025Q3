@@ -8,7 +8,6 @@ import { ResultsCard } from "./ResultsCard";
 
 interface Props {
   data: Character[];
-  loading: boolean;
   error: string | null;
   skeletonCount: number;
   detailsOpen: boolean;
@@ -17,13 +16,12 @@ interface Props {
 
 export const ResultsListContent: React.FC<Props> = ({
   data,
-  loading,
   error,
   skeletonCount,
   detailsOpen,
   selectedId,
 }) => {
-  if (loading && data.length === 0)
+  if (data.length === 0)
     return <SkeletonList count={skeletonCount} detailsOpen={detailsOpen} />;
 
   if (error) return <ErrorMessage message={error} />;

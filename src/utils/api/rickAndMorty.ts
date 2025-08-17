@@ -1,21 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { ApiResponse, Character } from '../types/rickAndMorty';
 
-import type { ApiResponse, Character } from '@/utils/types/rickAndMorty';
-export const rickAndMortyApi = createApi({
-  reducerPath: 'rickAndMortyApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://rickandmortyapi.com/api/',
-  }),
-  endpoints: (builder) => ({
-    getCharacters: builder.query<ApiResponse, { name: string; page: number }>({
-      query: ({ name, page }) =>
-        `character/?name=${encodeURIComponent(name)}&page=${page}`,
-    }),
-    getCharacterById: builder.query<Character, string | number>({
-      query: (id) => `character/${id}`,
-    }),
-  }),
-});
+export async function fetchData({name, page }:{name: string, page: number}) {
+ const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${encodeURIComponent(name)}&page=${page}`);
+ return await response.json() as ApiResponse;
+}
 
-export const { useGetCharactersQuery, useGetCharacterByIdQuery } =
-  rickAndMortyApi;
+export async function fetchCharacter({id}:{id: string}) {
+ const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+ return await response.json() as Character;
+}
+
