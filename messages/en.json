@@ -1,7 +1,13 @@
 {
-    "About": {
-        "aboutApp": "About this app"
-    },
-    "title": "Rick & Morty"
+  "About": {
+    "aboutApp": "About this app",
+    "intro": "This is a Rick & Morty application built with React.",
+    "coursePrefix": "This project is part of the",
+    "courseText": "RS School React Course",
+    "authorInfo": "Author Information",
+    "authorLabel": "Author:",
+    "authorName": "whowouldwin",
+    "githubLabel": "GitHub:",
+    "repoText": "github.com/whowouldwin/REACT2025Q3"
+  }
 }
-

@@ -1,6 +1,13 @@
 {
   "About": {
-    "title": "Рик и Морти",
-    "aboutApp": "О приложении"
+    "aboutApp": "О приложении",
+    "intro": "Это приложение Rick & Morty, созданное на React.",
+    "coursePrefix": "Этот проект является частью",
+    "courseText": "курса RS School по React",
+    "authorInfo": "Информация об авторе",
+    "authorLabel": "Автор:",
+    "authorName": "whowouldwin",
+    "githubLabel": "GitHub:",
+    "repoText": "github.com/whowouldwin/REACT2025Q3"
   }
 }
