@@ -1,7 +1,6 @@
-import Home from "../../pages/Home";
+import Home from '../../pages/Home';
 
-
-export default  async function Page(props: {
+export default async function Page(props: {
   searchParams?: Promise<{
     search?: string;
     page?: string;
@@ -10,6 +9,6 @@ export default  async function Page(props: {
   }>;
 }) {
   const searchParams = await props.searchParams;
-  
-  return <Home searchParams={searchParams} />
+
+  return <Home searchParams={searchParams} />;
 }

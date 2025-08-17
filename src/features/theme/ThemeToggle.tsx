@@ -4,9 +4,8 @@ import { twMerge } from 'tailwind-merge';
 
 import { MoonIcon, SunIcon } from '../../assets/svg-icons';
 
-
 export const ThemeToggle: FC = () => {
-  let theme = 'Light'
+  const theme = 'Light';
   // const theme = useAppSelector(selectTheme);
   // const dispatch = useAppDispatch();
 

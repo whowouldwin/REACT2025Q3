@@ -1,10 +1,10 @@
-import { SkeletonList } from "../../shared/skeleton/SkeletonList";
-import { Character } from "../../utils/types/rickAndMorty";
-import { ErrorMessage } from "./ErrorMessage";
-import { getGridClass } from "./getGridClass";
-import { ResultsCard } from "./ResultsCard";
+import React from 'react';
 
-
+import { ErrorMessage } from './ErrorMessage';
+import { getGridClass } from './getGridClass';
+import { ResultsCard } from './ResultsCard';
+import { SkeletonList } from '../../shared/skeleton/SkeletonList';
+import { Character } from '../../utils/types/rickAndMorty';
 
 interface Props {
   data: Character[];

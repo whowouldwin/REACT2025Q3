@@ -1,10 +1,7 @@
 import React from 'react';
 
-
-import { ResultsListContent } from '../../widgets/results-list/ResultsListContent';
+import { ResultsListContent } from './ResultsListContent.tsx';
 import { Character } from '../../utils/types/rickAndMorty';
-
-
 
 interface Props {
   data: Character[];
@@ -19,7 +16,7 @@ export const ResultsList: React.FC<Props> = ({
   skeletonCount,
   detailsOpen = false,
 }) => {
-  const searchParams = {details: ''};
+  const searchParams = { details: '' };
   const selectedId = searchParams?.details;
 
   return (

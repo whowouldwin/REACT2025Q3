@@ -1,5 +1,6 @@
-import { useTranslations } from 'next-intl';
 import type { FC } from 'react';
+
+import { useTranslations } from 'next-intl';
 
 export const About: FC = () => {
   const t = useTranslations('About');
@@ -44,7 +45,8 @@ export const About: FC = () => {
               {t('authorInfo')}
             </h2>
             <p>
-              <span className="font-medium">{t('authorLabel')}</span> {t('authorName')}
+              <span className="font-medium">{t('authorLabel')}</span>{' '}
+              {t('authorName')}
             </p>
             <p>
               <span className="font-medium">{t('githubLabel')}</span>{' '}

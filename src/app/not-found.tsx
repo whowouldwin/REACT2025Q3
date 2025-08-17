@@ -1,7 +1,5 @@
-import NotFound from "../pages/NotFound";
+import NotFound from '../pages/NotFound';
 
 export default function ReturnNotFound() {
-    return (
-        <NotFound />
-    )
+  return <NotFound />;
 }

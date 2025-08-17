@@ -3,11 +3,11 @@ import { useTranslations } from 'next-intl';
 import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
 
+import { LanguageSwitcher } from './LanguageSwitcher.tsx';
 import { Link } from '../../i18n/navigation';
 import { usePathname } from '../../i18n/navigation';
 import { SearchBar } from '../search-bar/SearchBar';
 import { ThemeToggle } from '../theme/ThemeToggle';
-import { LanguageSwitcher } from './LanguageSwitcher.tsx';
 
 export const Header: FC = () => {
   const t = useTranslations('Header');

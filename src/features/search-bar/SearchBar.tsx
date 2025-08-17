@@ -1,22 +1,20 @@
-'use client'
-import React, { useState, type FC } from 'react';
-import { twMerge } from 'tailwind-merge';
-import { useLocalStorage } from '../../utils/hooks/useLocalStorage';
+'use client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import React, { useState, type FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-
+import { useLocalStorage } from '../../utils/hooks/useLocalStorage';
 
 // interface SearchBarProps {
 //   onSearch: (text: string) => void;
 // }
 
-export const SearchBar: FC = ({ }) => {
+export const SearchBar: FC = () => {
   const t = useTranslations('SearchBar');
   const searchParam = useSearchParams();
   const pathname = usePathname();
-  const {replace} = useRouter();
-
+  const { replace } = useRouter();
 
   const [stored, setStored] = useLocalStorage<string>('searchText', '');
   const [input, setInput] = useState(searchParam?.get('search') || '');
@@ -24,7 +22,7 @@ export const SearchBar: FC = ({ }) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     const params = new URLSearchParams(searchParam || '');
     if (input) {
-      params.set('search', input)
+      params.set('search', input);
     } else {
       params.delete('search');
     }
@@ -32,7 +30,7 @@ export const SearchBar: FC = ({ }) => {
     const trimmed = input.trim();
     if (trimmed !== stored) setStored(trimmed);
 
-    replace(`${pathname}?${params.toString()}`)
+    replace(`${pathname}?${params.toString()}`);
   };
 
   return (

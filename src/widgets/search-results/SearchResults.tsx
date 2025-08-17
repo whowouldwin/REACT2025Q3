@@ -1,11 +1,10 @@
+import { useTranslations } from 'next-intl';
 import { type FC } from 'react';
 import { twMerge } from 'tailwind-merge';
+
+import { Link } from '../../i18n/navigation';
 import { Character } from '../../utils/types/rickAndMorty';
 import { ResultsList } from '../results-list/ResultsList';
-import { useTranslations } from 'next-intl';
-import { Link } from '../../i18n/navigation';
-
-
 
 interface SearchResultsProps {
   data: Character[];
@@ -38,7 +37,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
   if (crash) {
     throw new Error('Render crash!');
   }
-  
+
   return (
     <>
       <ResultsList
@@ -51,12 +50,10 @@ export const SearchResults: FC<SearchResultsProps> = ({
         <div className="flex justify-center items-center gap-4 mt-8">
           <Link
             href={generateLink(page - 1)}
-        
             className={twMerge(
               'btn btn-primary',
               page <= 1 ? 'pointer-events-none' : ''
             )}
-
             prefetch={false}
           >
             {t('prev')}
@@ -67,7 +64,7 @@ export const SearchResults: FC<SearchResultsProps> = ({
               'bg-bg-secondary text-text-primary'
             )}
           >
-            {t('pageOf', {page, total: totalPages || 1})}
+            {t('pageOf', { page, total: totalPages || 1 })}
           </span>
           <Link
             href={generateLink(page + 1)}

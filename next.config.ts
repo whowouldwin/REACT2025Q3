@@ -1,4 +1,4 @@
-import {NextConfig} from 'next';
+import { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const nextConfig: NextConfig = {
@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [new URL('https://rickandmortyapi.com/api/character/**')],
   },
-}
+};
 
 const withNextIntl = createNextIntlPlugin();
 export default withNextIntl(nextConfig);
