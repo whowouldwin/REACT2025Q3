@@ -1,5 +1,6 @@
 import { cx } from '@/shared/lib/a11y/cx/cx';
 import type { ReactNode } from 'react';
+import { X } from 'lucide-react';
 
 type ModalHeaderProps = {
   title: ReactNode;
@@ -22,7 +23,7 @@ export function ModalHeader({ title, titleId, onClose }: ModalHeaderProps) {
           'focus:outline-none focus:ring-2 focus:ring-black/20'
         )}
       >
-        ✕
+        <X size={20} aria-hidden="true" />
       </button>
     </div>
   );
