@@ -1,7 +1,8 @@
 import './App.css';
+import { MainPage } from '@/pages/main/ui/MainPage.tsx';
 
 function App() {
-  return <h1>React Forms</h1>;
+  return <MainPage />;
 }
 
 export default App;
