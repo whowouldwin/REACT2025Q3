@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal } from '@/widgets/modal/ui/Modal';
 import { cx } from '@/shared/lib/a11y/cx/cx';
+import { UncontrolledForm } from '@/features/auth-form/uncontrolled/ui/UncontrolledForm.tsx';
 
 export function MainPage() {
   const [open, setOpen] = useState<null | 'uncontrolled' | 'rhf'>(null);
@@ -38,7 +39,7 @@ export function MainPage() {
         onClose={() => setOpen(null)}
         title="Uncontrolled form"
       >
-        <p className="text-sm text-gray-600">Uncontrolled form</p>
+        <UncontrolledForm onSuccess={() => setOpen(null)} />
       </Modal>
 
       <Modal

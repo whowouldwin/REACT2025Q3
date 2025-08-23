@@ -7,3 +7,8 @@ export function calcPasswordStrength(password: string): PasswordStrength {
 
   return { score: passedRules };
 }
+
+export function isStrongPassword(password?: string): boolean {
+  if (!password) return false;
+  return calcPasswordStrength(password).score === 4;
+}
