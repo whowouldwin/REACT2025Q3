@@ -11,7 +11,6 @@ import {
   uncontrolledSchema,
 } from '@/features/auth-form/uncontrolled/model/schema';
 import { type ChangeEventHandler, useState } from 'react';
-import { imageFileToBase64 } from '@/shared/lib/imageToBase/imageToBase64';
 import {
   AgeField,
   ConfirmPasswordField,
@@ -23,6 +22,7 @@ import {
   PictureField,
   TermsField,
 } from '@/features/auth-form/react-hook-form/components/fields';
+import { validateAndConvertImage } from '@/shared/lib/imageToBase/validateAndConvertImage.ts';
 
 export function ControlledForm({ onSuccess }: { onSuccess: () => void }) {
   const dispatch = useDispatch<AppDispatch>();
@@ -50,26 +50,19 @@ export function ControlledForm({ onSuccess }: { onSuccess: () => void }) {
   });
 
   const handlePictureChange: ChangeEventHandler<HTMLInputElement> = async (
-    e
+    event
   ) => {
     setLocalPicErr(undefined);
-    const f = e.target.files?.[0];
-    if (!f) {
-      setValue('pictureBase64', null, { shouldValidate: true });
-      return;
+
+    const selectedFile = event.target.files?.[0];
+    const { base64: pictureBase64, error: validationError } =
+      await validateAndConvertImage(selectedFile, { maxSizeMB: 2 });
+
+    if (validationError) {
+      setLocalPicErr(validationError);
     }
-    if (!['image/png', 'image/jpeg'].includes(f.type)) {
-      setLocalPicErr('Only PNG or JPEG allowed');
-      setValue('pictureBase64', null, { shouldValidate: true });
-      return;
-    }
-    if (f.size > 2 * 1024 * 1024) {
-      setLocalPicErr('File size must be ≤ 2MB');
-      setValue('pictureBase64', null, { shouldValidate: true });
-      return;
-    }
-    const b64 = await imageFileToBase64(f);
-    setValue('pictureBase64', b64, { shouldValidate: true });
+
+    setValue('pictureBase64', pictureBase64 ?? null, { shouldValidate: true });
   };
 
   const onValid = (data: FormValues) => {
