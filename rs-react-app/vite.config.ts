@@ -11,7 +11,20 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/__test__/setup.ts'],
     mockReset: true,
-    coverage: { reporter: ['text', 'html'] },
+    coverage: {
+      reporter: ['text', 'html'],
+      exclude: [
+        'src/main.tsx',
+        'src/index.tsx',
+        'src/vite-env.d.ts',
+        '**/*.d.ts',
+        '**/*.config.*',
+        '**/*.test.*',
+        '**/__mocks__/**',
+        '**/node_modules/**',
+        '**/dist/**',
+      ],
+    },
     include: ['src/**/*.test.{ts,tsx}'],
   },
 });

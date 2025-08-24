@@ -1,20 +1,24 @@
 @import 'tailwindcss';
 
 @theme {
-    --color-brand: #837ed9;
-    --color-brand-soft: #eef2ff;
+  --color-brand: #837ed9;
+  --color-brand-soft: #eef2ff;
 }
 
 .form-error {
-    @apply text-red-600 text-sm;
-    min-height: 1.25rem;
+  @apply text-red-600 text-sm;
+  min-height: 1.25rem;
 }
 
 @keyframes flash-border {
-    from { box-shadow: 0 0 0 3px var(--color-brand); }
-    to   { box-shadow: 0 0 0 0 transparent; }
+  from {
+    box-shadow: 0 0 0 3px var(--color-brand);
+  }
+  to {
+    box-shadow: 0 0 0 0 transparent;
+  }
 }
 
 .tile-flash {
-    animation: flash-border 2s ease-in-out;
+  animation: flash-border 2s ease-in-out;
 }
