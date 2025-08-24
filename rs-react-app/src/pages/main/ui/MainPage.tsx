@@ -1,11 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Modal } from '@/widgets/modal/ui/Modal';
 import { cx } from '@/shared/lib/a11y/cx/cx';
 import { UncontrolledForm } from '@/features/auth-form/uncontrolled/ui/UncontrolledForm.tsx';
 import { ControlledForm } from '@/features/auth-form/react-hook-form/ui/ControlledForm.tsx';
+import { RegistrationTile } from '@/widgets/registration-tile/RegistrationTile.tsx';
+import {
+  registrationActions,
+  selectRegistrationEntries,
+} from '@/entities/registration';
+import { selectJustAddedId } from '@/entities/registration/model/selectors.ts';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch } from '@/app/store.ts';
 
 export function MainPage() {
   const [open, setOpen] = useState<null | 'uncontrolled' | 'rhf'>(null);
+  const dispatch = useDispatch<AppDispatch>();
+  const entries = useSelector(selectRegistrationEntries);
+  const justAddedId = useSelector(selectJustAddedId);
+
+  useEffect(() => {
+    if (!justAddedId) return;
+    const t = setTimeout(
+      () => dispatch(registrationActions.clearJustAdded()),
+      3000
+    );
+    return () => clearTimeout(t);
+  }, [justAddedId, dispatch]);
 
   return (
     <div className="p-6 space-y-4">
@@ -34,6 +54,20 @@ export function MainPage() {
           Open RHF
         </button>
       </div>
+
+      {entries.length === 0 ? (
+        <p className="text-slate-500">No submissions yet</p>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {entries.map((el) => (
+            <RegistrationTile
+              key={el.id}
+              entry={el}
+              highlighted={el.id === justAddedId}
+            />
+          ))}
+        </div>
+      )}
 
       <Modal
         isOpen={open === 'uncontrolled'}

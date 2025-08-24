@@ -3,6 +3,7 @@ export type Gender = 'male' | 'female' | 'other';
 export type FormSource = 'uncontrolled' | 'rhf';
 
 export interface RegistrationEntry {
+  id: string;
   name: string;
   gender: Gender;
   email: string;
