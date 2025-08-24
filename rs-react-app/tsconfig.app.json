@@ -13,7 +13,7 @@
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "types": ["vitest", "vite/client"],
+    "types": ["vitest", "vite/client", "vitest/globals", "@testing-library/jest-dom"],
     "jsx": "react-jsx",
 
     /* Alias support */
@@ -30,5 +30,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "vitest.config.ts"]
 }

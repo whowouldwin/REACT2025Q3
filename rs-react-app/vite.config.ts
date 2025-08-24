@@ -9,8 +9,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: 'src/setupTests',
+    setupFiles: ['./src/__test__/setup.ts'],
     mockReset: true,
     coverage: { reporter: ['text', 'html'] },
+    include: ['src/**/*.test.{ts,tsx}'],
   },
 });
