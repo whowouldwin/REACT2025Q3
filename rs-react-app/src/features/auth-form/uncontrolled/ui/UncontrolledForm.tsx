@@ -37,7 +37,9 @@ export function UncontrolledForm({ onSuccess }: Props) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
 
-    const payload: RegistrationEntry & { confirmPassword?: string } = {
+    const payload: Omit<RegistrationEntry, 'id'> & {
+      confirmPassword?: string;
+    } = {
       name: String(fd.get('name') || ''),
       gender: (String(fd.get('gender') || '') as Gender) || 'other',
       email: String(fd.get('email') || ''),
@@ -54,7 +56,13 @@ export function UncontrolledForm({ onSuccess }: Props) {
       await uncontrolledSchema.validate(payload, { abortEarly: false });
       delete payload.confirmPassword;
 
-      dispatch(registrationActions.addEntry(payload));
+      const { ...rest } = payload;
+      const entry: RegistrationEntry = {
+        id: crypto.randomUUID(),
+        ...rest,
+      };
+
+      dispatch(registrationActions.addEntry(entry));
       onSuccess();
     } catch (err: unknown) {
       setErrors(parseYupErrors(err));

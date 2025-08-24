@@ -66,7 +66,10 @@ export function ControlledForm({ onSuccess }: { onSuccess: () => void }) {
   };
 
   const onValid = (data: FormValues) => {
+    const id = crypto.randomUUID();
+
     const payload: RegistrationEntry = {
+      id: id,
       name: data.name,
       gender: data.gender,
       email: data.email,
