@@ -1,5 +1,6 @@
 import type { FieldProps } from '../model/types.ts';
 import { cx } from '@/shared/lib/a11y/cx/cx.ts';
+import { AlertCircle } from 'lucide-react';
 
 export function Field({
   label,
@@ -18,11 +19,19 @@ export function Field({
       >
         {label}
       </label>
-      {children}
+      <div className="relative">
+        {children}
+        {error && (
+          <AlertCircle
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500"
+            size={18}
+          />
+        )}
+      </div>
       <div
         id={errorId}
         className={cx(
-          'min-h-[1.25rem] text-sm',
+          'mt-1 min-h-[1.25rem] text-sm transition-colors',
           error ? 'text-red-600' : 'text-transparent'
         )}
         aria-live="polite"

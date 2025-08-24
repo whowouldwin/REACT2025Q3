@@ -62,19 +62,25 @@ export function UncontrolledForm({ onSuccess }: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate>
-      <NameField error={errors.name} />
-      <AgeField error={errors.age} />
-      <EmailField error={errors.email} />
-      <PasswordField error={errors.password} />
-      <ConfirmPasswordField error={errors.confirmPassword} />
-      <GenderField error={errors.gender} />
-      <CountryField error={errors.country} />
-      <PictureField
-        error={errors.pictureBase64 || pictureErr}
-        onPickFile={handleFileChange}
-        hiddenRef={hiddenInputRef}
-      />
+    <form
+      onSubmit={onSubmit}
+      noValidate
+      className="mx-auto max-w-3xl rounded-2xl bg-white p-8 shadow-lg"
+    >
+      <div className="grid gap-6 md:grid-cols-2">
+        <NameField error={errors.name} />
+        <AgeField error={errors.age} />
+        <EmailField error={errors.email} />
+        <PasswordField error={errors.password} />
+        <ConfirmPasswordField error={errors.confirmPassword} />
+        <GenderField error={errors.gender} />
+        <CountryField error={errors.country} />
+        <PictureField
+          error={errors.pictureBase64 || pictureErr}
+          onPickFile={handleFileChange}
+          hiddenRef={hiddenInputRef}
+        />
+      </div>
       <TermsCheckbox error={errors.termsAccepted} />
 
       <button
