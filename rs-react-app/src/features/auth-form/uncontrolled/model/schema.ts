@@ -3,6 +3,7 @@ import { isStrongPassword } from '@/shared/lib/password/passwordStrength.ts';
 import { MSG } from './msg.ts';
 import { startsWithCapital } from './rules.ts';
 import { genderOptions } from '@/features/auth-form/uncontrolled/model/constants.ts';
+import type { Gender } from '@/entities/registration';
 
 export const uncontrolledSchema = yup.object({
   name: yup
@@ -29,12 +30,19 @@ export const uncontrolledSchema = yup.object({
     .required(MSG.confirm_required),
 
   gender: yup
-    .mixed<(typeof genderOptions)[number]>()
-    .oneOf(genderOptions, MSG.gender_invalid),
+    .mixed<Gender>()
+    .oneOf(genderOptions, MSG.gender_invalid)
+    .required(MSG.gender_invalid)
+    .defined(),
 
-  termsAccepted: yup.boolean().oneOf([true], MSG.terms_required),
+  termsAccepted: yup
+    .boolean()
+    .oneOf([true], MSG.terms_required)
+    .required(MSG.terms_required)
+    .defined(),
 
-  pictureBase64: yup.string().nullable(),
+  pictureBase64: yup.string().nullable().defined(),
 
   country: yup.string().required(MSG.country_required),
 });
+export type FormValues = yup.InferType<typeof uncontrolledSchema>;

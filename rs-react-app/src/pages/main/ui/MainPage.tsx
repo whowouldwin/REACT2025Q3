@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Modal } from '@/widgets/modal/ui/Modal';
 import { cx } from '@/shared/lib/a11y/cx/cx';
 import { UncontrolledForm } from '@/features/auth-form/uncontrolled/ui/UncontrolledForm.tsx';
+import { ControlledForm } from '@/features/auth-form/react-hook-form/ui/ControlledForm.tsx';
 
 export function MainPage() {
   const [open, setOpen] = useState<null | 'uncontrolled' | 'rhf'>(null);
@@ -47,7 +48,7 @@ export function MainPage() {
         onClose={() => setOpen(null)}
         title="React Hook Form"
       >
-        <p className="text-sm text-gray-600">React Hook Form</p>
+        <ControlledForm onSuccess={() => setOpen(null)} />
       </Modal>
     </div>
   );
