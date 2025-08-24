@@ -34,9 +34,9 @@ export function MainPage() {
       <div className="flex gap-3">
         <button
           className={cx(
-            'rounded-xl px-4 py-2 text-white',
+            'rounded-xl px-4 py-2 text-white transition-colors',
             open === 'uncontrolled'
-              ? 'bg-brand'
+              ? 'bg-brand hover:bg-brand/80'
               : 'bg-gray-500 hover:bg-gray-600'
           )}
           onClick={() => setOpen('uncontrolled')}
@@ -46,8 +46,10 @@ export function MainPage() {
 
         <button
           className={cx(
-            'rounded-xl px-4 py-2 text-white',
-            open === 'rhf' ? 'bg-brand' : 'bg-gray-500 hover:bg-gray-600'
+            'rounded-xl px-4 py-2 text-white transition-colors',
+            open === 'rhf'
+              ? 'bg-brand hover:bg-brand/80'
+              : 'bg-gray-500 hover:bg-gray-600'
           )}
           onClick={() => setOpen('rhf')}
         >
