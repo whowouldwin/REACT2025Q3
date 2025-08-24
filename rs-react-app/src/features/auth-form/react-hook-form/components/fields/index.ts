@@ -1,0 +1,9 @@
+export { NameField } from './NameField';
+export { AgeField } from './AgeField';
+export { EmailField } from './EmailField';
+export { CountryField } from './CountryField';
+export { PasswordField } from './PasswordField';
+export { ConfirmPasswordField } from './ConfirmPasswordField';
+export { GenderField } from './GenderField';
+export { PictureField } from './PictureField';
+export { TermsField } from './TermsField';
