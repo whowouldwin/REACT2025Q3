@@ -14,4 +14,3 @@ export async function imageFileToBase64(file: File): Promise<string> {
     reader.readAsDataURL(file);
   });
 }
-//const base64 = await imageFileToBase64(file);
