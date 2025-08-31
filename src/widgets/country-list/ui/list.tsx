@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { getCountryRegion } from '@/features/region-filter';
-import { ChevronRightIcon } from '@/shared/ui/icons';
+import { ChevronRightIcon } from 'assets/icons';
 import { useCountries, getLatestPopulation } from '@/entities/countries';
 import { formatNumber } from '@/shared/lib';
 import {
