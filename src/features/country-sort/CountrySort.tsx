@@ -1,4 +1,4 @@
-import { ChevronUpIcon, ChevronDownIcon } from 'assets/icons';
+import { ChevronUpIcon, ChevronDownIcon } from '@/shared/ui/icons';
 import { useCountries } from '@/entities/countries';
 import type { SortField } from '@/entities/countries/model/types.ts';
 import clsx from 'clsx';

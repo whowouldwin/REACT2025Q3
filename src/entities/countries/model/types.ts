@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import type { CellValue } from '@/entities/yearly-data-table/lib/sort.ts';
+
+export type CellValue = number | string | null | undefined;
 
 export interface YearlyData {
   year: number;

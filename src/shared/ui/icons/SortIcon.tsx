@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ChevronUpIcon } from '@/assets/icons/index.ts';
+import { ChevronDownIcon, ChevronUpIcon } from '@/shared/ui/icons/index.ts';
 import type { SortDirection } from '@/entities/yearly-data-table';
 
 type Props = {

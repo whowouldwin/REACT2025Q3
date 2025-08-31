@@ -2,7 +2,7 @@ import {
   formatColumnName,
   type SortDirection,
 } from '@/entities/yearly-data-table';
-import SortIcon from '@/assets/icons/SortIcon.tsx';
+import SortIcon from '@/shared/ui/icons/SortIcon.tsx';
 
 interface TableHeaderProps {
   columns: string[];

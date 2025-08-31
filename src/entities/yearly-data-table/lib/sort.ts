@@ -1,8 +1,8 @@
 export type SortDirection = 'asc' | 'desc';
-export type CellValue = number | string | null | undefined;
-export type Row = Record<string, CellValue>;
 
-function compareValues(aValue: CellValue, bValue: CellValue): number {
+type Comparable = string | number | null | undefined;
+
+function compareValues(aValue: Comparable, bValue: Comparable): number {
   if (aValue == null && bValue == null) return 0;
 
   if (aValue == null) return 1;
@@ -19,18 +19,16 @@ function compareValues(aValue: CellValue, bValue: CellValue): number {
   return String(aValue).localeCompare(String(bValue));
 }
 
-export function sortYearlyData<T extends Row>(
+export function sortYearlyData<T>(
   data: T[],
-  sortColumn: string,
+  sortColumn: keyof T,
   sortDirection: SortDirection
 ): T[] {
-  const directionMultiplier = sortDirection === 'asc' ? 1 : -1;
+  const dir = sortDirection === 'asc' ? 1 : -1;
 
   return [...data].sort((leftRow, rightRow) => {
-    const leftValue = leftRow[sortColumn];
-    const rightValue = rightRow[sortColumn];
-
-    const result = compareValues(leftValue, rightValue);
-    return result * directionMultiplier;
+    const leftValue = leftRow[sortColumn] as Comparable;
+    const rightValue = rightRow[sortColumn] as Comparable;
+    return compareValues(leftValue, rightValue) * dir;
   });
 }

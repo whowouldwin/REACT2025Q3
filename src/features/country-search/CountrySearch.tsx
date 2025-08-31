@@ -1,6 +1,6 @@
 import { type ChangeEvent } from 'react';
 import clsx from 'clsx';
-import { SearchIcon, ClearIcon } from 'assets/icons';
+import { SearchIcon, ClearIcon } from '@/shared/ui/icons';
 import { useCountries } from '@/entities/countries';
 
 interface CountrySearchProps {

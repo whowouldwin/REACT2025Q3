@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { getCountryRegion } from '@/features/region-filter';
-import { ChevronRightIcon } from 'assets/icons';
+import { ChevronRightIcon } from '@/shared/ui/icons';
 import { useCountries, getLatestPopulation } from '@/entities/countries';
 import { formatNumber } from '@/shared/lib';
 import {
@@ -32,6 +32,10 @@ export function CountryList() {
       })
     );
 
+    type Row = (typeof countriesArray)[number] & {
+      computedPopulation?: number;
+    };
+
     const regionFiltered =
       selectedRegion === 'All Regions'
         ? countriesArray
@@ -56,7 +60,8 @@ export function CountryList() {
 
     const sortByField =
       sortField === 'population' ? 'computedPopulation' : sortField;
-    return sortYearlyData(
+
+    return sortYearlyData<Row>(
       preparedForSort,
       sortByField,
       sortDirection as SortDirection
@@ -115,7 +120,7 @@ export function CountryList() {
                               ISO: {country.iso_code}
                             </span>
                           )}
-                          {population && (
+                          {typeof population === 'number' && (
                             <span>Pop: {formatNumber(population)}</span>
                           )}
                         </div>
