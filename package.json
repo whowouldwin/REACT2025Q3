@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint rs-react-app",
+    "lint": "eslint .",
     "preview": "vite preview",
     "format:fix": "prettier --write ."
   },
