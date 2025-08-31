@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react';
+import type { CellValue } from '@/entities/yearly-data-table/lib/sort.ts';
 
 export interface YearlyData {
   year: number;
   population?: number;
   co2?: number;
   co2_per_capita?: number;
-  [key: string]: any;
+  [key: string]: CellValue;
 }
 
 export interface CountryData {
